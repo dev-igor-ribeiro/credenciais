@@ -1,0 +1,20 @@
+[04-Sep-2025 09:16:43 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'boraca19_boracar_login.boraca19_credenciais' doesn't exist in /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php(11): mysqli->query('SELECT * FROM b...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php on line 11
+[05-Sep-2025 14:25:56 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'boraca19_boracar_login.boraca19_credenciais' doesn't exist in /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php(11): mysqli->query('SELECT * FROM b...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php on line 11
+[16-Sep-2025 10:21:19 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'boraca19_boracar_login.boraca19_credenciais' doesn't exist in /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php(11): mysqli->query('SELECT * FROM b...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php on line 11
+[22-Sep-2025 13:36:24 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'boraca19_boracar_login.boraca19_credenciais' doesn't exist in /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php(11): mysqli->query('SELECT * FROM b...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/exportar/exportar_motoristas.php on line 11

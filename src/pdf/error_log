@@ -1,0 +1,29 @@
+[22-Sep-2025 14:16:59 America/Fortaleza] PHP Warning:  Undefined array key "numero" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 12
+[22-Sep-2025 14:16:59 America/Fortaleza] PHP Warning:  file_get_contents(/home1/boraca19/public_html/login/credenciais/src/pdf/img/logo.jpeg): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 17
+[22-Sep-2025 14:16:59 America/Fortaleza] PHP Warning:  file_get_contents(/home1/boraca19/public_html/login/credenciais/src/pdf/img/assinatura.png): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 18
+[22-Sep-2025 14:17:00 America/Fortaleza] PHP Warning:  Undefined array key "nome" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 11
+[22-Sep-2025 14:17:00 America/Fortaleza] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 11
+[22-Sep-2025 14:17:00 America/Fortaleza] PHP Warning:  Undefined array key "numero" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 12
+[22-Sep-2025 14:17:00 America/Fortaleza] PHP Warning:  Undefined array key "cpf" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 13
+[22-Sep-2025 14:17:00 America/Fortaleza] PHP Warning:  Undefined array key "cnh" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 14
+[22-Sep-2025 14:17:00 America/Fortaleza] PHP Warning:  file_get_contents(/home1/boraca19/public_html/login/credenciais/src/pdf/img/logo.jpeg): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 17
+[22-Sep-2025 14:17:00 America/Fortaleza] PHP Warning:  file_get_contents(/home1/boraca19/public_html/login/credenciais/src/pdf/img/assinatura.png): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 18
+[22-Sep-2025 14:17:21 America/Fortaleza] PHP Warning:  Undefined array key "numero" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 12
+[22-Sep-2025 14:17:21 America/Fortaleza] PHP Warning:  file_get_contents(/home1/boraca19/public_html/login/credenciais/src/pdf/img/logo.jpeg): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 17
+[22-Sep-2025 14:17:21 America/Fortaleza] PHP Warning:  file_get_contents(/home1/boraca19/public_html/login/credenciais/src/pdf/img/assinatura.png): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 18
+[22-Sep-2025 14:18:59 America/Fortaleza] PHP Warning:  Undefined array key "numero" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 12
+[25-Sep-2025 14:25:05 America/Fortaleza] PHP Warning:  Undefined array key "nome" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 11
+[25-Sep-2025 14:25:05 America/Fortaleza] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 11
+[25-Sep-2025 14:25:05 America/Fortaleza] PHP Warning:  Undefined array key "numero" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 12
+[25-Sep-2025 14:25:05 America/Fortaleza] PHP Warning:  Undefined array key "cpf" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 13
+[25-Sep-2025 14:25:05 America/Fortaleza] PHP Warning:  Undefined array key "cnh" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 14
+[25-Sep-2025 17:00:06 America/Fortaleza] PHP Warning:  Undefined array key "nome" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 11
+[25-Sep-2025 17:00:06 America/Fortaleza] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 11
+[25-Sep-2025 17:00:06 America/Fortaleza] PHP Warning:  Undefined array key "numero" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 12
+[25-Sep-2025 17:00:06 America/Fortaleza] PHP Warning:  Undefined array key "cpf" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 13
+[25-Sep-2025 17:00:06 America/Fortaleza] PHP Warning:  Undefined array key "cnh" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 14
+[26-Sep-2025 15:36:27 America/Fortaleza] PHP Warning:  Undefined array key "nome" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 11
+[26-Sep-2025 15:36:27 America/Fortaleza] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 11
+[26-Sep-2025 15:36:27 America/Fortaleza] PHP Warning:  Undefined array key "numero" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 12
+[26-Sep-2025 15:36:27 America/Fortaleza] PHP Warning:  Undefined array key "cpf" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 13
+[26-Sep-2025 15:36:27 America/Fortaleza] PHP Warning:  Undefined array key "cnh" in /home1/boraca19/public_html/login/credenciais/src/pdf/gerar_pdf.php on line 14

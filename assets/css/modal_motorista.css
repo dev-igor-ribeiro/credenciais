@@ -1,0 +1,464 @@
+#modalNovoMotorista {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal de Novo/Editar Motorista */
+#modalNovoMotorista .modal-content,
+#modalCredencial .modal-content,
+#modalEditarMotorista .modal-content {
+    background-color: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    box-sizing: border-box;
+    max-height: calc(100vh - 45px);
+    min-height: 70vh;
+    /* evita estourar a tela */
+    overflow-y: auto;
+    /* rolagem interna quando necessário */
+    margin: 4vh auto;
+    /* respiro no topo/rodapé em todas as telas */
+}
+
+#modalCredencial .modal-content {
+    padding: 1.5rem 2rem;
+    max-height: auto;
+    min-height: auto;
+    height: auto;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #222;
+}
+
+#modalNovoMotorista .modal-content label,
+#modalCredencial .modal-content label,
+#modalEditarMotorista .modal-content label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #333;
+}
+
+#modalNovoMotorista .modal-content input[type="text"],
+#modalNovoMotorista .modal-content input[type="date"],
+#modalNovoMotorista .modal-content select,
+#modalCredencial .modal-content input[type="text"],
+#modalEditarMotorista .modal-content input[type="text"],
+#modalEditarMotorista .modal-content input[type="date"],
+#modalEditarMotorista .modal-content select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-top: 0;
+}
+
+#modalNovoMotorista .modal-content .form-group,
+#modalCredencial .modal-content .form-group,
+#modalEditarMotorista .modal-content .form-group {
+    margin-bottom: 0.2rem;
+}
+
+#modalNovoMotorista .modal-content button,
+#modalCredencial .modal-content button,
+#modalEditarMotorista .modal-content button {
+    background-color: #195b01;
+    color: white;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+#modalNovoMotorista .modal-content button:hover,
+#modalCredencial .modal-content button:hover,
+#modalEditarMotorista .modal-content button:hover {
+    background-color: #144800;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+}
+
+#modalNovoMotorista .close,
+#modalCredencial .close,
+#modalEditarMotorista .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 18px !important;
+    line-height: 28px !important;
+    text-align: center;
+    border-radius: 6px;
+    color: #333 !important;
+    cursor: pointer;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.modal .modal-content>.close,
+.modal .modal-content>.close-modal,
+.modal .modal-content>button.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    background: transparent;
+    border: 0;
+    color: #333;
+    cursor: pointer;
+}
+
+#modalCredencial .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 4px;
+    color: #666;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* Fundo translúcido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes popupZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#modalEditarMotorista {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#modalEditarMotorista.show {
+    display: flex;
+}
+
+/* Modal de Mensagens */
+#modalMensagem {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    animation-fill-mode: forwards;
+}
+
+#modalMensagem.show {
+    display: flex;
+    animation: fadeIn 0.3s forwards;
+}
+
+#modalMensagem.hide {
+    animation: fadeOut 0.3s forwards;
+}
+
+#modalMensagem .modal-content {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem 2.5rem 2rem 2rem;
+    min-width: 320px;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    color: #888;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 2;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #222;
+}
+
+.modal-icone {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+#modalMensagem .modal-content.success .modal-icone {
+    color: #2ecc40;
+}
+
+#modalMensagem .modal-content.error .modal-icone {
+    color: #e74c3c;
+}
+
+#modalMensagem .modal-content.warning .modal-icone {
+    color: #f1c40f;
+}
+
+#modalMensagem .modal-content.info .modal-icone {
+    color: #3498db;
+}
+
+#modalMensagem .modal-content.success {
+    border-top: 6px solid #2ecc40;
+}
+
+#modalMensagem .modal-content.error {
+    border-top: 6px solid #e74c3c;
+}
+
+#modalMensagem .modal-content.warning {
+    border-top: 6px solid #f1c40f;
+}
+
+#modalMensagem .modal-content.info {
+    border-top: 6px solid #3498db;
+}
+
+#modalMensagem .mensagem-texto {
+    font-size: 1rem;
+    color: #333;
+    margin: 1rem 0 1.5rem 0;
+}
+
+#modalMensagem .modal-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#modalMensagem .modal-botoes button {
+    padding: 0.6rem 1.4rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    color: #fff;
+}
+
+.modal-success .modal-content {
+    border-top: 6px solid #2ecc40;
+}
+
+.modal-success .mensagem-texto {
+    color: #2ecc40;
+}
+
+.modal-error .modal-content {
+    border-top: 6px solid #e74c3c;
+}
+
+.modal-error .mensagem-texto {
+    color: #e74c3c;
+}
+
+.modal-warning .modal-content {
+    border-top: 6px solid #f1c40f;
+}
+
+.modal-warning .mensagem-texto {
+    color: #f1c40f;
+}
+
+.modal-info .modal-content {
+    border-top: 6px solid #3498db;
+}
+
+.modal-info .mensagem-texto {
+    color: #3498db;
+}
+
+.btn-confirmar {
+    background-color: #2ecc40;
+}
+
+.btn-confirmar:hover {
+    background-color: #27ae37;
+}
+
+.btn-cancelar {
+    background-color: #e74c3c;
+}
+
+.btn-cancelar:hover {
+    background-color: #c0392b;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+#modalCredencial {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#modalCredencial.show {
+    display: flex;
+}
+
+#modalErro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2100;
+    animation-fill-mode: forwards;
+}
+
+#modalErro.show {
+    display: flex;
+    animation: fadeIn 0.3s forwards;
+}
+
+#modalErro.hide {
+    animation: fadeOut 0.3s forwards;
+}
+
+#modalErro .modal-content {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem 2.5rem;
+    min-width: 320px;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    border-top: 6px solid #e74c3c;
+}
+
+#modalErro .modal-content h2 {
+    margin-top: 0;
+    color: #e74c3c;
+}
+
+#modalErro .modal-content p {
+    font-size: 1rem;
+    color: #333;
+    margin: 1rem 0 1.5rem;
+}
+
+#modalErro .modal-content button {
+    padding: 0.6rem 1.4rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    color: #fff;
+    background-color: #e74c3c;
+}
+
+#modalErro .modal-content button:hover {
+    background-color: #c0392b;
+}

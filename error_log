@@ -1,0 +1,57 @@
+[03-Sep-2025 19:36:09 America/Fortaleza] PHP Warning:  include(src/modals/modal_novo_motorista.php): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/painel.php on line 85
+[03-Sep-2025 19:36:09 America/Fortaleza] PHP Warning:  include(): Failed opening 'src/modals/modal_novo_motorista.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/boraca19/public_html/login/credenciais/painel.php on line 85
+[03-Sep-2025 19:36:09 America/Fortaleza] PHP Warning:  include(src/modals/modal_editar_motorista.php): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/painel.php on line 86
+[03-Sep-2025 19:36:09 America/Fortaleza] PHP Warning:  include(): Failed opening 'src/modals/modal_editar_motorista.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/boraca19/public_html/login/credenciais/painel.php on line 86
+[03-Sep-2025 19:36:10 America/Fortaleza] PHP Warning:  include(src/modals/modal_novo_motorista.php): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/painel.php on line 85
+[03-Sep-2025 19:36:10 America/Fortaleza] PHP Warning:  include(): Failed opening 'src/modals/modal_novo_motorista.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/boraca19/public_html/login/credenciais/painel.php on line 85
+[03-Sep-2025 19:36:10 America/Fortaleza] PHP Warning:  include(src/modals/modal_editar_motorista.php): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/painel.php on line 86
+[03-Sep-2025 19:36:10 America/Fortaleza] PHP Warning:  include(): Failed opening 'src/modals/modal_editar_motorista.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/boraca19/public_html/login/credenciais/painel.php on line 86
+[03-Sep-2025 20:03:09 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:09 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:10 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:10 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:13 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:13 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:14 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:14 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:15 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:15 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:16 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:16 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:16 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:16 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:17 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:17 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:18 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:18 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:44 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:44 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:45 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:45 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[03-Sep-2025 20:03:46 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/painel.php on line 6
+[03-Sep-2025 20:03:46 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/painel.php:1) in /home1/boraca19/public_html/login/credenciais/painel.php on line 8
+[04-Sep-2025 22:35:04 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/testar_conexao.php:7
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/testar_conexao.php(7): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/testar_conexao.php on line 7
+[04-Sep-2025 22:35:15 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/testar_conexao.php:7
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/testar_conexao.php(7): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/testar_conexao.php on line 7
+[04-Sep-2025 22:35:19 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/testar_conexao.php:7
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/testar_conexao.php(7): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/testar_conexao.php on line 7
+[04-Sep-2025 22:35:19 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/testar_conexao.php:7
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/testar_conexao.php(7): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/testar_conexao.php on line 7
+[04-Sep-2025 22:35:47 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/testar_conexao.php:7
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/testar_conexao.php(7): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/testar_conexao.php on line 7

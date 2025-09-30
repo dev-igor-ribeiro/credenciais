@@ -1,0 +1,2 @@
+-- Estrutura do banco (exceto conexao.php)
+-- Tabela: usuarios e credenciais_motoristas (exemplo)

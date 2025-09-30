@@ -1,0 +1,243 @@
+[03-Sep-2025 15:29:45 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 3
+[03-Sep-2025 15:29:45 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boracar19_boracar19'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:8
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(8): mysqli->__construct('localhost', 'boracar19_borac...', Object(SensitiveParameterValue), 'boracar19_borac...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(4): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(1): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 8
+[03-Sep-2025 15:29:46 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 3
+[03-Sep-2025 15:29:46 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boracar19_boracar19'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:8
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(8): mysqli->__construct('localhost', 'boracar19_borac...', Object(SensitiveParameterValue), 'boracar19_borac...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(4): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(1): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 8
+[03-Sep-2025 15:34:03 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 3
+[03-Sep-2025 15:34:03 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boracar19_boracar19'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:7
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(7): mysqli->__construct('localhost', 'boracar19_borac...', Object(SensitiveParameterValue), 'boracar19_borac...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(4): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(1): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 7
+[03-Sep-2025 15:39:43 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 3
+[03-Sep-2025 15:39:43 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boracar19_boracar19'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boracar19_borac...', Object(SensitiveParameterValue), 'boracar19_borac...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(4): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[03-Sep-2025 19:05:01 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 3
+[03-Sep-2025 19:05:01 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boracar19_borac...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(4): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[03-Sep-2025 19:05:02 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 3
+[03-Sep-2025 19:05:02 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boracar19_borac...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(4): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[03-Sep-2025 19:05:18 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 3
+[03-Sep-2025 19:05:18 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boracar19_borac...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(4): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[03-Sep-2025 19:06:13 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 3
+[03-Sep-2025 19:06:13 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(4): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[03-Sep-2025 19:07:22 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 3
+[03-Sep-2025 19:07:47 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 3
+[03-Sep-2025 19:07:47 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/src/process_login.php:1) in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 19
+[03-Sep-2025 19:14:14 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/login/logout.php on line 3
+[03-Sep-2025 19:14:14 America/Fortaleza] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home1/boraca19/public_html/login/credenciais/login/logout.php on line 4
+[03-Sep-2025 19:14:14 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/login/logout.php:1) in /home1/boraca19/public_html/login/credenciais/login/logout.php on line 5
+[03-Sep-2025 19:14:14 America/Fortaleza] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/boraca19/public_html/login/credenciais/login/logout.php on line 3
+[03-Sep-2025 19:14:14 America/Fortaleza] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home1/boraca19/public_html/login/credenciais/login/logout.php on line 4
+[03-Sep-2025 19:14:14 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/login/logout.php:1) in /home1/boraca19/public_html/login/credenciais/login/logout.php on line 5
+[03-Sep-2025 19:27:43 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[03-Sep-2025 19:27:43 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[04-Sep-2025 09:31:46 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[04-Sep-2025 09:31:46 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[04-Sep-2025 09:34:46 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[04-Sep-2025 09:34:46 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[04-Sep-2025 18:46:04 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 18:46:25 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 18:48:25 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 18:49:39 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 18:50:03 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 18:51:17 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 20:24:20 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 20:24:20 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 20:59:41 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 20:59:42 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 21:02:02 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 21:02:03 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 21:02:56 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 21:02:56 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 22:32:19 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 22:32:19 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 22:36:27 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 22:36:27 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 22:38:00 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[04-Sep-2025 22:38:00 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_igor'@'localhost' (using password: YES) in /home1/boraca19/public_html/login/credenciais/db/conexao.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao.php(11): mysqli->__construct('localhost', 'boraca19_igor', Object(SensitiveParameterValue), 'boraca19_boraca...')
+#1 /home1/boraca19/public_html/login/credenciais/src/process_login.php(3): include('/home1/boraca19...')
+#2 /home1/boraca19/public_html/login/credenciais/login/login.php(6): include('/home1/boraca19...')
+#3 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao.php on line 11
+[08-Sep-2025 12:51:03 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[08-Sep-2025 12:51:03 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[08-Sep-2025 12:51:03 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/src/process_login.php:5) in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 24
+[08-Sep-2025 12:51:11 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[08-Sep-2025 12:51:11 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[08-Sep-2025 12:51:11 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/src/process_login.php:5) in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 24
+[15-Sep-2025 11:25:39 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[15-Sep-2025 11:25:39 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[15-Sep-2025 11:25:39 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/src/process_login.php:5) in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 24
+[15-Sep-2025 11:25:43 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[15-Sep-2025 11:25:43 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[15-Sep-2025 11:25:43 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/src/process_login.php:5) in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 24
+[16-Sep-2025 12:17:40 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[16-Sep-2025 12:17:40 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[16-Sep-2025 12:17:40 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/src/process_login.php:5) in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 24
+[16-Sep-2025 12:18:13 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[16-Sep-2025 12:18:13 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[16-Sep-2025 12:18:13 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/src/process_login.php:5) in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 24
+[16-Sep-2025 12:18:25 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[16-Sep-2025 12:18:25 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[16-Sep-2025 12:18:25 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/src/process_login.php:5) in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 24
+[16-Sep-2025 12:18:33 America/Fortaleza] PHP Warning:  Undefined array key "usuario" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 5
+[16-Sep-2025 12:18:33 America/Fortaleza] PHP Warning:  Undefined array key "senha" in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 6
+[16-Sep-2025 12:18:33 America/Fortaleza] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/boraca19/public_html/login/credenciais/src/process_login.php:5) in /home1/boraca19/public_html/login/credenciais/src/process_login.php on line 24

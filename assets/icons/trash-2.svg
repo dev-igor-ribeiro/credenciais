@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="5.2918mm" height="5.8209mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 10.72 11.8"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:white;stroke-width:1.07;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .fil0 {fill:none}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <polyline class="fil0 str0" points="0.54,2.68 1.61,2.68 10.19,2.68 "/>
+  <path class="fil0 str0" d="M9.11 2.68l0 7.51c0,0.59 -0.48,1.07 -1.07,1.07l-5.36 0c-0.59,0 -1.07,-0.48 -1.07,-1.07l-0 -7.51m1.61 0l0 -1.07c0,-0.59 0.48,-1.07 1.07,-1.07l2.14 0c0.59,-0 1.07,0.48 1.07,1.07l0 1.07"/>
+  <line class="fil0 str0" x1="4.29" y1="5.36" x2="4.29" y2= "8.58" />
+  <line class="fil0 str0" x1="6.43" y1="5.36" x2="6.43" y2= "8.58" />
+ </g>
+</svg>

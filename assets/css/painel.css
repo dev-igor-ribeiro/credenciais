@@ -1,0 +1,438 @@
+/* painel.css */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1c1c2b, #541212);
+    color: #fff;
+}
+
+.top-header {
+    background: transparent;
+    text-align: center;
+    padding: 1rem 2rem 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.top-header p {
+    margin: 0.2rem 0 0.8rem;
+    color: #ccc;
+}
+
+
+.logout-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #e63946;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c71f2e;
+}
+
+.dashboard {
+    width: 95%;
+    max-width: 1400px;
+    /* largura máxima fixa */
+    padding: 1rem;
+    margin: 0 auto;
+    /* centraliza e cria margens laterais */
+    box-sizing: border-box;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.card p {
+    margin-top: 0.5rem;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.card.validos {
+    background-color: #195b01;
+}
+
+.card.a-vencer {
+    background-color: #996c00;
+}
+
+.card.vencidos {
+    background-color: #a10000;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.filtros input,
+.filtros select,
+.filtros button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+.filtros input {
+    flex: 1;
+}
+
+.filtros button {
+    background-color: #e63946;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filtros button:hover {
+    background-color: #c71f2e;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+/* Wrapper para scroll da tabela com cabeçalho fixo */
+.table-wrapper {
+    height: 60vh;
+    min-height: 320px;
+    width: 100%;
+    margin: 0 auto;
+    overflow-y: auto;
+    overflow-x: auto;
+    display: block;
+    position: relative;
+    border-radius: 8px;
+    max-width: 1400px;
+    /* garante que a tabela não expanda além */
+}
+
+.table-wrapper table {
+    width: 100%;
+    /* min-width: 1100px; */
+    /* largura mínima suficiente */
+    /* largura mínima para evitar quebra e sobreposição */
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+/* Cabeçalho fixo */
+.table-wrapper thead th {
+    position: sticky;
+    top: 0;
+    background: #2c2c2c;
+    z-index: 5;
+}
+
+/* Linhas em maiúsculo */
+.table-wrapper tbody td {
+    text-transform: uppercase;
+}
+
+th,
+td {
+    padding: 0.75rem;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+td.nome,
+th.nome {
+    white-space: normal;
+    /* permite quebra de linha no nome */
+    word-wrap: break-word;
+    max-width: 200px;
+    /* largura máxima da coluna nome */
+}
+
+thead {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+tbody tr:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.status-valido {
+    background-color: #195b01;
+    padding: 4px 8px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.status-vencido {
+    background-color: #a10000;
+    padding: 4px 8px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.status-a-vencer {
+    background-color: #996c00;
+    padding: 4px 8px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.acao-btn {
+    display: inline-block;
+    padding: 4px 6px;
+    margin: 0 2px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.acao-btn:hover {
+    background-color: #555;
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .filtros {
+        flex-direction: column;
+    }
+}
+
+td.acoes {
+    text-align: center;
+    vertical-align: middle;
+}
+
+td.acoes .action-icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    /* mais espaçamento entre os ícones */
+}
+
+.edit-icon,
+.delete-icon {
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.edit-icon:hover {
+    color: #007bff;
+}
+
+.delete-icon:hover {
+    color: #dc3545;
+}
+
+.icon-action {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.icon-action:hover {
+    filter: brightness(0.8);
+}
+
+.status-badge {
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.ano-vermelho {
+    color: red;
+    font-weight: bold;
+}
+
+td.cpf {
+    white-space: nowrap;
+}
+
+/* Melhorias visuais */
+
+/* Alinhamento colunas */
+
+th.nome,
+td.nome {
+    text-align: left;
+}
+
+/* Bordas verticais sutis entre colunas */
+table th,
+table td {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+table th:last-child,
+table td:last-child {
+    border-right: none;
+}
+
+/* Hover nas linhas da tabela */
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Ícones de ação com animação */
+.icon-action {
+    opacity: 0.8;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.icon-action:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+/* botao fechar modal editar motorista*/
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: #e63946;
+}
+
+/* Regras consistentes de largura para todas as colunas */
+.table-wrapper table th:first-child,
+.table-wrapper table td:first-child {
+    width: 20px;
+    /* coluna de seleção */
+    max-width: 20px;
+    text-align: center;
+}
+
+.table-wrapper table th.col-nome,
+.table-wrapper table td.col-nome {
+    width: 180px;
+    max-width: 180px;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.table-wrapper table th.col-cnh,
+.table-wrapper table td.col-cnh {
+    width: 97px;
+}
+
+.table-wrapper table th.col-cpf,
+.table-wrapper table td.col-cpf {
+    width: 102px;
+}
+
+.table-wrapper table th.col-validade,
+.table-wrapper table td.col-validade {
+    width: 100px;
+}
+
+.table-wrapper table th.col-modelo,
+.table-wrapper table td.col-modelo {
+    width: 100px;
+}
+
+.table-wrapper table th.col-ano,
+.table-wrapper table td.col-ano {
+    width: 40px;
+}
+
+.table-wrapper table th.col-placa,
+.table-wrapper table td.col-placa {
+    width: 90px;
+}
+
+.table-wrapper table th.col-credencial,
+.table-wrapper table td.col-credencial {
+    width: 90px;
+}
+
+.table-wrapper table th.col-status,
+.table-wrapper table td.col-status {
+    width: 90px;
+}
+
+.table-wrapper table th.col-dias,
+.table-wrapper table td.col-dias {
+    width: 55px;
+}
+
+.table-wrapper table th.col-acoes,
+.table-wrapper table td.col-acoes {
+    width: 55px;
+    text-align: center;
+}
+
+td.acoes .action-icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+td.acoes .action-icons .icon-action {
+    width: 30px;
+    height: 30px;
+}

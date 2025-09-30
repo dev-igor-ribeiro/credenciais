@@ -1,0 +1,30 @@
+[15-Sep-2025 23:07:43 America/Fortaleza] PHP Warning:  Undefined variable $pdo in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:07:43 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php:6
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:07:46 America/Fortaleza] PHP Warning:  Undefined variable $pdo in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:07:46 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php:6
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:07:47 America/Fortaleza] PHP Warning:  Undefined variable $pdo in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:07:47 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php:6
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:07:49 America/Fortaleza] PHP Warning:  Undefined variable $pdo in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:07:49 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php:6
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:11:27 America/Fortaleza] PHP Warning:  Undefined variable $pdo in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:11:27 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php:6
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:11:27 America/Fortaleza] PHP Warning:  Undefined variable $pdo in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6
+[15-Sep-2025 23:11:27 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php:6
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/ajax/carregar_motoristas.php on line 6

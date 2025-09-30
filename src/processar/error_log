@@ -1,0 +1,155 @@
+[04-Sep-2025 22:52:46 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_novo'@'localhost' to database 'boraca19_credenciais' in /home1/boraca19/public_html/login/credenciais/db/conexao_motoristas.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao_motoristas.php(11): mysqli->__construct('localhost', 'boraca19_novo', Object(SensitiveParameterValue), 'boraca19_creden...')
+#1 /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php(2): require_once('/home1/boraca19...')
+#2 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao_motoristas.php on line 11
+[04-Sep-2025 22:52:47 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'boraca19_novo'@'localhost' to database 'boraca19_credenciais' in /home1/boraca19/public_html/login/credenciais/db/conexao_motoristas.php:11
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/db/conexao_motoristas.php(11): mysqli->__construct('localhost', 'boraca19_novo', Object(SensitiveParameterValue), 'boraca19_creden...')
+#1 /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php(2): require_once('/home1/boraca19...')
+#2 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/db/conexao_motoristas.php on line 11
+[04-Sep-2025 22:56:29 America/Fortaleza] PHP Warning:  Undefined array key "status" in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php on line 12
+[04-Sep-2025 22:56:29 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php:21
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php(21): mysqli->prepare('INSERT INTO mot...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php on line 21
+[04-Sep-2025 23:02:03 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'status' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php:20
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php(20): mysqli->prepare('INSERT INTO mot...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php on line 20
+[04-Sep-2025 23:11:34 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php:20
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php(20): mysqli->prepare('INSERT INTO mot...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php on line 20
+[04-Sep-2025 23:16:09 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php:20
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php(20): mysqli->prepare('INSERT INTO mot...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php on line 20
+[08-Sep-2025 14:59:12 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:32
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(32): mysqli->prepare('UPDATE motorist...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 32
+[12-Sep-2025 16:16:55 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:32
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(32): mysqli->prepare('UPDATE motorist...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 32
+[12-Sep-2025 16:17:22 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:32
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(32): mysqli->prepare('UPDATE motorist...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 32
+[12-Sep-2025 16:17:38 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:32
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(32): mysqli->prepare('UPDATE motorist...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 32
+[13-Sep-2025 08:34:37 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:32
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(32): mysqli->prepare('UPDATE motorist...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 32
+[14-Sep-2025 22:05:25 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:32
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(32): mysqli->prepare('UPDATE motorist...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 32
+[14-Sep-2025 22:14:58 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:32
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(32): mysqli->prepare('UPDATE motorist...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 32
+[14-Sep-2025 22:36:06 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dias_restantes' in 'field list' in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:32
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(32): mysqli->prepare('UPDATE motorist...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 32
+[14-Sep-2025 22:39:05 America/Fortaleza] PHP Warning:  Undefined variable $dias_restantes in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 20
+[15-Sep-2025 13:15:30 America/Fortaleza] PHP Warning:  require_once(../../vendor/autoload.php): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php on line 2
+[15-Sep-2025 13:15:30 America/Fortaleza] PHP Fatal error:  Uncaught Error: Failed opening required '../../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php on line 2
+[15-Sep-2025 13:24:25 America/Fortaleza] PHP Warning:  require_once(../../vendor/autoload.php): Failed to open stream: No such file or directory in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php on line 2
+[15-Sep-2025 13:24:25 America/Fortaleza] PHP Fatal error:  Uncaught Error: Failed opening required '../../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php on line 2
+[15-Sep-2025 14:00:33 America/Fortaleza] PHP Warning:  Undefined variable $pdo in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php on line 19
+[15-Sep-2025 14:00:33 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php:19
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php on line 19
+[15-Sep-2025 14:00:41 America/Fortaleza] PHP Warning:  Undefined variable $pdo in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php on line 19
+[15-Sep-2025 14:00:41 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php:19
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/importar_motoristas.php on line 19
+[15-Sep-2025 14:49:41 America/Fortaleza] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:34
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(34): mysqli_stmt->bind_param('ssssssssii', 'Fernando Bernar...', '07818176854', '144.795.016-06', '2026-01-29', 'Peugeot', '2022', 'RVD2J46', '12', 'v\xC3\xA1lido', 136.0, '18')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 34
+[15-Sep-2025 15:14:31 America/Fortaleza] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:34
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(34): mysqli_stmt->bind_param('ssssssssii', 'Fernando Bernar...', '07818176854', '144.795.016-06', '2026-01-29', 'Peugeot', '2022', 'RVD2J46', '12', 'v\xC3\xA1lido', 136.0, '18')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 34
+[15-Sep-2025 15:14:33 America/Fortaleza] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:34
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(34): mysqli_stmt->bind_param('ssssssssii', 'Fernando Bernar...', '07818176854', '144.795.016-06', '2026-01-29', 'Peugeot', '2022', 'RVD2J46', '12', 'v\xC3\xA1lido', 136.0, '18')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 34
+[15-Sep-2025 19:45:01 America/Fortaleza] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:34
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(34): mysqli_stmt->bind_param('ssssssssii', 'Igor Dos Santos...', '01044060151', '112.974.896-08', '2026-09-26', 'Peugeot', '2022', 'QUX2C22', '1', 'v\xC3\xA1lido', 376.0, '16')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 34
+[15-Sep-2025 19:56:36 America/Fortaleza] PHP Fatal error:  Uncaught mysqli_sql_exception: Column count doesn't match value count at row 1 in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php:31
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php(31): mysqli->prepare('INSERT INTO mot...')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php on line 31
+[15-Sep-2025 19:57:21 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function format() on false in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php on line 8
+[15-Sep-2025 19:57:27 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function format() on false in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php on line 8
+[15-Sep-2025 19:58:17 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function format() on false in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php on line 8
+[15-Sep-2025 19:58:52 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function format() on false in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/processa_novo_motorista.php on line 8
+[15-Sep-2025 22:49:10 America/Fortaleza] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php:34
+Stack trace:
+#0 /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php(34): mysqli_stmt->bind_param('ssssssssii', 'Igor Dos Santos...', '01044060151', '11297489608', '2025-10-09', 'Peugeot', '2020', 'RMO6J56', '2', 'a_vencer', 24.0, '21')
+#1 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/atualizar_motorista.php on line 34
+[15-Sep-2025 23:17:32 America/Fortaleza] PHP Warning:  Undefined variable $conn in /home1/boraca19/public_html/login/credenciais/src/processar/excluir_motorista.php on line 7
+[15-Sep-2025 23:17:32 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/boraca19/public_html/login/credenciais/src/processar/excluir_motorista.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/excluir_motorista.php on line 7
+[15-Sep-2025 23:17:38 America/Fortaleza] PHP Warning:  Undefined variable $conn in /home1/boraca19/public_html/login/credenciais/src/processar/excluir_motorista.php on line 7
+[15-Sep-2025 23:17:38 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/boraca19/public_html/login/credenciais/src/processar/excluir_motorista.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/excluir_motorista.php on line 7
+[15-Sep-2025 23:19:45 America/Fortaleza] PHP Warning:  Undefined variable $conn in /home1/boraca19/public_html/login/credenciais/src/processar/excluir_motorista.php on line 7
+[15-Sep-2025 23:19:45 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/boraca19/public_html/login/credenciais/src/processar/excluir_motorista.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/boraca19/public_html/login/credenciais/src/processar/excluir_motorista.php on line 7
