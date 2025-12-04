@@ -6,12 +6,11 @@ if (!isset($_GET["motorista_id"])) exit("ID inválido");
 $id = intval($_GET["motorista_id"]);
 
 $stmt = $pdo->prepare("
-    SELECT arquivo 
-    FROM documentos_motoristas 
+    SELECT arquivo
+    FROM documentos_motoristas
     WHERE motorista_id = ?
       AND arquivo IS NOT NULL
       AND arquivo <> ''
-      AND arquivo NOT LIKE '%.php'
     ORDER BY id DESC
 ");
 $stmt->execute([$id]);
@@ -23,11 +22,11 @@ if (!$docs) {
 }
 
 foreach ($docs as $d) {
-    $arquivo = htmlspecialchars($d["arquivo"]);
+    $arquivo = $d["arquivo"];
     $ext = strtolower(pathinfo($arquivo, PATHINFO_EXTENSION));
+
     $url = "../backup/documentos/$id/$arquivo";
 
-    // Miniatura dependendo do tipo
     if (in_array($ext, ["jpg","jpeg","png","gif","webp"])) {
         echo "
             <div class='doc-item'>
@@ -38,14 +37,14 @@ foreach ($docs as $d) {
     } elseif ($ext === "pdf") {
         echo "
             <div class='doc-item'>
-                <img src='assets/icons/pdf.png' class='doc-thumb'>
+                <img src='../assets/icons/pdf.png' class='doc-thumb'>
                 <a href='$url' target='_blank'>📄 Abrir PDF</a>
             </div>
         ";
     } else {
         echo "
             <div class='doc-item'>
-                <img src='assets/icons/file.png' class='doc-thumb'>
+                <img src='../assets/icons/file.png' class='doc-thumb'>
                 <a href='$url' download>⬇ Baixar arquivo</a>
             </div>
         ";
