@@ -1,6 +1,13 @@
 <?php
 require_once "../db/conexao_motoristas.php";
-print_r($pdo->query("SHOW DATABASES")->fetchAll(PDO::FETCH_COLUMN));
+header("Content-Type: text/plain; charset=utf-8");
+
+echo "Banco conectado: ";
+print_r($pdo->query("SELECT DATABASE()")->fetchColumn());
+echo "\n\n";
+
+echo "Tabela documentos_motoristas lida pelo PHP:\n";
+print_r($pdo->query("SELECT * FROM documentos_motoristas")->fetchAll(PDO::FETCH_ASSOC));
 exit;
 
 
