@@ -116,7 +116,9 @@ function fecharModal() {
 
 // CARREGAR DOCUMENTOS
 function carregarDocumentos(id) {
-    fetch("src/listar_documentos.php?motorista_id=" + id)
+    fetch("src/listar_documentos.php?motorista_id=" + id + "&nocache=" + Date.now(), {
+        cache: "no-store"
+    })
         .then(r => r.text())
         .then(html => {
             document.getElementById("listaDocumentos").innerHTML = html;
@@ -125,7 +127,9 @@ function carregarDocumentos(id) {
 
 // CARREGAR OBSERVAÇÃO
 function carregarObservacao(id) {
-    fetch("src/get_observacao.php?motorista_id=" + id)
+    fetch("src/get_observacao.php?motorista_id=" + id + "&nocache=" + Date.now(), {
+        cache: "no-store"
+    })
         .then(r => r.text())
         .then(text => {
             document.getElementById("obsMotorista").value = text;
