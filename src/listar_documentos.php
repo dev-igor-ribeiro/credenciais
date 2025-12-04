@@ -24,7 +24,7 @@ if (!$docs) {
 foreach ($docs as $d) {
     $arquivo = $d["arquivo"];
     $ext = strtolower(pathinfo($arquivo, PATHINFO_EXTENSION));
-    $url = "../documentos/$id/$arquivo";
+    $url = "../../documentos/$id/$arquivo";
 
     if (in_array($ext, ["png","jpg","jpeg","gif","webp"])) {
         echo "
