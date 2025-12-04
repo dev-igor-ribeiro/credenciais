@@ -1,4 +1,6 @@
 <?php
+echo "LISTAR OK"; exit;
+<?php
 require_once "../db/conexao_motoristas.php";
 
 if (!isset($_GET["motorista_id"])) exit("ID inválido");
