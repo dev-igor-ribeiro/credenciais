@@ -143,7 +143,10 @@ document.getElementById("btnSalvarObs").addEventListener("click", function () {
         body: "motorista_id=" + id + "&observacao=" + encodeURIComponent(obs)
     })
         .then(r => r.text())
-        .then(() => alert("Observação salva!"));
+        .then(() => {
+            alert("Observação salva!");
+            carregarObservacao(id);
+        });
 });
 
 // UPLOAD DOCUMENTO
