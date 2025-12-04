@@ -3,60 +3,30 @@ require_once "../db/conexao_motoristas.php";
 header("Content-Type: text/plain; charset=utf-8");
 
 echo "Banco conectado: ";
-print_r($pdo->query("SELECT DATABASE()")->fetchColumn());
+echo $pdo->query("SELECT DATABASE()")->fetchColumn();
 echo "\n\n";
 
-echo "Tabela documentos_motoristas lida pelo PHP:\n";
-print_r($pdo->query("SELECT * FROM documentos_motoristas")->fetchAll(PDO::FETCH_ASSOC));
-exit;
+echo "Conteúdo da tabela documentos_motoristas lida pelo PHP:\n";
+$result = $pdo->query("SELECT * FROM documentos_motoristas")->fetchAll(PDO::FETCH_ASSOC);
+print_r($result);
 
+echo "\n\n========================\n";
+echo "Agora testando filtro por ID\n";
 
-if (!isset($_GET["motorista_id"])) exit("ID inválido");
-
-$id = intval($_GET["motorista_id"]);
-
-$stmt = $pdo->prepare("
-    SELECT arquivo
-    FROM documentos_motoristas
-    WHERE motorista_id = ?
-      AND LENGTH(TRIM(arquivo)) > 0
-    ORDER BY id DESC
-");
-$stmt->execute([$id]);
-$docs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-if (!$docs) {
-    echo "<p>Nenhum documento enviado.</p>";
+if (!isset($_GET["motorista_id"])) {
+    echo "Nenhum ID informado\n";
     exit;
 }
 
-foreach ($docs as $d) {
-    $arquivo = $d["arquivo"];
-    $ext = strtolower(pathinfo($arquivo, PATHINFO_EXTENSION));
+$id = intval($_GET["motorista_id"]);
+echo "Motorista ID recebido: $id\n\n";
 
-    $url = "../documentos/$id/$arquivo";
+$stmt = $pdo->prepare("
+    SELECT *
+    FROM documentos_motoristas
+    WHERE motorista_id = ?
+");
+$stmt->execute([$id]);
+print_r($stmt->fetchAll(PDO::FETCH_ASSOC));
 
-    if (in_array($ext, ["jpg","jpeg","png","gif","webp"])) {
-        echo "
-            <div class='doc-item'>
-                <img src='$url' class='doc-thumb'>
-                <a href='$url' target='_blank'>🖼 Abrir imagem</a>
-            </div>
-        ";
-    } elseif ($ext === "pdf") {
-        echo "
-            <div class='doc-item'>
-                <img src='../assets/icons/pdf.png' class='doc-thumb'>
-                <a href='$url' target='_blank'>📄 Abrir PDF</a>
-            </div>
-        ";
-    } else {
-        echo "
-            <div class='doc-item'>
-                <img src='../assets/icons/file.png' class='doc-thumb'>
-                <a href='$url' download>⬇ Baixar arquivo</a>
-            </div>
-        ";
-    }
-}
-?>
+exit;
