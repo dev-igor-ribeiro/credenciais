@@ -1,4 +1,4 @@
-get_observacao.php<?php
+<?php
 require_once "../db/conexao_motoristas.php";
 
 if (!isset($_GET["motorista_id"])) {
@@ -10,7 +10,9 @@ $id = intval($_GET["motorista_id"]);
 $stmt = $pdo->prepare("
     SELECT observacao 
     FROM documentos_motoristas 
-    WHERE motorista_id = ? 
+    WHERE motorista_id = ?
+      AND observacao IS NOT NULL
+      AND observacao <> ''
     ORDER BY id DESC 
     LIMIT 1
 ");

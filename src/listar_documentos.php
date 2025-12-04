@@ -7,7 +7,14 @@ if (!isset($_GET["motorista_id"])) {
 
 $id = intval($_GET["motorista_id"]);
 
-$stmt = $pdo->prepare("SELECT * FROM documentos_motoristas WHERE motorista_id = ? ORDER BY id DESC");
+$stmt = $pdo->prepare("
+    SELECT arquivo 
+    FROM documentos_motoristas 
+    WHERE motorista_id = ?
+      AND arquivo IS NOT NULL
+      AND arquivo <> ''
+    ORDER BY id DESC
+");
 $stmt->execute([$id]);
 $docs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

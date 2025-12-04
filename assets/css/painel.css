@@ -583,3 +583,15 @@ td.acoes .action-icons .icon-action {
         width: 95%;
     }
 }
+
+.abrirModalMotorista {
+    color: inherit !important;
+    /* usa cor normal da tabela */
+    text-decoration: none !important;
+    font-weight: inherit !important;
+    cursor: pointer;
+}
+
+.abrirModalMotorista:hover {
+    opacity: 0.7;
+}
