@@ -1,13 +1,19 @@
 <?php
 require_once "../db/conexao_motoristas.php";
 
+// DEBUG OPCIONAL — pode remover depois
+// header("Content-Type: text/plain; charset=utf-8");
+// echo "LISTANDO DOCUMENTOS...\n\n";
+
 if (!isset($_GET["motorista_id"])) exit("ID inválido");
 
 $id = intval($_GET["motorista_id"]);
 
-// Caminho correto para documentos (funciona no /testes/)
-$basePath = "../documentos/$id/";
+// Caminhos principais
+$baseDocs = "../documentos/$id/";
+$baseThumbs = "../documentos/$id/thumbs/";
 
+// Consulta documentos
 $stmt = $pdo->prepare("
     SELECT arquivo
     FROM documentos_motoristas
@@ -28,30 +34,45 @@ foreach ($docs as $d) {
     $arquivo = $d["arquivo"];
     $ext = strtolower(pathinfo($arquivo, PATHINFO_EXTENSION));
 
-    // URL do arquivo real
-    $url = "../documentos/$id/$arquivo";
+    // Caminhos completos da miniatura
+    $thumbImage = $baseThumbs . $arquivo . "_thumb.jpg"; // imagens
+    $thumbPdf = $baseThumbs . $arquivo . ".jpg";         // pdf
+
+    // Caminho público para abrir
+    $urlDoc = "../documentos/$id/$arquivo";
 
     echo "<div class='doc-item'>";
 
+    /* ===== MINIATURA PARA IMAGENS ===== */
     if (in_array($ext, ["jpg", "jpeg", "png", "gif", "webp"])) {
 
-        // Miniatura real
-        echo "<img src='$url' class='doc-thumb'>";
-        echo "<a href='$url' target='_blank'>🖼 Abrir imagem</a>";
+        if (file_exists($thumbImage)) {
+            echo "<img src='$thumbImage' class='doc-thumb'>";
+        } else {
+            echo "<img src='../assets/icons/file.png' class='doc-thumb'>";
+        }
 
-    } elseif ($ext === "pdf") {
+        echo "<a href='$urlDoc' target='_blank'>Abrir imagem</a>";
+    }
 
-        // Ícone fixo de PDF
-        echo "<img src='../assets/icons/pdf.png' class='doc-thumb'>";
-        echo "<a href='$url' target='_blank'>📄 Abrir PDF</a>";
+    /* ===== MINIATURA PARA PDF ===== */
+    elseif ($ext === "pdf") {
 
-    } else {
+        if (file_exists($thumbPdf)) {
+            echo "<img src='$thumbPdf' class='doc-thumb'>";
+        } else {
+            echo "<img src='../assets/icons/pdf.png' class='doc-thumb'>";
+        }
 
-        // Qualquer outro arquivo
+        echo "<a href='$urlDoc' target='_blank'>Abrir PDF</a>";
+    }
+
+    /* ===== OUTROS TIPOS ===== */
+    else {
         echo "<img src='../assets/icons/file.png' class='doc-thumb'>";
-        echo "<a href='$url' download>⬇ Baixar arquivo</a>";
-
+        echo "<a href='$urlDoc' download>Baixar arquivo</a>";
     }
 
     echo "</div>";
 }
+?>
