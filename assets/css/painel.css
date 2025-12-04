@@ -621,10 +621,10 @@ td.acoes .action-icons .icon-action {
 .doc-thumb {
     width: 45px;
     height: 45px;
-    object-fit: contain;
-    background: #fff;
+    object-fit: contain !important;
+    background: #f3f3f3;
+    border: 1px solid #ccc;
     border-radius: 6px;
-    border: 1px solid #ddd;
     padding: 4px;
 }
 
