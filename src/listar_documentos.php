@@ -1,14 +1,19 @@
 <?php
 require_once "../db/conexao_motoristas.php";
 
+// Ícones em Base64 (PDF e arquivo genérico)
+$pdfIconBase64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABaElEQVR4nO2a0Q6CMBRFj3yoS8QKXyCk9AqEEtS3oBNEEraZFqJb5uYdE8ePhRHFqRSb/5Mzdn3vXTPT9N1vZtGMYwxxhiDAQCxAID3A71Zo4PMBVXgS5aAFoaQPQMPADvewDheN7SqXudT2cCCF3BQ0BGHYDAAA2z30UGoB+oICqDoIAPQweA3tKp2k+wDDgHcwB5xtBrYFf/0WgK1R8EXAA8Ai7T9K1z+YtMCE61OwRcE9MwAOB68nrZzCF7FxrPBp+ALoAGziSR1deFoFZpUp5SXiqxSfpKfSdwU6VCTMT1Hgi0tmbGJwIkU0XyA1BkYzaAo4J1A7kQyKtn6oOgHCAx2Xj0YbaucHIm6RTGccwDAoYx9rJ7mlxW5uqUX0AqM9u4h9iJ5mHs4lzArT7tGU2gBp8TuhG6uECtE7pMXgYCMyZ2fTNNoAcJY5aRWPSEJZDswDMAZmw0kPl8PA7QtZ5FMuv1+rzuN2xxxxhhjjDE2x34BvXWPsc/7qVwAAAABJRU5ErkJggg==";
+$fileIconBase64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABUElEQVR4nO2a0Q6CMBBFj3yoS8QKXyCk9AqEEtS3oBNEEraZFqJb5uYdE8ePhRHFqRSb/5Mzdn3vXTPT9N1vZtGMYwxxhiDAQCxAID3A71Zo4PMBVXgS5aAFoaQPQMPADvewDheN7SqXudT2cCCF3BQ0BGHYDAAA2z30UGoB+oICqDoIAPQweA3tKp2k+wDDgHcwB5xtBrYFf/0WgK1R8EXAA8Ai7T9K1z+YtMCE61OwRcE9MwAOB68nrZzCF7FxrPBp+ALoAGziSR1deFoFZpUp5SXiqxSfpKfSdwU6VCTMT1Hgi0tmbGJwIkU0XyA1BkYzaAo4J1A7kQyKtn6oOgHCAx2Xj0YbaucHIm6RTGccwDAoYx9rJ7mlxW5uqUX0AqM9u4h9iJ5mHs4lzArT7tGU2gBp8TuhG6uECtE7pMXgYCMyZ2fTNNoAcJY5aRWPSEJZDswDMAZmw0kPl8PA7QtZ5FMuv1+rzuN2xxxxhhjjDE2x34BvXWPsc/7qVwAAAABJRU5ErkJggg==";
+
+// Verifica ID
 if (!isset($_GET["motorista_id"])) exit("ID inválido");
 
 $id = intval($_GET["motorista_id"]);
 
-// Detecta automaticamente se está no /testes/ ou /credenciais/
-$basePath = (strpos($_SERVER['REQUEST_URI'], '/testes/') !== false)
-    ? '/testes/documentos'
-    : '/credenciais/documentos';
+// Caminho correto para os arquivos
+// Funciona tanto em /testes/ quanto em /credenciais/
+$basePath = "../documentos/$id/";
+$baseUrl  = "../documentos/$id/";
 
 $stmt = $pdo->prepare("
     SELECT arquivo
@@ -26,28 +31,39 @@ if (!$docs) {
 }
 
 foreach ($docs as $d) {
-    $arquivo = $d['arquivo'];
+
+    $arquivo = $d["arquivo"];
     $ext = strtolower(pathinfo($arquivo, PATHINFO_EXTENSION));
 
-    $url = "$basePath/$id/$arquivo";
+    // URL do arquivo
+    $url = $baseUrl . $arquivo;
 
-    if (in_array($ext, ["png","jpg","jpeg","gif","webp"])) {
+    // IMAGENS reais → miniatura verdadeira
+    if (in_array($ext, ["jpg", "jpeg", "png", "gif", "webp"])) {
         echo "
-        <div class='doc-item'>
-            <img src='$url' class='doc-thumb'>
-            <a href='$url' target='_blank'>🖼 Abrir imagem</a>
-        </div>";
-    } elseif ($ext === "pdf") {
+            <div class='doc-item'>
+                <img src='$url' class='doc-thumb real-thumb'>
+                <a href='$url' target='_blank'>🖼 Abrir imagem</a>
+            </div>
+        ";
+    }
+    // PDF → ícone PDF
+    elseif ($ext === "pdf") {
         echo "
-        <div class='doc-item'>
-            <img src='../assets/icons/pdf.png' class='doc-thumb'>
-            <a href='$url' target='_blank'>📄 Abrir PDF</a>
-        </div>";
-    } else {
+            <div class='doc-item'>
+                <img src='$pdfIconBase64' class='doc-thumb'>
+                <a href='$url' target='_blank'>📄 Abrir PDF</a>
+            </div>
+        ";
+    }
+    // Qualquer outro tipo → ícone arquivo
+    else {
         echo "
-        <div class='doc-item'>
-            <img src='../assets/icons/file.png' class='doc-thumb'>
-            <a href='$url' download>⬇ Baixar arquivo</a>
-        </div>";
+            <div class='doc-item'>
+                <img src='$fileIconBase64' class='doc-thumb'>
+                <a href='$url' download>⬇ Baixar arquivo</a>
+            </div>
+        ";
     }
 }
+?>

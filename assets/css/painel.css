@@ -610,3 +610,24 @@ td.acoes .action-icons .icon-action {
     border-radius: 6px;
     border: 1px solid #ddd;
 }
+
+.doc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.doc-thumb {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+.real-thumb {
+    object-fit: cover !important;
+}
