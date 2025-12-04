@@ -462,3 +462,15 @@
 #modalErro .modal-content button:hover {
     background-color: #c0392b;
 }
+
+#modalDocumentos {
+    color: #222 !important;
+}
+
+#modalDocumentos h3,
+#modalDocumentos label,
+#modalDocumentos p,
+#modalDocumentos span,
+#modalDocumentos a {
+    color: #222 !important;
+}
