@@ -1,6 +1,9 @@
-// Funções de formatação
+// =================================================
+// FUNÇÕES DE FORMATAÇÃO
+// =================================================
+
 function formatarCPF(cpf) {
-    cpf = cpf.replace(/\D/g, ''); // Remove tudo que não for número
+    cpf = cpf.replace(/\D/g, '');
     return cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
 }
 
@@ -17,6 +20,11 @@ function formatarPlaca(placa) {
     return placa.toUpperCase();
 }
 
+
+// =================================================
+// MENSAGENS DO SISTEMA
+// =================================================
+
 function mostrarMensagem(tipo, texto, callbackConfirmar = null) {
     const modalMensagem = document.getElementById("modalMensagem");
     if (!modalMensagem) {
@@ -26,6 +34,7 @@ function mostrarMensagem(tipo, texto, callbackConfirmar = null) {
         }
         return;
     }
+
     modalMensagem.className = "";
     modalMensagem.classList.add("show");
     modalMensagem.classList.remove("hide");
@@ -34,26 +43,20 @@ function mostrarMensagem(tipo, texto, callbackConfirmar = null) {
 
     const iconeElemento = modalMensagem.querySelector(".modal-icone");
     if (iconeElemento) {
-        if (tipo === "success") {
-            iconeElemento.textContent = "✔️";
-        } else if (tipo === "error") {
-            iconeElemento.textContent = "❌";
-        } else if (tipo === "warning") {
-            iconeElemento.textContent = "⚠️";
-        } else if (tipo === "info") {
-            iconeElemento.textContent = "ℹ️";
-        } else {
-            iconeElemento.textContent = "";
-        }
+        iconeElemento.textContent =
+            tipo === "success" ? "✔️" :
+                tipo === "error" ? "❌" :
+                    tipo === "warning" ? "⚠️" :
+                        tipo === "info" ? "ℹ️" : "";
     }
 
     const botoesContainer = modalMensagem.querySelector(".modal-botoes");
-    botoesContainer.innerHTML = ""; // Limpa os botões existentes
+    botoesContainer.innerHTML = "";
 
     const btnFechar = modalMensagem.querySelector(".fechar-mensagem");
     btnFechar.focus();
 
-    function fecharModal() {
+    function fecharMensagem() {
         modalMensagem.classList.add("hide");
         modalMensagem.addEventListener("animationend", function handleAnimationEnd() {
             modalMensagem.classList.remove("show", "hide");
@@ -62,63 +65,121 @@ function mostrarMensagem(tipo, texto, callbackConfirmar = null) {
         });
     }
 
-    btnFechar.onclick = function () {
-        fecharModal();
-    };
+    btnFechar.onclick = fecharMensagem;
 
     if (tipo === "warning" && callbackConfirmar) {
         const btnConfirmar = document.createElement("button");
         btnConfirmar.textContent = "Confirmar";
         btnConfirmar.classList.add("btn-confirmar");
-        botoesContainer.appendChild(btnConfirmar);
 
         const btnCancelar = document.createElement("button");
         btnCancelar.textContent = "Cancelar";
         btnCancelar.classList.add("btn-cancelar");
+
+        botoesContainer.appendChild(btnConfirmar);
         botoesContainer.appendChild(btnCancelar);
 
         btnConfirmar.focus();
 
-        function limparEventos() {
-            btnConfirmar.removeEventListener("click", onConfirmar);
-            btnCancelar.removeEventListener("click", onCancelar);
-            btnFechar.removeEventListener("click", onCancelar);
-        }
-
-        function onConfirmar() {
-            limparEventos();
-            fecharModal();
+        btnConfirmar.onclick = () => {
+            fecharMensagem();
             callbackConfirmar();
-        }
+        };
+        btnCancelar.onclick = fecharMensagem;
+        btnFechar.onclick = fecharMensagem;
 
-        function onCancelar() {
-            limparEventos();
-            fecharModal();
-        }
-
-        btnConfirmar.addEventListener("click", onConfirmar);
-        btnCancelar.addEventListener("click", onCancelar);
-        btnFechar.addEventListener("click", onCancelar);
-
-    } else {
-        // Para mensagens do tipo success e error, manter o modal aberto até usuário fechar
-        if (tipo !== "warning") {
-            setTimeout(() => {
-                fecharModal();
-            }, 3000);
-        }
+    } else if (tipo !== "warning") {
+        setTimeout(() => {
+            fecharMensagem();
+        }, 3000);
     }
 }
+
+
+// =================================================
+// MODAL DE DOCUMENTOS / OBSERVAÇÕES
+// =================================================
+
+// ABRIR MODAL
+function abrirModal(id) {
+    document.getElementById("motorista_id_input").value = id;
+    document.getElementById("modalDocumentos").style.display = "flex";
+
+    carregarDocumentos(id);
+    carregarObservacao(id);
+}
+
+// FECHAR MODAL
+function fecharModal() {
+    document.getElementById("modalDocumentos").style.display = "none";
+}
+
+// CARREGAR DOCUMENTOS
+function carregarDocumentos(id) {
+    fetch("src/listar_documentos.php?motorista_id=" + id)
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById("listaDocumentos").innerHTML = html;
+        });
+}
+
+// CARREGAR OBSERVAÇÃO
+function carregarObservacao(id) {
+    fetch("src/get_observacao.php?motorista_id=" + id)
+        .then(r => r.text())
+        .then(text => {
+            document.getElementById("obsMotorista").value = text;
+        });
+}
+
+// SALVAR OBSERVAÇÃO
+document.getElementById("btnSalvarObs").addEventListener("click", function () {
+    const id = document.getElementById("motorista_id_input").value;
+    const obs = document.getElementById("obsMotorista").value;
+
+    fetch("src/salvar_observacao.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "motorista_id=" + id + "&observacao=" + encodeURIComponent(obs)
+    })
+        .then(r => r.text())
+        .then(() => alert("Observação salva!"));
+});
+
+// UPLOAD DOCUMENTO
+document.getElementById("formUploadDocs").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch("src/upload_documento.php", {
+        method: "POST",
+        body: formData
+    })
+        .then(r => r.text())
+        .then(() => {
+            const id = document.getElementById("motorista_id_input").value;
+            carregarDocumentos(id);
+            alert("Arquivo enviado!");
+        });
+});
+
+
+// =================================================
+// CARREGAR / ATUALIZAR TABELA DE MOTORISTAS
+// =================================================
 
 function atualizarTabela() {
     fetch("src/ajax/carregar_motoristas.php?ts=" + Date.now(), { cache: "no-store" })
         .then(response => response.json())
         .then(data => {
+
             const tabela = document.getElementById("tabelaCorpo");
             const totalEl = document.getElementById("totalMotoristas");
             const validosEl = document.getElementById("validos");
             const aVencerEl = document.getElementById("aVencer");
             const vencidosEl = document.getElementById("vencidos");
+
             const filtroNomeInput = document.getElementById("filtroNome");
             const filtroStatusSelect = document.getElementById("filtroStatus");
 
@@ -129,7 +190,9 @@ function atualizarTabela() {
             tabela.innerHTML = "";
 
             data.forEach(motorista => {
+
                 const dias = parseInt(motorista.dias_restante);
+
                 let statusLabel = "";
                 let statusClass = "";
 
@@ -144,29 +207,29 @@ function atualizarTabela() {
                     statusClass = "status-vencido";
                 }
 
-                // Filtrar pelo nome
-                if (filtroNome && !motorista.nome.toLowerCase().includes(filtroNome)) {
-                    return; // Pula este motorista
-                }
-
-                // Filtrar pelo status
-                if (filtroStatus !== "Todos" && statusLabel !== filtroStatus) {
-                    return; // Pula este motorista
-                }
+                // FILTROS
+                if (filtroNome && !motorista.nome.toLowerCase().includes(filtroNome)) return;
+                if (filtroStatus !== "Todos" && statusLabel !== filtroStatus) return;
 
                 total++;
                 if (statusLabel === "Válido") validos++;
                 else if (statusLabel === "A Vencer") aVencer++;
                 else if (statusLabel === "Vencido") vencidos++;
 
-                const row = `<tr>
+                // LINHA
+                const row = `
+<tr>
     <td><input type="checkbox" class="select-motorista" value="${motorista.id}"></td>
     <td>${motorista.credencial}</td>
-    <td>${capitalizarNome(motorista.nome)}</td>
+    <td>
+        <a href="#" class="abrirModalMotorista" data-id="${motorista.id}">
+            ${capitalizarNome(motorista.nome)}
+        </a>
+    </td>
     <td>${motorista.cnh}</td>
     <td class="cpf">${formatarCPF(motorista.cpf)}</td>
     <td>${motorista.modelo}</td>
-    <td class="ano ${motorista.ano_vermelho ? 'ano-vermelho' : ''}">${motorista.ano}</td>
+    <td class="ano ${motorista.ano_vermelho ? "ano-vermelho" : ""}">${motorista.ano}</td>
     <td class="placa">${formatarPlaca(motorista.placa)}</td>
     <td>${motorista.validade}</td>
     <td class="status"><span class="status-badge ${statusClass}">${statusLabel}</span></td>
@@ -175,10 +238,21 @@ function atualizarTabela() {
         <img src="assets/icons/edit.svg" alt="Editar" class="icon-action edit-icon">
         <img src="assets/icons/trash-2.svg" alt="Excluir" class="icon-action delete-icon">
     </td>
-</tr>`;
+</tr>
+`;
 
                 tabela.insertAdjacentHTML("beforeend", row);
 
+                // CLIQUE NO NOME = ABRIR MODAL DOCUMENTOS
+                const linkNome = tabela.lastElementChild.querySelector(".abrirModalMotorista");
+                if (linkNome) {
+                    linkNome.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        abrirModal(this.getAttribute("data-id"));
+                    });
+                }
+
+                // EDITAR / EXCLUIR (mantido igual)
                 const ultimaLinha = tabela.lastElementChild;
                 const btnEditar = ultimaLinha.querySelector(".edit-icon");
                 const btnExcluir = ultimaLinha.querySelector(".delete-icon");
@@ -186,7 +260,6 @@ function atualizarTabela() {
                 btnEditar.addEventListener("click", () => {
                     const modal = document.getElementById("modalEditarMotorista");
                     modal.classList.add("show");
-
                     document.getElementById("editarId").value = motorista.id;
                     document.getElementById("editarNome").value = motorista.nome;
                     document.getElementById("editarCnh").value = motorista.cnh;
@@ -200,23 +273,23 @@ function atualizarTabela() {
 
                 btnExcluir.addEventListener("click", () => {
                     function confirmarExclusao() {
-                        fetch('src/processar/excluir_motorista.php?id=' + encodeURIComponent(motorista.id), { cache: 'no-store' })
-                            .then(response => response.text())
+                        fetch("src/processar/excluir_motorista.php?id=" + encodeURIComponent(motorista.id), { cache: "no-store" })
+                            .then(r => r.text())
                             .then(data => {
-                                if (data.toLowerCase().includes('sucesso')) {
+                                if (data.toLowerCase().includes("sucesso")) {
                                     mostrarMensagem("success", "Motorista excluído com sucesso!");
                                     atualizarTabela();
                                 } else {
                                     mostrarMensagem("error", "Erro ao excluir: " + data);
                                 }
                             })
-                            .catch(error => {
-                                console.error("Erro ao excluir:", error);
+                            .catch(() => {
                                 mostrarMensagem("error", "Erro ao excluir motorista.");
                             });
                     }
-                    mostrarMensagem("warning", `Tem certeza que deseja excluir ${motorista.nome}? Clique em Confirmar para confirmar ou Cancelar para cancelar.`, confirmarExclusao);
+                    mostrarMensagem("warning", `Tem certeza que deseja excluir ${motorista.nome}?`, confirmarExclusao);
                 });
+
             });
 
             totalEl.textContent = total;
@@ -227,96 +300,80 @@ function atualizarTabela() {
         .catch(error => console.error("Erro ao carregar motoristas:", error));
 }
 
+
+// =================================================
+// INICIALIZAÇÃO
+// =================================================
+
 document.addEventListener("DOMContentLoaded", function () {
+
     atualizarTabela();
 
     const filtroNomeInput = document.getElementById("filtroNome");
     if (filtroNomeInput) {
-        filtroNomeInput.addEventListener("input", () => {
-            atualizarTabela();
-        });
+        filtroNomeInput.addEventListener("input", atualizarTabela);
     }
 
     const filtroStatusSelect = document.getElementById("filtroStatus");
     if (filtroStatusSelect) {
-        filtroStatusSelect.addEventListener("change", () => {
-            atualizarTabela();
-        });
+        filtroStatusSelect.addEventListener("change", atualizarTabela);
     }
 
-    // Submissão do formulário de edição
+    // FORM EDITAR MOTORISTA
     const formEditar = document.getElementById("formEditarMotorista");
     if (formEditar) {
         formEditar.addEventListener("submit", function (e) {
             e.preventDefault();
-
             const formData = new FormData(formEditar);
 
             fetch("src/processar/atualizar_motorista.php", {
                 method: "POST",
                 body: formData
             })
-                .then(response => response.text())
+                .then(r => r.text())
                 .then(data => {
                     if (data.trim() === "sucesso") {
                         mostrarMensagem("success", "Motorista atualizado com sucesso!");
                         document.getElementById("modalEditarMotorista").classList.remove("show");
-                        const modalMensagem = document.getElementById("modalMensagem");
-                        if (modalMensagem) {
-                            // deixa o modal de mensagem fechar sozinho
-                        }
                         atualizarTabela();
                     } else {
                         mostrarMensagem("error", "Erro ao atualizar motorista.");
                     }
-                })
-                .catch(error => {
-                    console.error("Erro ao atualizar motorista:", error);
-                    mostrarMensagem("error", "Erro ao atualizar motorista.");
                 });
         });
     }
 
-    // Submissão do formulário de novo motorista (AJAX)
+    // FORM NOVO MOTORISTA
     const formNovo = document.getElementById("formNovoMotorista");
     if (formNovo) {
-        formNovo.removeAttribute('action');
         formNovo.addEventListener("submit", function (e) {
             e.preventDefault();
-            e.stopPropagation();
             const formData = new FormData(formNovo);
-            const actionUrl = formNovo.getAttribute("action") || "src/processar/processa_novo_motorista.php";
-            fetch(actionUrl, {
+
+            fetch("src/processar/processa_novo_motorista.php", {
                 method: "POST",
                 body: formData
             })
-                .then(response => response.text())
+                .then(r => r.text())
                 .then(data => {
-                    if (data.trim().toLowerCase().includes("sucesso")) {
-                        mostrarMensagem("success", "Motorista cadastrado com sucesso!");
-                        const modalNovo = document.getElementById("modalNovoMotorista");
-                        if (modalNovo) modalNovo.classList.remove("show");
+                    if (data.toLowerCase().includes("sucesso")) {
+                        mostrarMensagem("success", "Motorista cadastrado!");
+                        document.getElementById("modalNovoMotorista").classList.remove("show");
                         formNovo.reset();
                         atualizarTabela();
                     } else {
-                        mostrarMensagem("error", "Erro ao cadastrar motorista: " + data);
+                        mostrarMensagem("error", "Erro ao cadastrar motorista.");
                     }
-                })
-                .catch(error => {
-                    console.error("Erro ao cadastrar motorista:", error);
-                    mostrarMensagem("error", "Erro ao cadastrar motorista.");
                 });
         });
     }
 
-    // Importar Excel
+    // IMPORTAR EXCEL
     const btnImportar = document.getElementById("btnImportar");
     const inputImportar = document.getElementById("inputImportar");
 
     if (btnImportar && inputImportar) {
-        btnImportar.addEventListener("click", () => {
-            inputImportar.click();
-        });
+        btnImportar.addEventListener("click", () => inputImportar.click());
 
         inputImportar.addEventListener("change", () => {
             if (inputImportar.files.length === 0) return;
@@ -329,59 +386,56 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: "POST",
                 body: formData
             })
-                .then(response => response.text())
+                .then(r => r.text())
                 .then(data => {
                     if (data.toLowerCase().includes("sucesso")) {
-                        mostrarMensagem("success", "Arquivo importado com sucesso!");
+                        mostrarMensagem("success", "Importação concluída!");
                         atualizarTabela();
                     } else {
                         mostrarMensagem("error", "Erro ao importar arquivo.");
                     }
                 })
-                .catch(error => {
-                    console.error("Erro ao importar arquivo:", error);
-                    mostrarMensagem("error", "Erro ao importar arquivo.");
-                })
                 .finally(() => {
-                    inputImportar.value = ""; // limpa o input para permitir reimportar o mesmo arquivo se quiser
+                    inputImportar.value = "";
                 });
         });
     }
 
-    // Exclusão em massa
+    // EXCLUSÃO EM MASSA
     const btnExcluirSelecionados = document.getElementById("btnExcluirSelecionados");
     if (btnExcluirSelecionados) {
         btnExcluirSelecionados.addEventListener("click", () => {
-            const ids = Array.from(document.querySelectorAll(".select-motorista:checked")).map(cb => cb.value);
+
+            const ids = Array.from(document.querySelectorAll(".select-motorista:checked"))
+                .map(cb => cb.value);
+
             if (ids.length === 0) {
                 mostrarMensagem("info", "Nenhum motorista selecionado.");
                 return;
             }
+
             function confirmarExclusao() {
                 fetch("src/processar/excluir_motorista.php", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ ids })
                 })
-                    .then(response => response.text())
+                    .then(r => r.text())
                     .then(data => {
                         if (data.toLowerCase().includes("sucesso")) {
-                            mostrarMensagem("success", "Motoristas excluídos com sucesso!");
+                            mostrarMensagem("success", "Exclusão concluída!");
                             atualizarTabela();
                         } else {
                             mostrarMensagem("error", "Erro ao excluir motoristas.");
                         }
-                    })
-                    .catch(error => {
-                        console.error("Erro ao excluir motoristas:", error);
-                        mostrarMensagem("error", "Erro ao excluir motoristas.");
                     });
             }
-            mostrarMensagem("warning", "Deseja realmente excluir os motoristas selecionados?", confirmarExclusao);
+
+            mostrarMensagem("warning", "Deseja excluir os motoristas selecionados?", confirmarExclusao);
         });
     }
 
-    // Selecionar/Deselecionar todos
+    // SELECIONAR TODOS
     const selectAll = document.getElementById("select-all");
     if (selectAll) {
         selectAll.addEventListener("change", function () {
@@ -389,4 +443,5 @@ document.addEventListener("DOMContentLoaded", function () {
             checkboxes.forEach(cb => cb.checked = this.checked);
         });
     }
+
 });

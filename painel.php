@@ -128,6 +128,47 @@ if (!isset($_SESSION['usuario'])) {
     mostrarMensagem("error", "Erro ao cadastrar motorista.");
     </script>
     <?php endif; ?>
+
+    <!-- MODAL BORA CAR – DOCUMENTOS DO MOTORISTA -->
+    <div id="modalDocumentos" class="modal-overlay-bc" style="display:none;">
+        <div class="modal-content-bc animate-modal">
+
+            <div class="modal-header-bc">
+                <h2 id="nomeMotoristaTitulo">Documentos do Motorista</h2>
+                <button class="close-bc" onclick="fecharModal()">×</button>
+            </div>
+
+            <div class="modal-body-bc">
+
+                <div class="upload-box-bc">
+                    <label><b>Adicionar arquivos</b></label>
+                    <form id="formUploadDocs" enctype="multipart/form-data">
+                        <input type="hidden" name="motorista_id" id="motorista_id_input">
+
+                        <input type="file" name="arquivo" class="input-file-bc" required>
+
+                        <button type="submit" class="btn-bc-green">
+                            Enviar Arquivo
+                        </button>
+                    </form>
+                </div>
+
+                <hr class="divisor-bc">
+
+                <h3 class="title-section">📎 Arquivos enviados</h3>
+                <div id="listaDocumentos" class="lista-docs-bc">Carregando...</div>
+
+                <hr class="divisor-bc">
+
+                <h3 class="title-section">📝 Observações</h3>
+                <textarea id="obsMotorista" rows="4" class="textarea-bc" placeholder="Digite observações..."></textarea>
+
+                <button id="btnSalvarObs" class="btn-bc-blue">Salvar Observação</button>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 
 </html>

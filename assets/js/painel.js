@@ -1,26 +1,32 @@
+// ==========================================
+// painel.js — CONTROLA APENAS O MODAL "NOVO MOTORISTA"
+// ==========================================
 
-// Novo painel.js com script para abrir/fechar modal
 document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("modalNovoMotorista");
-    const btnAbrir = document.getElementById("btnNovoMotorista");
-    const btnFechar = document.getElementById("fecharModal");
 
-    if (btnAbrir && modal) {
-        btnAbrir.addEventListener("click", function () {
-            modal.style.display = "flex";
+    const modalNovo = document.getElementById("modalNovoMotorista");
+    const btnAbrirNovo = document.getElementById("btnNovoMotorista");
+    const btnFecharNovo = document.getElementById("fecharModal");
+
+    // Abrir modal "Novo Motorista"
+    if (btnAbrirNovo && modalNovo) {
+        btnAbrirNovo.addEventListener("click", function () {
+            modalNovo.style.display = "flex";
         });
     }
 
-    if (btnFechar && modal) {
-        btnFechar.addEventListener("click", function () {
-            modal.style.display = "none";
+    // Fechar modal
+    if (btnFecharNovo && modalNovo) {
+        btnFecharNovo.addEventListener("click", function () {
+            modalNovo.style.display = "none";
         });
     }
 
-    // Fechar ao clicar fora
+    // Fechar clicando fora
     window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
+        if (event.target === modalNovo) {
+            modalNovo.style.display = "none";
         }
     });
+
 });
