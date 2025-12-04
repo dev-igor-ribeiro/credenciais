@@ -1,5 +1,8 @@
 <?php
 require_once "../db/conexao_motoristas.php";
+print_r($pdo->query("SHOW DATABASES")->fetchAll(PDO::FETCH_COLUMN));
+exit;
+
 
 if (!isset($_GET["motorista_id"])) exit("ID inválido");
 
