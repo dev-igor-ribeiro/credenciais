@@ -5,11 +5,15 @@ if (!isset($_GET["motorista_id"])) exit("ID inválido");
 
 $id = intval($_GET["motorista_id"]);
 
+// Detecta automaticamente se está no /testes/ ou /credenciais/
+$basePath = (strpos($_SERVER['REQUEST_URI'], '/testes/') !== false)
+    ? '/testes/documentos'
+    : '/credenciais/documentos';
+
 $stmt = $pdo->prepare("
     SELECT arquivo
     FROM documentos_motoristas
     WHERE motorista_id = ?
-      AND arquivo IS NOT NULL
       AND LENGTH(TRIM(arquivo)) > 0
     ORDER BY id DESC
 ");
@@ -22,9 +26,10 @@ if (!$docs) {
 }
 
 foreach ($docs as $d) {
-    $arquivo = $d["arquivo"];
+    $arquivo = $d['arquivo'];
     $ext = strtolower(pathinfo($arquivo, PATHINFO_EXTENSION));
-    $url = "../testes/documentos/$id/$arquivo";
+
+    $url = "$basePath/$id/$arquivo";
 
     if (in_array($ext, ["png","jpg","jpeg","gif","webp"])) {
         echo "
