@@ -5,7 +5,7 @@ header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=motoristas.csv');
 
 $output = fopen('php://output', 'w');
-fputcsv($output, ['Nome', 'CNH', 'CPF', 'Data Validade', 'Modelo', 'Placa', 'Credencial', 'Status', 'Dias']);
+fputcsv($output, ['Nome', 'CNH', 'CPF', 'Data Validade', 'Modelo', 'Placa', 'Credencial', 'Status', 'Dias'], ';');
 
 $query = "SELECT * FROM motoristas ORDER BY nome ASC";
 $result = $pdo->query($query);
@@ -20,8 +20,8 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         $row['placa'],
         $row['credencial'],
         $row['status'],
-        $row['dias']
-    ]);
+        (date_diff(date_create(date('Y-m-d')), date_create($row['validade'])))->format('%r%a')
+    ], ';');
 }
 
 fclose($output);
