@@ -1,5 +1,5 @@
 <?php
-require_once('../../db/conexao.php');
+require_once('../../db/conexao_motoristas.php');
 
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=motoristas.csv');
@@ -7,7 +7,7 @@ header('Content-Disposition: attachment; filename=motoristas.csv');
 $output = fopen('php://output', 'w');
 fputcsv($output, ['Nome', 'CNH', 'CPF', 'Data Validade', 'Modelo', 'Placa', 'Credencial', 'Status', 'Dias']);
 
-$query = "SELECT * FROM boraca19_credenciais";
+$query = "SELECT * FROM motoristas ORDER BY nome ASC";
 $result = $conn->query($query);
 
 while ($row = $result->fetch_assoc()) {
