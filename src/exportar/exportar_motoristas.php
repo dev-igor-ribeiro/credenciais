@@ -11,16 +11,34 @@ $query = "SELECT * FROM motoristas ORDER BY nome ASC";
 $result = $pdo->query($query);
 
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    $validade = $row['validade'];
+    $dias = '';
+    $status = 'pendente';
+
+    if (!empty($validade) && $validade !== '0000-00-00') {
+        $hoje = new DateTime(date('Y-m-d'));
+        $dataValidade = new DateTime($validade);
+        $dias = (int) $hoje->diff($dataValidade)->format('%r%a');
+
+        if ($dias < 0) {
+            $status = 'vencido';
+        } elseif ($dias <= 30) {
+            $status = 'a vencer';
+        } else {
+            $status = 'valido';
+        }
+    }
+
     fputcsv($output, [
         $row['nome'],
         $row['cnh'],
         $row['cpf'],
-        $row['validade'],
+        $validade,
         $row['modelo'],
         $row['placa'],
         $row['credencial'],
-        $row['status'],
-        (date_diff(date_create(date('Y-m-d')), date_create($row['validade'])))->format('%r%a')
+        $status,
+        $dias
     ], ';');
 }
 
