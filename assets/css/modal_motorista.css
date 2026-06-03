@@ -466,3 +466,20 @@
 #modalErro .modal-content button:hover {
     background-color: #c0392b;
 }
+.btn-pdf {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    background-color: #1a5c2a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-pdf:hover {
+    background-color: #145022;
+}

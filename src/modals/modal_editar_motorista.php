@@ -63,6 +63,19 @@
 
             <button type="submit" class="btn-salvar">Salvar Alterações</button>
         </form>
+
+        <form id="formGerarPdfEditar" action="src/pdf/gerar_pdf.php" method="POST" target="_blank" style="margin-top: 10px;">
+            <input type="hidden" id="pdfNumero" name="numero">
+            <input type="hidden" id="pdfNome" name="nome">
+            <input type="hidden" id="pdfCpf" name="cpf">
+            <input type="hidden" id="pdfCnh" name="cnh">
+            <button type="submit" class="btn-pdf" onclick="
+                document.getElementById('pdfNumero').value = document.getElementById('editarCredencial').value;
+                document.getElementById('pdfNome').value = document.getElementById('editarNome').value;
+                document.getElementById('pdfCpf').value = document.getElementById('editarCpf').value;
+                document.getElementById('pdfCnh').value = document.getElementById('editarCnh').value;
+            ">Gerar PDF</button>
+        </form>
     </div>
 </div>
 </div>
