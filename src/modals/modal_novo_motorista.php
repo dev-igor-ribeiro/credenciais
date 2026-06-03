@@ -42,11 +42,6 @@
                 <input type="text" id="novoPlaca" name="placa" style="text-transform:uppercase;" required>
             </div>
 
-            <div class="form-group">
-                <label for="novoValidade">Data Validade:</label>
-                <input type="date" id="novoValidade" name="validade" required>
-            </div>
-
             <button type="submit">Salvar</button>
         </form>
         <script src="assets/js/script_novo_motorista.js"></script>
