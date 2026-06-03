@@ -1,2 +1,25 @@
 src/.DS_Store
 .claude/settings.local.json
+
+# IGNORAR ARQUIVOS SENSÍVEIS
+db/conexao_motoristas.php
+.env
+
+# LOGS / TEMPORÁRIOS
+*.log
+*.tmp
+*.bak
+
+# BACKUPS / EXPORTS
+*.zip
+*.rar
+*.sql
+
+# DEPENDÊNCIAS
+node_modules/
+vendor/
+composer.lock
+
+# SISTEMA OPERACIONAL
+.DS_Store
+Thumbs.db
