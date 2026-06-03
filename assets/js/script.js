@@ -137,7 +137,7 @@ function atualizarTabela() {
                 if (statusDb === "suspenso") {
                     statusLabel = "Suspenso";
                     statusClass = "status-suspenso";
-                } else if (statusDb === "pendente") {
+                } else if (statusDb === "pendente" || isNaN(dias)) {
                     statusLabel = "Pendente";
                     statusClass = "status-pendente";
                 } else if (dias > 30) {
