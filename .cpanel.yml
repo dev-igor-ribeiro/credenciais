@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home1/boraca19/public_html/login/credenciais
+    - /bin/cp -R $DEPLOYPATH/. $DEPLOYPATH

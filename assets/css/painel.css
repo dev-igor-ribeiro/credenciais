@@ -97,6 +97,28 @@ body {
     background-color: #a10000;
 }
 
+.card.suspensos {
+    background-color: #5a3e8a;
+}
+
+.card.pendentes {
+    background-color: #7a5c00;
+}
+
+.status-suspenso {
+    background-color: #5a3e8a;
+    padding: 4px 8px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.status-pendente {
+    background-color: #7a5c00;
+    padding: 4px 8px;
+    color: #fff;
+    border-radius: 4px;
+}
+
 .filtros {
     display: flex;
     flex-wrap: wrap;

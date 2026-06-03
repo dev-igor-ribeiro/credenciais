@@ -125,15 +125,22 @@ function atualizarTabela() {
             let filtroNome = filtroNomeInput ? filtroNomeInput.value.trim().toLowerCase() : "";
             let filtroStatus = filtroStatusSelect ? filtroStatusSelect.value : "Todos";
 
-            let total = 0, validos = 0, aVencer = 0, vencidos = 0;
+            let total = 0, validos = 0, aVencer = 0, vencidos = 0, suspensos = 0, pendentes = 0;
             tabela.innerHTML = "";
 
             data.forEach(motorista => {
                 const dias = parseInt(motorista.dias_restante);
+                const statusDb = motorista.status;
                 let statusLabel = "";
                 let statusClass = "";
 
-                if (dias > 30) {
+                if (statusDb === "suspenso") {
+                    statusLabel = "Suspenso";
+                    statusClass = "status-suspenso";
+                } else if (statusDb === "pendente") {
+                    statusLabel = "Pendente";
+                    statusClass = "status-pendente";
+                } else if (dias > 30) {
                     statusLabel = "Válido";
                     statusClass = "status-valido";
                 } else if (dias > 0) {
@@ -146,18 +153,20 @@ function atualizarTabela() {
 
                 // Filtrar pelo nome
                 if (filtroNome && !motorista.nome.toLowerCase().includes(filtroNome)) {
-                    return; // Pula este motorista
+                    return;
                 }
 
                 // Filtrar pelo status
                 if (filtroStatus !== "Todos" && statusLabel !== filtroStatus) {
-                    return; // Pula este motorista
+                    return;
                 }
 
                 total++;
                 if (statusLabel === "Válido") validos++;
                 else if (statusLabel === "A Vencer") aVencer++;
                 else if (statusLabel === "Vencido") vencidos++;
+                else if (statusLabel === "Suspenso") suspensos++;
+                else if (statusLabel === "Pendente") pendentes++;
 
                 const row = `<tr>
     <td><input type="checkbox" class="select-motorista" value="${motorista.id}"></td>
@@ -191,11 +200,17 @@ function atualizarTabela() {
                     document.getElementById("editarNome").value = motorista.nome;
                     document.getElementById("editarCnh").value = motorista.cnh;
                     document.getElementById("editarCpf").value = motorista.cpf;
-                    document.getElementById("editarValidade").value = motorista.validade;
+                    const [dia, mes, ano] = motorista.validade.split("/");
+                    document.getElementById("editarValidade").value = `${ano}-${mes}-${dia}`;
                     document.getElementById("editarModelo").value = motorista.modelo;
                     document.getElementById("editarAno").value = motorista.ano;
                     document.getElementById("editarPlaca").value = motorista.placa;
                     document.getElementById("editarCredencial").value = motorista.credencial;
+                    const statusSelect = document.getElementById("editarStatus");
+                    if (statusSelect) {
+                        const s = motorista.status;
+                        statusSelect.value = (s === "suspenso" || s === "pendente") ? s : "automatico";
+                    }
                 });
 
                 btnExcluir.addEventListener("click", () => {
@@ -223,6 +238,10 @@ function atualizarTabela() {
             validosEl.textContent = validos;
             aVencerEl.textContent = aVencer;
             vencidosEl.textContent = vencidos;
+            const suspensosEl = document.getElementById("suspensos");
+            const pendentesEl = document.getElementById("pendentes");
+            if (suspensosEl) suspensosEl.textContent = suspensos;
+            if (pendentesEl) pendentesEl.textContent = pendentes;
         })
         .catch(error => console.error("Erro ao carregar motoristas:", error));
 }

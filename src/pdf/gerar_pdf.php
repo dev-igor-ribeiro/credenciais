@@ -1,6 +1,6 @@
 <?php
 // Carrega a biblioteca DomPDF
-require_once __DIR__ . '/dompdf/autoload.inc.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 use Dompdf\Dompdf;
 
 // Habilita exibição de erros para debug

@@ -11,6 +11,10 @@
     z-index: 1000;
 }
 
+#modalNovoMotorista.show {
+    display: flex;
+}
+
 /* Modal de Novo/Editar Motorista */
 #modalNovoMotorista .modal-content,
 #modalCredencial .modal-content,

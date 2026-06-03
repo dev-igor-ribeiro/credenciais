@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ano = $_POST['ano'] ?? '';
         $placa = $_POST['placa'] ?? '';
         $credencial = $_POST['credencial'] ?? '';
+        $status_manual = $_POST['status'] ?? 'automatico';
 
         // Converter validade para formato yyyy-mm-dd
         $validade_formatada = null;
@@ -26,20 +27,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $validade_formatada = $dt ? $dt->format('Y-m-d') : null;
         }
 
-        // Determina status automaticamente: vencido, a_vencer, valido (sem acento)
-        $status = 'valido';
-        if ($validade_formatada) {
-            $hoje = new DateTime();
-            $validade_dt = new DateTime($validade_formatada);
-            $interval = $hoje->diff($validade_dt);
-            $dias_restante = (int) $interval->format('%r%a'); // signed
+        // Status manual tem prioridade; caso contrário calcula pela validade
+        if ($status_manual === 'suspenso' || $status_manual === 'pendente') {
+            $status = $status_manual;
+        } else {
+            $status = 'valido';
+            if ($validade_formatada) {
+                $hoje = new DateTime();
+                $validade_dt = new DateTime($validade_formatada);
+                $interval = $hoje->diff($validade_dt);
+                $dias_restante = (int) $interval->format('%r%a');
 
-            if ($dias_restante < 0) {
-                $status = 'vencido';
-            } elseif ($dias_restante <= 30) {
-                $status = 'a_vencer';
-            } else {
-                $status = 'valido';
+                if ($dias_restante < 0) {
+                    $status = 'vencido';
+                } elseif ($dias_restante <= 30) {
+                    $status = 'a_vencer';
+                } else {
+                    $status = 'valido';
+                }
             }
         }
 

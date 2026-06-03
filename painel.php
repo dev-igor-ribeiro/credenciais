@@ -58,6 +58,14 @@ if (!isset($_SESSION['usuario'])) {
                 <h2 id="vencidos">0</h2>
                 <p>Vencidos</p>
             </div>
+            <div class="card suspensos">
+                <h2 id="suspensos">0</h2>
+                <p>Suspensos</p>
+            </div>
+            <div class="card pendentes">
+                <h2 id="pendentes">0</h2>
+                <p>Pendentes</p>
+            </div>
         </section>
         <section class="filtros">
             <input type="text" id="filtroNome" placeholder="Buscar por nome...">
@@ -66,6 +74,8 @@ if (!isset($_SESSION['usuario'])) {
                 <option value="Válido">Válido</option>
                 <option value="A Vencer">A Vencer</option>
                 <option value="Vencido">Vencido</option>
+                <option value="Suspenso">Suspenso</option>
+                <option value="Pendente">Pendente</option>
             </select>
             <button id="btnExcluirSelecionados" class="btn btn-danger">Excluir Selecionados</button>
             <button id="btnExportar"

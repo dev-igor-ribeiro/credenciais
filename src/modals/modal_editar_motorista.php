@@ -52,6 +52,15 @@
                 <input type="date" id="editarValidade" name="validade" value="" required>
             </div>
 
+            <div class="form-group">
+                <label for="editarStatus">Status:</label>
+                <select id="editarStatus" name="status">
+                    <option value="automatico">Automático (pela validade)</option>
+                    <option value="suspenso">Suspenso</option>
+                    <option value="pendente">Pendente</option>
+                </select>
+            </div>
+
             <button type="submit" class="btn-salvar">Salvar Alterações</button>
         </form>
     </div>
