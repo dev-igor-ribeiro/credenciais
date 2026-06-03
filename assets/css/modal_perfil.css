@@ -1,0 +1,198 @@
+#modalPerfil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#modalPerfil.show {
+    display: flex;
+}
+
+.modal-perfil-content {
+    max-width: 600px;
+    width: 95%;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.modal-perfil-content .close {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+    background: none;
+    border: none;
+}
+
+.modal-perfil-content h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.3rem;
+    color: #222;
+}
+
+.perfil-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+.perfil-tab {
+    background: none;
+    border: none;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #555;
+    border-radius: 6px 6px 0 0;
+    font-weight: 500;
+}
+
+.perfil-tab.ativo {
+    background: #1a5c2a;
+    color: #fff;
+}
+
+.perfil-aba { display: none; }
+.perfil-aba.ativo { display: block; }
+
+.perfil-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.perfil-tabela td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+}
+
+.perfil-tabela td:first-child {
+    font-weight: 600;
+    color: #555;
+    width: 35%;
+}
+
+/* Documentos */
+.upload-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.btn-upload {
+    background: #1a5c2a;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.btn-upload:hover { background: #145022; }
+
+#uploadStatus { font-size: 0.9rem; color: #555; }
+
+.lista-docs, .lista-historico {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.doc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 0.5rem;
+}
+
+.doc-nome { font-size: 0.9rem; color: #333; flex: 1; word-break: break-all; }
+
+.doc-acoes { display: flex; gap: 0.5rem; flex-shrink: 0; }
+
+.btn-ver {
+    background: #3498db;
+    color: #fff;
+    padding: 0.3rem 0.7rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.btn-ver:hover { background: #2980b9; }
+
+.btn-excluir-doc {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.btn-excluir-doc:hover { background: #c0392b; }
+
+.vazio { color: #999; font-size: 0.9rem; padding: 0.5rem 0; }
+
+/* Histórico */
+.historico-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.historico-form textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.btn-salvar-obs {
+    align-self: flex-end;
+    background: #1a5c2a;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-salvar-obs:hover { background: #145022; }
+
+.hist-item {
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.hist-data { font-size: 0.78rem; color: #999; display: block; margin-bottom: 0.2rem; }
+
+.hist-texto { margin: 0; font-size: 0.92rem; color: #333; }
+
+.nome-clicavel { cursor: pointer; color: inherit; } .nome-clicavel:hover { text-decoration: underline; color: #1a5c2a; }

@@ -17,6 +17,7 @@ if (!isset($_SESSION['usuario'])) {
     <title>Painel de Credenciais - BoraCar</title>
     <link rel="stylesheet" href="assets/css/painel.css">
     <link rel="stylesheet" href="assets/css/modal_motorista.css">
+    <link rel="stylesheet" href="assets/css/modal_perfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-dyZ/J+6oX1kX2Is0kB5tscJq1hfwmiy2Bu5QY3xGO7t3/M5cO9YosYukw1VPR4tOHEEWoei6u5KxCW2o4rBPyQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -117,6 +118,7 @@ if (!isset($_SESSION['usuario'])) {
             </div>
         </section>
     </main>
+    <?php include('src/modals/modal_perfil_motorista.php'); ?>
     <?php include('src/modals/modal_novo_motorista.php'); ?>
     <?php include('src/modals/modal_editar_motorista.php'); ?>
     <?php include('src/modals/modal_credencial.php'); ?>

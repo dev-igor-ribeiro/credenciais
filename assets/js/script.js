@@ -171,7 +171,7 @@ function atualizarTabela() {
                 const row = `<tr>
     <td><input type="checkbox" class="select-motorista" value="${motorista.id}"></td>
     <td>${motorista.credencial}</td>
-    <td>${capitalizarNome(motorista.nome)}</td>
+    <td class="nome-clicavel" onclick="abrirModalPerfil(${motorista.id})" title="Ver perfil">${capitalizarNome(motorista.nome)}</td>
     <td>${motorista.cnh}</td>
     <td class="cpf">${formatarCPF(motorista.cpf)}</td>
     <td>${motorista.modelo}</td>

@@ -37,3 +37,12 @@ CREATE TABLE IF NOT EXISTS motoristas (
 
 -- [2026-06] Amplia coluna status para suportar 'suspenso' e 'pendente'
 ALTER TABLE motoristas MODIFY COLUMN status VARCHAR(20) DEFAULT 'valido';
+
+-- [2026-06] Histórico de observações por motorista
+CREATE TABLE IF NOT EXISTS historico_motorista (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    motorista_id INT NOT NULL,
+    observacao TEXT NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (motorista_id) REFERENCES motoristas(id) ON DELETE CASCADE
+);
