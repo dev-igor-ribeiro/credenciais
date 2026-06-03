@@ -7,6 +7,9 @@
                 <label for="novoCredencial">Credencial:</label>
                 <input type="text" id="novoCredencial" name="credencial" inputmode="numeric" pattern="\d*"
                     maxlength="20" placeholder="Apenas números" required>
+                <small id="ultima-credencial-novo" style="display:block;margin-top:5px;color:#666;">
+                    Última credencial gerada: -
+                </small>
             </div>
 
             <div class="form-group">
