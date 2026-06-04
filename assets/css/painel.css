@@ -121,14 +121,18 @@ body {
 
 .filtros {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 0.6rem;
     margin-bottom: 1rem;
 }
 
-.filtros input,
-.filtros select,
-.filtros button {
+.filtros-busca {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filtros-busca input {
+    flex: 1;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border-radius: 6px;
@@ -136,19 +140,53 @@ body {
     outline: none;
 }
 
-.filtros input {
-    flex: 1;
+.filtros-busca select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    min-width: 160px;
 }
 
-.filtros button {
+.filtros-acoes {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filtros-acoes button {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    border: none;
+    outline: none;
     background-color: #e63946;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    white-space: nowrap;
 }
 
-.filtros button:hover {
+.filtros-acoes button:hover {
     background-color: #c71f2e;
+}
+
+#btnNovoMotorista {
+    background-color: #2d6a4f;
+}
+
+#btnNovoMotorista:hover {
+    background-color: #1b4332;
+}
+
+#btnExportar {
+    background-color: #457b9d;
+}
+
+#btnExportar:hover {
+    background-color: #1d3557;
 }
 
 table {

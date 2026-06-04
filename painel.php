@@ -69,26 +69,24 @@ if (!isset($_SESSION['usuario'])) {
             </div>
         </section>
         <section class="filtros">
-            <input type="text" id="filtroNome" placeholder="Buscar por nome...">
-            <select id="filtroStatus">
-                <option value="Todos">Todos</option>
-                <option value="Válido">Válido</option>
-                <option value="A Vencer">A Vencer</option>
-                <option value="Vencido">Vencido</option>
-                <option value="Suspenso">Suspenso</option>
-                <option value="Pendente">Pendente</option>
-            </select>
-            <button id="btnExcluirSelecionados" class="btn btn-danger">Excluir Selecionados</button>
-            <button id="btnExportar"
-                onclick="window.location.href='src/exportar/exportar_motoristas.php'">Exportar</button>
-            <button id="btnImportar" class="btn btn-secondary">Importar</button>
-            <input type="file" id="inputImportar" accept=".xlsx,.xls" style="display:none;">
-            <button id="btnNovoMotorista" onclick="document.getElementById('modalNovoMotorista').classList.add('show')">
-                Novo Motorista
-            </button>
-            <button id="btnNovaCredencial" onclick="document.getElementById('modalCredencial').classList.add('show')">
-                Nova Credencial
-            </button>
+            <div class="filtros-busca">
+                <input type="text" id="filtroNome" placeholder="Buscar por nome...">
+                <select id="filtroStatus">
+                    <option value="Todos">Todos</option>
+                    <option value="Válido">Válido</option>
+                    <option value="A Vencer">A Vencer</option>
+                    <option value="Vencido">Vencido</option>
+                    <option value="Suspenso">Suspenso</option>
+                    <option value="Pendente">Pendente</option>
+                </select>
+            </div>
+            <div class="filtros-acoes">
+                <button id="btnExcluirSelecionados">Excluir Selecionados</button>
+                <button id="btnExportar" onclick="window.location.href='src/exportar/exportar_motoristas.php'">Exportar</button>
+                <button id="btnImportar">Importar</button>
+                <input type="file" id="inputImportar" accept=".xlsx,.xls" style="display:none;">
+                <button id="btnNovoMotorista" onclick="document.getElementById('modalNovoMotorista').classList.add('show')">Novo Motorista</button>
+            </div>
         </section>
         <section class="tabela-motoristas">
             <div class="table-wrapper">
