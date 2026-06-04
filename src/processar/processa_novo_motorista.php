@@ -26,17 +26,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $validade = $validade_input;
     }
 
-    $validade_timestamp = strtotime($validade);
-    $hoje_timestamp = strtotime(date('Y-m-d'));
-    $dias_restante = ceil(($validade_timestamp - $hoje_timestamp) / (60 * 60 * 24));
-
-    // Calcular status apenas com base na validade
-    if ($validade_timestamp < $hoje_timestamp) {
-        $status = 'vencido';
-    } elseif (($validade_timestamp - $hoje_timestamp) / (60 * 60 * 24) <= 30) {
-        $status = 'a_vencer';
+    // Calcular status com base na validade
+    if (empty($validade)) {
+        $status = 'pendente';
     } else {
-        $status = 'valido';
+        $validade_timestamp = strtotime($validade);
+        $hoje_timestamp = strtotime(date('Y-m-d'));
+        if ($validade_timestamp < $hoje_timestamp) {
+            $status = 'vencido';
+        } elseif (($validade_timestamp - $hoje_timestamp) / (60 * 60 * 24) <= 30) {
+            $status = 'a_vencer';
+        } else {
+            $status = 'valido';
+        }
     }
 
     $sql = "INSERT INTO motoristas (nome, cnh, cpf, validade, modelo, ano, placa, credencial, status)

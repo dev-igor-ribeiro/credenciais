@@ -8,6 +8,19 @@ document.addEventListener("DOMContentLoaded", function () {
     if (btnAbrir && modal) {
         btnAbrir.addEventListener("click", function () {
             modal.style.display = "flex";
+
+            // Preencher última credencial do localStorage
+            const ultimaSalva = localStorage.getItem("ultimaCredencial");
+            const infoEl = document.getElementById("ultima-credencial-novo");
+            const inputCredencial = document.getElementById("novoCredencial");
+            if (ultimaSalva) {
+                if (infoEl) infoEl.textContent = "Última credencial gerada: " + ultimaSalva;
+                if (inputCredencial && !inputCredencial.value) {
+                    inputCredencial.value = parseInt(ultimaSalva, 10) + 1;
+                }
+            } else {
+                if (infoEl) infoEl.textContent = "Última credencial gerada: -";
+            }
         });
     }
 

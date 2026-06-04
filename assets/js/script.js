@@ -197,15 +197,19 @@ function atualizarTabela() {
                     modal.classList.add("show");
 
                     document.getElementById("editarId").value = motorista.id;
-                    document.getElementById("editarNome").value = motorista.nome;
-                    document.getElementById("editarCnh").value = motorista.cnh;
-                    document.getElementById("editarCpf").value = motorista.cpf;
-                    const [dia, mes, ano] = motorista.validade.split("/");
-                    document.getElementById("editarValidade").value = `${ano}-${mes}-${dia}`;
-                    document.getElementById("editarModelo").value = motorista.modelo;
-                    document.getElementById("editarAno").value = motorista.ano;
-                    document.getElementById("editarPlaca").value = motorista.placa;
-                    document.getElementById("editarCredencial").value = motorista.credencial;
+                    document.getElementById("editarNome").value = motorista.nome || '';
+                    document.getElementById("editarCnh").value = motorista.cnh || '';
+                    document.getElementById("editarCpf").value = motorista.cpf || '';
+                    if (motorista.validade && motorista.validade.includes("/")) {
+                        const [dia, mes, ano] = motorista.validade.split("/");
+                        document.getElementById("editarValidade").value = `${ano}-${mes}-${dia}`;
+                    } else {
+                        document.getElementById("editarValidade").value = '';
+                    }
+                    document.getElementById("editarModelo").value = motorista.modelo || '';
+                    document.getElementById("editarAno").value = motorista.ano || '';
+                    document.getElementById("editarPlaca").value = motorista.placa || '';
+                    document.getElementById("editarCredencial").value = motorista.credencial || '';
                     const statusSelect = document.getElementById("editarStatus");
                     if (statusSelect) {
                         const s = motorista.status;
