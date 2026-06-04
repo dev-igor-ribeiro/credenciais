@@ -37,8 +37,8 @@ if (!isset($_SESSION['usuario'])) {
     <header class="top-header">
         <h1>Gerenciamento de Motoristas</h1>
         <p>Sistema de controle de credenciais</p>
-        <a href="login/logout.php" class="logout-btn">
-            <span>⎋</span> Sair
+        <a href="login/logout.php" class="logout-btn" title="Sair">
+            <i class="fas fa-power-off"></i>
         </a>
     </header>
     <main class="dashboard">
