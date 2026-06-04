@@ -307,6 +307,13 @@ document.addEventListener("DOMContentLoaded", function () {
         formNovo.addEventListener("submit", function (e) {
             e.preventDefault();
             e.stopPropagation();
+
+            // Bloqueia se credencial já cadastrada (flag definida em script_novo_motorista.js)
+            if (window._credencialDuplicada === true) {
+                mostrarMensagem('error', 'Esta credencial já está cadastrada. Escolha outro número.');
+                return;
+            }
+
             const formData = new FormData(formNovo);
             const actionUrl = formNovo.getAttribute("action") || "src/processar/processa_novo_motorista.php";
             fetch(actionUrl, {

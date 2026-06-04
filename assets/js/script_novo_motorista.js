@@ -6,6 +6,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     openModalBtn.addEventListener("click", () => {
         modal.style.display = "flex";
+
+        // Busca a última credencial numérica cadastrada no banco
+        fetch("src/ajax/ultima_credencial.php")
+            .then(r => r.json())
+            .then(data => {
+                const ultima = parseInt(data.ultima) || 0;
+                const proxima = ultima + 1;
+                const label = document.getElementById('ultima-credencial-novo');
+                const input = document.getElementById('novoCredencial');
+                if (label) label.textContent = 'Última credencial cadastrada: ' + ultima;
+                if (input && !input.value) input.value = proxima;
+            });
     });
 
     closeModalBtn.addEventListener("click", () => {
@@ -69,6 +81,40 @@ document.addEventListener("DOMContentLoaded", function () {
             this.value = out;
         });
     }
+
+    // Validação de credencial duplicada
+    const credencialInput = document.getElementById('novoCredencial');
+    const avisoCredencial = document.getElementById('ultima-credencial-novo');
+    window._credencialDuplicada = false;
+
+    credencialInput.addEventListener('blur', function () {
+        const valor = this.value.trim();
+        if (!valor) return;
+
+        fetch('src/ajax/verificar_credencial.php?credencial=' + encodeURIComponent(valor))
+            .then(r => r.json())
+            .then(data => {
+                if (data.existe) {
+                    window._credencialDuplicada = true;
+                    credencialInput.style.borderColor = '#e74c3c';
+                    avisoCredencial.style.color = '#e74c3c';
+                    const nomeFormatado = data.nome.toLowerCase().replace(/(?:^|\s)\S/g, l => l.toUpperCase());
+                    avisoCredencial.textContent = '⚠️ Credencial ' + valor + ' já pertence a: ' + nomeFormatado;
+                } else {
+                    window._credencialDuplicada = false;
+                    credencialInput.style.borderColor = '#2ecc40';
+                    avisoCredencial.style.color = '#2ecc40';
+                    avisoCredencial.textContent = '✔ Credencial disponível';
+                }
+            });
+    });
+
+    credencialInput.addEventListener('input', function () {
+        window._credencialDuplicada = false;
+        credencialInput.style.borderColor = '';
+        avisoCredencial.style.color = '#666';
+        avisoCredencial.textContent = '';
+    });
 
     const nomeNovo = document.getElementById('novoNome');
     const cnhNovo = document.getElementById('novoCnh');
