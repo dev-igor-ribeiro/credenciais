@@ -308,9 +308,14 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             e.stopPropagation();
 
-            // Bloqueia se credencial já cadastrada (flag definida em script_novo_motorista.js)
+            // Bloqueia se credencial já cadastrada
             if (window._credencialDuplicada === true) {
                 mostrarMensagem('error', 'Esta credencial já está cadastrada. Escolha outro número.');
+                return;
+            }
+            // Bloqueia se CPF já cadastrado
+            if (window._cpfDuplicado === true) {
+                mostrarMensagem('error', 'Este CPF já está cadastrado. Verifique os dados.');
                 return;
             }
 

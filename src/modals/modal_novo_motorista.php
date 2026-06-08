@@ -27,6 +27,7 @@
                 <label for="novoCpf">CPF:</label>
                 <input type="text" id="novoCpf" name="cpf" inputmode="numeric" maxlength="14"
                     placeholder="000.000.000-00" required>
+                <small id="aviso-cpf-novo" style="display:block;margin-top:5px;"></small>
             </div>
 
             <div class="form-group">

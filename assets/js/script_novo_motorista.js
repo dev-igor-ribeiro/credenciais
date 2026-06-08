@@ -116,6 +116,39 @@ document.addEventListener("DOMContentLoaded", function () {
         avisoCredencial.textContent = '';
     });
 
+    // Validação de CPF duplicado
+    const cpfInput = document.getElementById('novoCpf');
+    const avisoCpf = document.getElementById('aviso-cpf-novo');
+    window._cpfDuplicado = false;
+
+    cpfInput.addEventListener('blur', function () {
+        const valor = this.value.replace(/\D/g, '');
+        if (valor.length < 11) return;
+
+        fetch('src/ajax/verificar_cpf.php?cpf=' + encodeURIComponent(valor))
+            .then(r => r.json())
+            .then(data => {
+                if (data.existe) {
+                    window._cpfDuplicado = true;
+                    cpfInput.style.borderColor = '#e74c3c';
+                    avisoCpf.style.color = '#e74c3c';
+                    const nome = data.nome.toLowerCase().replace(/(?:^|\s)\S/g, l => l.toUpperCase());
+                    avisoCpf.textContent = '⚠️ CPF já cadastrado para: ' + nome;
+                } else {
+                    window._cpfDuplicado = false;
+                    cpfInput.style.borderColor = '#2ecc40';
+                    avisoCpf.style.color = '#2ecc40';
+                    avisoCpf.textContent = '✔ CPF disponível';
+                }
+            });
+    });
+
+    cpfInput.addEventListener('input', function () {
+        window._cpfDuplicado = false;
+        cpfInput.style.borderColor = '';
+        avisoCpf.textContent = '';
+    });
+
     const nomeNovo = document.getElementById('novoNome');
     const cnhNovo = document.getElementById('novoCnh');
     const cpfNovo = document.getElementById('novoCpf');
