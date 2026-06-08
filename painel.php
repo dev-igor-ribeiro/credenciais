@@ -25,6 +25,26 @@ if (!isset($_SESSION['usuario'])) {
     <script src="assets/js/script_novo_motorista.js" defer></script>
     <script src="assets/js/painel.js" defer></script>
     <script>
+    function fazerBackup() {
+        const btn = document.getElementById('btnBackup');
+        btn.disabled = true;
+        btn.textContent = 'Aguarde...';
+        fetch('src/ajax/executar_backup.php')
+            .then(r => r.json())
+            .then(data => {
+                if (data.sucesso) {
+                    mostrarMensagem('success', '✅ ' + data.mensagem);
+                } else {
+                    mostrarMensagem('error', 'Erro: ' + (data.erro || 'Falha no backup'));
+                }
+            })
+            .catch(() => mostrarMensagem('error', 'Erro ao executar backup.'))
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = 'Backup';
+            });
+    }
+
     function confirmarExclusao(id) {
         if (confirm("Tem certeza que deseja excluir este motorista?")) {
             window.location.href = `src/processar/excluir_motorista.php?id=${id}`;
@@ -88,6 +108,7 @@ if (!isset($_SESSION['usuario'])) {
                 <button id="btnImportar">Importar</button>
                 <input type="file" id="inputImportar" accept=".xlsx,.xls" style="display:none;">
                 <button id="btnNovoMotorista" onclick="document.getElementById('modalNovoMotorista').classList.add('show')">Novo Motorista</button>
+            <button id="btnBackup" onclick="fazerBackup()">Backup</button>
             </div>
         </section>
         <section class="tabela-motoristas">
