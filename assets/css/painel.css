@@ -74,7 +74,17 @@ body {
     transition: transform 0.2s ease-in-out;
 }
 
+.card {
+    cursor: pointer;
+}
+
 .card:hover {
+    transform: translateY(-4px);
+}
+
+.card.card-ativo {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
     transform: translateY(-4px);
 }
 

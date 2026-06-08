@@ -253,6 +253,32 @@ function atualizarTabela() {
 document.addEventListener("DOMContentLoaded", function () {
     atualizarTabela();
 
+    // Cards clicáveis para filtrar por status
+    const mapaCards = {
+        'totalMotoristas': 'Todos',
+        'validos':         'Válido',
+        'aVencer':         'A Vencer',
+        'vencidos':        'Vencido',
+        'suspensos':       'Suspenso',
+        'pendentes':       'Pendente'
+    };
+
+    Object.entries(mapaCards).forEach(([cardId, statusValor]) => {
+        const card = document.getElementById(cardId)?.closest('.card');
+        if (!card) return;
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            const select = document.getElementById('filtroStatus');
+            if (select) {
+                select.value = statusValor;
+                select.dispatchEvent(new Event('change'));
+            }
+            // Destaca o card ativo
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('card-ativo'));
+            card.classList.add('card-ativo');
+        });
+    });
+
     const filtroNomeInput = document.getElementById("filtroNome");
     if (filtroNomeInput) {
         filtroNomeInput.addEventListener("input", () => {
