@@ -196,3 +196,75 @@
 .hist-texto { margin: 0; font-size: 0.92rem; color: #333; }
 
 .nome-clicavel { cursor: pointer; color: inherit; } .nome-clicavel:hover { text-decoration: underline; color: #1a5c2a; }
+
+/* ── Aba Edições ── */
+.edicao-grupo {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.edicao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.edicao-data {
+    font-size: 0.82rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.edicao-usuario {
+    font-size: 0.78rem;
+    color: #999;
+    background: #eee;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.edicao-campo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+    border-top: 1px solid #ececec;
+    flex-wrap: wrap;
+    font-size: 0.88rem;
+}
+
+.edicao-label {
+    font-weight: 600;
+    color: #444;
+    min-width: 80px;
+}
+
+.edicao-antes {
+    color: #c62828;
+    background: #ffebee;
+    padding: 2px 7px;
+    border-radius: 4px;
+    text-decoration: line-through;
+    font-size: 0.85rem;
+}
+
+.edicao-seta {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.edicao-depois {
+    color: #2e7d32;
+    background: #e8f5e9;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+

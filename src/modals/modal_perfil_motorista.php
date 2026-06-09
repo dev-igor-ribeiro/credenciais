@@ -7,6 +7,7 @@
             <button class="perfil-tab ativo" onclick="trocarAba('info', this)">Informações</button>
             <button class="perfil-tab" onclick="trocarAba('docs', this)">Documentos</button>
             <button class="perfil-tab" onclick="trocarAba('hist', this)">Histórico</button>
+            <button class="perfil-tab" onclick="trocarAba('edicoes', this)">Edições</button>
         </div>
 
         <!-- ABA INFORMAÇÕES -->
@@ -32,6 +33,13 @@
                 <span id="uploadStatus"></span>
             </div>
             <ul id="listaDocumentos" class="lista-docs"></ul>
+        </div>
+
+        <!-- ABA EDIÇÕES -->
+        <div id="abaEdicoes" class="perfil-aba">
+            <div id="listaEdicoes" style="max-height:360px; overflow-y:auto;">
+                <p style="color:#aaa; text-align:center; padding:1.5rem; font-style:italic;">Carregando...</p>
+            </div>
         </div>
 
         <!-- ABA HISTÓRICO -->
@@ -99,9 +107,59 @@ function fecharModalPerfil() {
 function trocarAba(aba, btn) {
     document.querySelectorAll('.perfil-tab').forEach(b => b.classList.remove('ativo'));
     document.querySelectorAll('.perfil-aba').forEach(a => a.classList.remove('ativo'));
-    const mapa = { info: 'abaInfo', docs: 'abaDocs', hist: 'abaHist' };
+    const mapa = { info: 'abaInfo', docs: 'abaDocs', hist: 'abaHist', edicoes: 'abaEdicoes' };
     document.getElementById(mapa[aba]).classList.add('ativo');
     btn.classList.add('ativo');
+    if (aba === 'edicoes') carregarEdicoes(_perfilMotoristaId);
+}
+
+function carregarEdicoes(id) {
+    const wrap = document.getElementById('listaEdicoes');
+    wrap.innerHTML = '<p style="color:#aaa;text-align:center;padding:1.5rem;font-style:italic;">Carregando...</p>';
+
+    fetch('src/ajax/listar_edicoes.php?id=' + id)
+        .then(r => r.json())
+        .then(rows => {
+            if (!rows.length) {
+                wrap.innerHTML = '<p style="color:#aaa;text-align:center;padding:1.5rem;font-style:italic;">Nenhuma edição registrada.</p>';
+                return;
+            }
+
+            // Agrupa por data/hora (edições feitas no mesmo momento)
+            const grupos = [];
+            let grupoAtual = null;
+            rows.forEach(r => {
+                const chave = r.editado_em + '|' + r.usuario;
+                if (!grupoAtual || grupoAtual.chave !== chave) {
+                    grupoAtual = { chave, editado_em: r.editado_em, usuario: r.usuario, campos: [] };
+                    grupos.push(grupoAtual);
+                }
+                grupoAtual.campos.push(r);
+            });
+
+            wrap.innerHTML = grupos.map(g => {
+                const dt = new Date(g.editado_em);
+                const data = dt.toLocaleDateString('pt-BR') + ' ' + dt.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+                const linhas = g.campos.map(c => `
+                    <div class="edicao-campo">
+                        <span class="edicao-label">${c.campo}</span>
+                        <span class="edicao-antes">${c.valor_anterior || '—'}</span>
+                        <span class="edicao-seta">→</span>
+                        <span class="edicao-depois">${c.valor_novo || '—'}</span>
+                    </div>`).join('');
+                return `
+                    <div class="edicao-grupo">
+                        <div class="edicao-header">
+                            <span class="edicao-data">🕐 ${data}</span>
+                            <span class="edicao-usuario">por ${g.usuario}</span>
+                        </div>
+                        ${linhas}
+                    </div>`;
+            }).join('');
+        })
+        .catch(() => {
+            wrap.innerHTML = '<p style="color:#e53935;text-align:center;padding:1rem;">Erro ao carregar edições.</p>';
+        });
 }
 
 function formatarDataPerfil(data) {
