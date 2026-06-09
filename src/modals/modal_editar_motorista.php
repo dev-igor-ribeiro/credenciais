@@ -29,6 +29,7 @@
                 <label for="editarCpf">CPF:</label>
                 <input type="text" id="editarCpf" name="cpf" inputmode="numeric" maxlength="14"
                     placeholder="000.000.000-00" required>
+                <small id="aviso-cpf-editar" style="display:none; font-size:0.82rem; margin-top:3px;"></small>
             </div>
 
             <div class="form-group">
@@ -99,5 +100,37 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof maskCPFListener === 'function') {
         maskCPFListener(document.getElementById('editarCpf'));
     }
+
+    // Validação CPF duplicado no editar
+    const editarCpfInput = document.getElementById('editarCpf');
+    const avisoCpfEditar = document.getElementById('aviso-cpf-editar');
+
+    editarCpfInput.addEventListener('blur', function () {
+        const cpf = this.value.replace(/\D/g, '');
+        const id  = document.getElementById('editarId').value;
+        if (cpf.length < 11) {
+            avisoCpfEditar.style.display = 'none';
+            window._cpfDuplicadoEditar = false;
+            this.style.borderColor = '';
+            return;
+        }
+        fetch('src/ajax/verificar_cpf.php?cpf=' + encodeURIComponent(cpf) + '&id=' + encodeURIComponent(id))
+            .then(r => r.json())
+            .then(data => {
+                if (data.existe) {
+                    avisoCpfEditar.textContent = '⚠️ CPF já cadastrado: ' + data.nome;
+                    avisoCpfEditar.style.display = 'block';
+                    avisoCpfEditar.style.color = '#ff6b6b';
+                    editarCpfInput.style.borderColor = 'red';
+                    window._cpfDuplicadoEditar = true;
+                } else {
+                    avisoCpfEditar.textContent = '✔️ CPF disponível';
+                    avisoCpfEditar.style.display = 'block';
+                    avisoCpfEditar.style.color = '#7ee8a2';
+                    editarCpfInput.style.borderColor = 'green';
+                    window._cpfDuplicadoEditar = false;
+                }
+            });
+    });
 });
 </script>

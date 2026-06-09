@@ -236,6 +236,13 @@ function renderTabela(data) {
                     const modal = document.getElementById("modalEditarMotorista");
                     modal.classList.add("show");
 
+                    // Limpa estado de validação CPF ao abrir
+                    window._cpfDuplicadoEditar = false;
+                    const avisoCpfEditar = document.getElementById('aviso-cpf-editar');
+                    if (avisoCpfEditar) avisoCpfEditar.style.display = 'none';
+                    const editarCpfInput = document.getElementById('editarCpf');
+                    if (editarCpfInput) editarCpfInput.style.borderColor = '';
+
                     document.getElementById("editarId").value = motorista.id;
                     document.getElementById("editarNome").value = motorista.nome || '';
                     document.getElementById("editarCnh").value = motorista.cnh || '';
@@ -363,6 +370,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (formEditar) {
         formEditar.addEventListener("submit", function (e) {
             e.preventDefault();
+
+            if (window._cpfDuplicadoEditar === true) {
+                mostrarMensagem('error', 'Este CPF já está cadastrado para outro motorista. Verifique os dados.');
+                return;
+            }
 
             const formData = new FormData(formEditar);
 
