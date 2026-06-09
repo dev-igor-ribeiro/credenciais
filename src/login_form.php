@@ -46,7 +46,15 @@
         <form action="login.php" method="post">
             <div class="form-inner">
                 <input type="text" name="usuario" placeholder="Usuário" required>
-                <input type="password" name="senha" placeholder="Senha" required>
+                <div style="position:relative;">
+                    <input type="password" name="senha" id="senhaInput" placeholder="Senha" required style="padding-right:2.5rem;">
+                    <span id="toggleSenha" onclick="
+                        const i = document.getElementById('senhaInput');
+                        const v = i.type === 'password';
+                        i.type = v ? 'text' : 'password';
+                        this.textContent = v ? '🙈' : '👁️';
+                    " style="position:absolute; right:0.75rem; top:50%; transform:translateY(-50%); cursor:pointer; font-size:1.1rem; user-select:none;">👁️</span>
+                </div>
                 <button type="submit">Entrar</button>
             </div>
         </form>
