@@ -128,6 +128,7 @@ if (!isset($_SESSION['usuario'])) {
             <button id="btnBackup" onclick="fazerBackup()">Backup</button>
             <button id="btnRestaurar" onclick="abrirModalRestaurar()">Restaurar</button>
             <button id="btnLog" onclick="abrirModalLog()">Log</button>
+            <button id="btnAlterarSenha" onclick="abrirModalSenha()">🔒 Senha</button>
             </div>
         </section>
         <section class="tabela-motoristas">
@@ -158,6 +159,7 @@ if (!isset($_SESSION['usuario'])) {
             </div>
         </section>
     </main>
+    <?php include('src/modals/modal_alterar_senha.php'); ?>
     <?php include('src/modals/modal_restaurar_backup.php'); ?>
     <?php include('src/modals/modal_log_acoes.php'); ?>
     <?php include('src/modals/modal_perfil_motorista.php'); ?>

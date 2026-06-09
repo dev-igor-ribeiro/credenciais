@@ -1,0 +1,59 @@
+/* ── Reset / Esqueci Senha – páginas externas ── */
+
+.reset-container {
+    max-width: 420px;
+    width: 92%;
+    padding: 2.2rem 2rem;
+}
+
+.reset-container .subtitle {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin: 0 0 1.2rem;
+    text-align: center;
+}
+
+.alert-reset {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.success-reset {
+    background: #1b3a1b;
+    border: 1px solid #2e7d32;
+    color: #81c784;
+}
+
+.error-reset {
+    background: #3b1a1a;
+    border: 1px solid #c62828;
+    color: #ef9a9a;
+}
+
+/* Botão ver senha nas páginas de reset */
+.toggle-senha {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    opacity: 0.55;
+    transition: opacity 0.2s;
+}
+
+.toggle-senha:hover {
+    opacity: 1;
+}
+
+@media (max-width: 480px) {
+    .reset-container {
+        padding: 1.6rem 1.2rem;
+    }
+}

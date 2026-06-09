@@ -777,6 +777,14 @@ td.acoes .action-icons .icon-action {
     background-color: #2e2e4e;
 }
 
+#btnAlterarSenha {
+    background-color: #37474f;
+}
+
+#btnAlterarSenha:hover {
+    background-color: #263238;
+}
+
 /* Modal restaurar backup */
 .backup-item {
     display: flex;
