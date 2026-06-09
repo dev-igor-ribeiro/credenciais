@@ -516,6 +516,7 @@ td.acoes .action-icons .icon-action {
 .table-wrapper thead th.sortable {
     cursor: pointer;
     user-select: none;
+    white-space: nowrap;
 }
 
 .table-wrapper thead th.sortable::after {
