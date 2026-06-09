@@ -57,7 +57,7 @@ if (!isset($_SESSION['usuario'])) {
     <header class="top-header">
         <h1>Gerenciamento de Motoristas</h1>
         <p>Sistema de controle de credenciais</p>
-        <a href="login/logout.php" class="logout-btn" title="Sair">
+        <a href="login/logout.php" class="logout-btn" title="Sair" onclick="return confirm('Deseja realmente sair do sistema?')">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="white" width="22" height="22">
                 <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1C407.4 160.5 432 205.8 432 256c0 97.2-78.8 176-176 176S80 353.2 80 256c0-50.2 24.6-95.5 63.5-135.4z"/>
             </svg>
@@ -93,7 +93,10 @@ if (!isset($_SESSION['usuario'])) {
         <div id="alertaVencimentos"></div>
         <section class="filtros">
             <div class="filtros-busca">
-                <input type="text" id="filtroNome" placeholder="Buscar por nome, credencial, CPF, modelo ou placa...">
+                <div class="busca-wrap">
+                    <input type="text" id="filtroNome" placeholder="Buscar por nome, credencial, CPF, modelo ou placa...">
+                    <span id="btnLimparBusca" title="Limpar busca">✕</span>
+                </div>
                 <select id="filtroStatus">
                     <option value="Todos">Todos</option>
                     <option value="Válido">Válido</option>

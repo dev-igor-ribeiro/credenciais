@@ -452,8 +452,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const filtroNomeInput = document.getElementById("filtroNome");
+    const btnLimparBusca = document.getElementById("btnLimparBusca");
+
     if (filtroNomeInput) {
         filtroNomeInput.addEventListener("input", () => {
+            if (btnLimparBusca) btnLimparBusca.style.display = filtroNomeInput.value ? 'block' : 'none';
             renderTabela(_motoristasCache);
         });
         filtroNomeInput.addEventListener("keydown", (e) => {
@@ -464,10 +467,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 const ate = document.getElementById('filtroDataAte');
                 if (de) de.value = '';
                 if (ate) ate.value = '';
+                if (btnLimparBusca) btnLimparBusca.style.display = 'none';
                 document.querySelectorAll('.card').forEach(c => c.classList.remove('card-ativo'));
                 renderTabela(_motoristasCache);
                 filtroNomeInput.blur();
             }
+        });
+    }
+
+    if (btnLimparBusca) {
+        btnLimparBusca.addEventListener("click", () => {
+            filtroNomeInput.value = "";
+            btnLimparBusca.style.display = 'none';
+            renderTabela(_motoristasCache);
+            filtroNomeInput.focus();
         });
     }
 
