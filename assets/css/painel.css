@@ -778,12 +778,61 @@ td.acoes .action-icons .icon-action {
     background-color: #2e2e4e;
 }
 
-#btnAlterarSenha {
-    background-color: #37474f;
+/* ── Dropdown Ferramentas ── */
+.ferramentas-wrap {
+    position: relative;
 }
 
-#btnAlterarSenha:hover {
-    background-color: #263238;
+.btn-ferramentas {
+    background-color: #37474f !important;
+    white-space: nowrap;
+}
+
+.btn-ferramentas:hover {
+    background-color: #263238 !important;
+}
+
+.ferramentas-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    background: #1e1e2e;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 200;
+    min-width: 190px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    flex-direction: column;
+}
+
+.ferramentas-menu.aberto {
+    display: flex;
+}
+
+.ferramentas-menu button {
+    width: 100%;
+    padding: 10px 16px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: #ddd;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 0 !important;
+    flex: unset !important;
+}
+
+.ferramentas-menu button:last-child {
+    border-bottom: none;
+}
+
+.ferramentas-menu button:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
 }
 
 /* Modal restaurar backup */

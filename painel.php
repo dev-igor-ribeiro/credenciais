@@ -45,6 +45,19 @@ if (!isset($_SESSION['usuario'])) {
             });
     }
 
+    function toggleFerramentas(e) {
+        e.stopPropagation();
+        document.getElementById('ferramMenu').classList.toggle('aberto');
+    }
+    function fecharFerramentas() {
+        document.getElementById('ferramMenu').classList.remove('aberto');
+    }
+    document.addEventListener('click', function(e) {
+        if (!document.getElementById('ferramWrap').contains(e.target)) {
+            fecharFerramentas();
+        }
+    });
+
     function confirmarSaida() {
         mostrarMensagem('warning', 'Deseja realmente sair do sistema?', function() {
             window.location.href = 'login/logout.php';
@@ -124,11 +137,20 @@ if (!isset($_SESSION['usuario'])) {
                 <button id="btnExportar" onclick="window.location.href='src/exportar/exportar_motoristas.php'">Exportar</button>
                 <button id="btnImportar">Importar</button>
                 <input type="file" id="inputImportar" accept=".xlsx,.xls" style="display:none;">
-                <button id="btnNovoMotorista" onclick="document.getElementById('modalNovoMotorista').classList.add('show')">Novo Motorista</button>
-            <button id="btnBackup" onclick="fazerBackup()">Backup</button>
-            <button id="btnRestaurar" onclick="abrirModalRestaurar()">Restaurar</button>
-            <button id="btnLog" onclick="abrirModalLog()">Log</button>
-            <button id="btnAlterarSenha" onclick="abrirModalSenha()">🔒 Senha</button>
+                <button id="btnNovoMotorista" onclick="document.getElementById('modalNovoMotorista').classList.add('show')">+ Novo Motorista</button>
+
+                <!-- Dropdown Ferramentas -->
+                <div class="ferramentas-wrap" id="ferramWrap">
+                    <button class="btn-ferramentas" id="btnFerramentas" onclick="toggleFerramentas(event)">
+                        ⚙️ Ferramentas ▾
+                    </button>
+                    <div class="ferramentas-menu" id="ferramMenu">
+                        <button onclick="fazerBackup(); fecharFerramentas()">💾 Backup</button>
+                        <button onclick="abrirModalRestaurar(); fecharFerramentas()">🔄 Restaurar</button>
+                        <button onclick="abrirModalLog(); fecharFerramentas()">📋 Log de Ações</button>
+                        <button onclick="abrirModalSenha(); fecharFerramentas()">🔒 Alterar Senha</button>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="tabela-motoristas">
