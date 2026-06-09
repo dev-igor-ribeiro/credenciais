@@ -511,3 +511,32 @@ td.acoes .action-icons .icon-action {
     width: 30px;
     height: 30px;
 }
+
+/* Ordenação por coluna */
+th.sortable {
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+th.sortable::after {
+    content: ' ⇅';
+    font-size: 0.75rem;
+    opacity: 0.4;
+}
+
+th.sortable.sort-asc::after {
+    content: ' ▲';
+    opacity: 1;
+    color: #7ee8a2;
+}
+
+th.sortable.sort-desc::after {
+    content: ' ▼';
+    opacity: 1;
+    color: #7ee8a2;
+}
+
+th.sortable:hover {
+    background: rgba(255, 255, 255, 0.15);
+}

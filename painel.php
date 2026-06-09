@@ -117,16 +117,16 @@ if (!isset($_SESSION['usuario'])) {
                     <thead>
                         <tr>
                             <th class="col-select"><input type="checkbox" id="select-all"></th>
-                            <th class="col-credencial">Credencial</th>
-                            <th class="col-nome">Nome</th>
-                            <th class="col-cnh">CNH</th>
-                            <th class="col-cpf">CPF</th>
-                            <th class="col-modelo">Modelo</th>
-                            <th class="col-ano">Ano</th>
-                            <th class="col-placa">Placa</th>
-                            <th class="col-validade">Data Validade</th>
-                            <th class="col-status">Status</th>
-                            <th class="col-dias">Dias</th>
+                            <th class="col-credencial sortable" data-sort="credencial">Credencial</th>
+                            <th class="col-nome sortable" data-sort="nome">Nome</th>
+                            <th class="col-cnh sortable" data-sort="cnh">CNH</th>
+                            <th class="col-cpf sortable" data-sort="cpf">CPF</th>
+                            <th class="col-modelo sortable" data-sort="modelo">Modelo</th>
+                            <th class="col-ano sortable" data-sort="ano">Ano</th>
+                            <th class="col-placa sortable" data-sort="placa">Placa</th>
+                            <th class="col-validade sortable" data-sort="validade">Data Validade</th>
+                            <th class="col-status sortable" data-sort="status">Status</th>
+                            <th class="col-dias sortable" data-sort="dias">Dias</th>
                             <th class="col-acoes">Ações</th>
                         </tr>
                     </thead>

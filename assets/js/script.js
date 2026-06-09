@@ -110,10 +110,67 @@ function mostrarMensagem(tipo, texto, callbackConfirmar = null) {
     }
 }
 
-function atualizarTabela() {
-    fetch("src/ajax/carregar_motoristas.php?ts=" + Date.now(), { cache: "no-store" })
-        .then(response => response.json())
-        .then(data => {
+// Cache dos dados e estado de ordenação
+let _motoristasCache = [];
+let _sortCol = null;
+let _sortDir = 1; // 1 = asc, -1 = desc
+
+function _calcularStatus(motorista) {
+    const dias = parseInt(motorista.dias_restante);
+    const statusDb = motorista.status;
+    if (statusDb === "suspenso") return { label: "Suspenso", cls: "status-suspenso" };
+    if (statusDb === "pendente" || isNaN(dias)) return { label: "Pendente", cls: "status-pendente" };
+    if (dias > 30) return { label: "Válido", cls: "status-valido" };
+    if (dias > 0) return { label: "A Vencer", cls: "status-a-vencer" };
+    return { label: "Vencido", cls: "status-vencido" };
+}
+
+function _ordenarDados(dados) {
+    if (!_sortCol) return dados;
+    return [...dados].sort((a, b) => {
+        let va, vb;
+        if (_sortCol === 'status') {
+            va = _calcularStatus(a).label;
+            vb = _calcularStatus(b).label;
+        } else if (_sortCol === 'dias') {
+            va = parseInt(a.dias_restante);
+            vb = parseInt(b.dias_restante);
+            if (isNaN(va)) va = -9999;
+            if (isNaN(vb)) vb = -9999;
+            return (va - vb) * _sortDir;
+        } else if (_sortCol === 'credencial' || _sortCol === 'ano') {
+            va = parseInt(a[_sortCol]) || 0;
+            vb = parseInt(b[_sortCol]) || 0;
+            return (va - vb) * _sortDir;
+        } else if (_sortCol === 'validade') {
+            // formato dd/mm/yyyy → yyyy-mm-dd para comparação
+            const toISO = v => {
+                if (!v || !v.includes('/')) return '';
+                const [d, m, y] = v.split('/');
+                return `${y}-${m}-${d}`;
+            };
+            va = toISO(a.validade);
+            vb = toISO(b.validade);
+        } else {
+            va = (a[_sortCol] || '').toString().toLowerCase();
+            vb = (b[_sortCol] || '').toString().toLowerCase();
+        }
+        if (va < vb) return -1 * _sortDir;
+        if (va > vb) return 1 * _sortDir;
+        return 0;
+    });
+}
+
+function _atualizarSetinhas() {
+    document.querySelectorAll('th.sortable').forEach(th => {
+        th.classList.remove('sort-asc', 'sort-desc');
+        if (th.dataset.sort === _sortCol) {
+            th.classList.add(_sortDir === 1 ? 'sort-asc' : 'sort-desc');
+        }
+    });
+}
+
+function renderTabela(data) {
             const tabela = document.getElementById("tabelaCorpo");
             const totalEl = document.getElementById("totalMotoristas");
             const validosEl = document.getElementById("validos");
@@ -128,28 +185,11 @@ function atualizarTabela() {
             let total = 0, validos = 0, aVencer = 0, vencidos = 0, suspensos = 0, pendentes = 0;
             tabela.innerHTML = "";
 
-            data.forEach(motorista => {
-                const dias = parseInt(motorista.dias_restante);
-                const statusDb = motorista.status;
-                let statusLabel = "";
-                let statusClass = "";
+            const dadosOrdenados = _ordenarDados(data);
 
-                if (statusDb === "suspenso") {
-                    statusLabel = "Suspenso";
-                    statusClass = "status-suspenso";
-                } else if (statusDb === "pendente" || isNaN(dias)) {
-                    statusLabel = "Pendente";
-                    statusClass = "status-pendente";
-                } else if (dias > 30) {
-                    statusLabel = "Válido";
-                    statusClass = "status-valido";
-                } else if (dias > 0) {
-                    statusLabel = "A Vencer";
-                    statusClass = "status-a-vencer";
-                } else {
-                    statusLabel = "Vencido";
-                    statusClass = "status-vencido";
-                }
+            dadosOrdenados.forEach(motorista => {
+                const dias = parseInt(motorista.dias_restante);
+                const { label: statusLabel, cls: statusClass } = _calcularStatus(motorista);
 
                 // Filtrar pelo nome
                 if (filtroNome && !motorista.nome.toLowerCase().includes(filtroNome)) {
@@ -246,12 +286,37 @@ function atualizarTabela() {
             const pendentesEl = document.getElementById("pendentes");
             if (suspensosEl) suspensosEl.textContent = suspensos;
             if (pendentesEl) pendentesEl.textContent = pendentes;
+
+            _atualizarSetinhas();
+}
+
+function atualizarTabela() {
+    fetch("src/ajax/carregar_motoristas.php?ts=" + Date.now(), { cache: "no-store" })
+        .then(response => response.json())
+        .then(data => {
+            _motoristasCache = data;
+            renderTabela(_motoristasCache);
         })
         .catch(error => console.error("Erro ao carregar motoristas:", error));
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     atualizarTabela();
+
+    // Ordenação por clique nos cabeçalhos
+    document.querySelectorAll('th.sortable').forEach(th => {
+        th.addEventListener('click', () => {
+            const col = th.dataset.sort;
+            if (_sortCol === col) {
+                _sortDir *= -1;
+            } else {
+                _sortCol = col;
+                _sortDir = 1;
+            }
+            _atualizarSetinhas();
+            renderTabela(_motoristasCache);
+        });
+    });
 
     // Cards clicáveis para filtrar por status
     const mapaCards = {
