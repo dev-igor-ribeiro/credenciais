@@ -438,13 +438,133 @@ tbody tr:nth-child(odd) {
     background-color: #555;
 }
 
-@media (max-width: 768px) {
+/* ==============================
+   RESPONSIVO — Tablet (≤ 900px)
+   ============================== */
+@media (max-width: 900px) {
     .cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    .filtros {
+    .filtros-acoes {
+        flex-wrap: wrap;
+    }
+
+    .filtros-acoes button {
+        flex: 1 1 calc(33% - 0.5rem);
+        min-width: 100px;
+    }
+}
+
+/* ==============================
+   RESPONSIVO — Mobile (≤ 600px)
+   ============================== */
+@media (max-width: 600px) {
+
+    /* Header */
+    .top-header {
+        padding: 0.8rem 1rem 0.5rem;
+    }
+
+    .top-header h1 {
+        font-size: 1.2rem;
+        padding: 0 3rem;
+    }
+
+    .top-header p {
+        font-size: 0.78rem;
+    }
+
+    .logout-btn {
+        width: 38px;
+        height: 38px;
+        top: 12px;
+        left: 10px;
+    }
+
+    /* Cards: 2 por linha */
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+
+    .card h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Dashboard */
+    .dashboard {
+        width: 100%;
+        padding: 0.6rem;
+    }
+
+    /* Alerta */
+    .alerta-banner {
         flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    /* Filtros */
+    .filtros-busca {
+        flex-direction: column;
+    }
+
+    .busca-wrap {
+        width: 100%;
+    }
+
+    .filtros-busca select {
+        width: 100%;
+    }
+
+    .filtros-data {
+        flex-wrap: wrap;
+    }
+
+    .filtros-data input[type="date"] {
+        flex: 1;
+        min-width: 130px;
+    }
+
+    /* Botões de ação */
+    .filtros-acoes {
+        flex-wrap: wrap;
+    }
+
+    .filtros-acoes button {
+        flex: 1 1 calc(50% - 0.25rem);
+        font-size: 0.82rem;
+        padding: 0.5rem 0.4rem;
+    }
+
+    /* Tabela: scroll horizontal */
+    .table-wrapper {
+        height: 55vh;
+    }
+
+    .table-wrapper table {
+        min-width: 750px;
+    }
+
+    /* Modais */
+    .modal-content {
+        margin: 2vh 0.5rem;
+        padding: 1.2rem 1rem;
+        max-height: calc(100vh - 20px);
+    }
+
+    .modal-log-content {
+        margin: 2vh 0.5rem;
+        padding: 1.2rem 1rem;
+    }
+
+    #modalRestaurarBackup .modal-content {
+        margin: 2vh 0.5rem;
+        padding: 1.2rem 1rem;
     }
 }
 
