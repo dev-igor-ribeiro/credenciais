@@ -92,3 +92,26 @@ body {
     margin-bottom: 20px;
     text-align: center;
 }
+
+@media (max-width: 480px) {
+    body {
+        align-items: center;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .login-container .icon {
+        width: 160px;
+    }
+
+    .login-container h2 {
+        font-size: 1.1rem;
+    }
+}
