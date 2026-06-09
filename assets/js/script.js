@@ -110,6 +110,13 @@ function mostrarMensagem(tipo, texto, callbackConfirmar = null) {
     }
 }
 
+// Destaca o termo buscado dentro de um texto
+function _highlight(texto, termo) {
+    if (!termo || !texto) return texto;
+    const regex = new RegExp('(' + termo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return texto.replace(regex, '<mark class="busca-highlight">$1</mark>');
+}
+
 // Cache dos dados e estado de ordenação
 let _motoristasCache = [];
 let _sortCol = null;
@@ -220,15 +227,16 @@ function renderTabela(data) {
                 else if (statusLabel === "Suspenso") suspensos++;
                 else if (statusLabel === "Pendente") pendentes++;
 
+                const h = t => filtroNome ? _highlight(t, filtroNome) : t;
                 const row = `<tr>
     <td><input type="checkbox" class="select-motorista" value="${motorista.id}"></td>
-    <td>${motorista.credencial}</td>
-    <td class="nome-clicavel" onclick="abrirModalPerfil(${motorista.id})" title="Ver perfil">${capitalizarNome(motorista.nome)}</td>
+    <td>${h(motorista.credencial)}</td>
+    <td class="nome-clicavel" onclick="abrirModalPerfil(${motorista.id})" title="Ver perfil">${h(capitalizarNome(motorista.nome))}</td>
     <td>${motorista.cnh}</td>
-    <td class="cpf">${formatarCPF(motorista.cpf)}</td>
-    <td>${motorista.modelo}</td>
+    <td class="cpf">${h(formatarCPF(motorista.cpf))}</td>
+    <td>${h(motorista.modelo)}</td>
     <td class="ano ${motorista.ano_vermelho ? 'ano-vermelho' : ''}">${motorista.ano}</td>
-    <td class="placa">${formatarPlaca(motorista.placa)}</td>
+    <td class="placa">${h(formatarPlaca(motorista.placa))}</td>
     <td>${motorista.validade}</td>
     <td class="status"><span class="status-badge ${statusClass}">${statusLabel}</span></td>
     <td class="dias">${dias}</td>
@@ -386,14 +394,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const filtroNomeInput = document.getElementById("filtroNome");
     if (filtroNomeInput) {
         filtroNomeInput.addEventListener("input", () => {
-            atualizarTabela();
+            renderTabela(_motoristasCache);
+        });
+        filtroNomeInput.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                filtroNomeInput.value = "";
+                document.getElementById("filtroStatus").value = "Todos";
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('card-ativo'));
+                renderTabela(_motoristasCache);
+                filtroNomeInput.blur();
+            }
         });
     }
 
     const filtroStatusSelect = document.getElementById("filtroStatus");
     if (filtroStatusSelect) {
         filtroStatusSelect.addEventListener("change", () => {
-            atualizarTabela();
+            renderTabela(_motoristasCache);
         });
     }
 
