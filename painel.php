@@ -90,6 +90,7 @@ if (!isset($_SESSION['usuario'])) {
                 <p>Pendentes</p>
             </div>
         </section>
+        <div id="alertaVencimentos"></div>
         <section class="filtros">
             <div class="filtros-busca">
                 <input type="text" id="filtroNome" placeholder="Buscar por nome, credencial, CPF, modelo ou placa...">

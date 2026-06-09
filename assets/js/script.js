@@ -355,11 +355,43 @@ function renderTabela(data) {
             _atualizarSetinhas();
 }
 
+function atualizarAlertas(data) {
+    const el = document.getElementById('alertaVencimentos');
+    if (!el) return;
+
+    let vencidos = 0, aVencer15 = 0, aVencer30 = 0;
+
+    data.forEach(m => {
+        const { label } = _calcularStatus(m);
+        const dias = parseInt(m.dias_restante);
+        if (label === 'Vencido') vencidos++;
+        else if (label === 'A Vencer') {
+            aVencer30++;
+            if (dias <= 15) aVencer15++;
+        }
+    });
+
+    const alertas = [];
+    if (vencidos > 0)
+        alertas.push(`<span class="alerta-item alerta-vermelho">🔴 <strong>${vencidos}</strong> credencial${vencidos > 1 ? 'is' : ''} vencida${vencidos > 1 ? 's' : ''}</span>`);
+    if (aVencer15 > 0)
+        alertas.push(`<span class="alerta-item alerta-laranja">🟠 <strong>${aVencer15}</strong> vence${aVencer15 > 1 ? 'm' : ''} em até 15 dias</span>`);
+    else if (aVencer30 > 0)
+        alertas.push(`<span class="alerta-item alerta-amarelo">🟡 <strong>${aVencer30}</strong> vence${aVencer30 > 1 ? 'm' : ''} em até 30 dias</span>`);
+
+    if (alertas.length > 0) {
+        el.innerHTML = `<div class="alerta-banner">${alertas.join('')}</div>`;
+    } else {
+        el.innerHTML = `<div class="alerta-banner alerta-ok">✅ <strong>Todas as credenciais estão em dia!</strong></div>`;
+    }
+}
+
 function atualizarTabela() {
     fetch("src/ajax/carregar_motoristas.php?ts=" + Date.now(), { cache: "no-store" })
         .then(response => response.json())
         .then(data => {
             _motoristasCache = data;
+            atualizarAlertas(data);
             renderTabela(_motoristasCache);
         })
         .catch(error => console.error("Erro ao carregar motoristas:", error));
