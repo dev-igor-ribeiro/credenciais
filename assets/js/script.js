@@ -122,6 +122,10 @@ let _motoristasCache = [];
 let _sortCol = null;
 let _sortDir = 1; // 1 = asc, -1 = desc
 
+// Paginação
+let _paginaAtual = 1;
+let _porPagina   = 25; // padrão
+
 function _calcularStatus(motorista) {
     const dias = parseInt(motorista.dias_restante);
     const statusDb = motorista.status;
@@ -177,76 +181,89 @@ function _atualizarSetinhas() {
     });
 }
 
-function renderTabela(data) {
-            const tabela = document.getElementById("tabelaCorpo");
-            const totalEl = document.getElementById("totalMotoristas");
-            const validosEl = document.getElementById("validos");
-            const aVencerEl = document.getElementById("aVencer");
-            const vencidosEl = document.getElementById("vencidos");
-            const filtroNomeInput = document.getElementById("filtroNome");
-            const filtroStatusSelect = document.getElementById("filtroStatus");
+function renderTabela(data, resetPagina) {
+    if (resetPagina) _paginaAtual = 1;
 
-            let filtroNome = filtroNomeInput ? filtroNomeInput.value.trim().toLowerCase() : "";
-            let filtroStatus = filtroStatusSelect ? filtroStatusSelect.value : "Todos";
-            const filtroDataDe  = document.getElementById('filtroDataDe')?.value  || '';
-            const filtroDataAte = document.getElementById('filtroDataAte')?.value || '';
+    const tabela          = document.getElementById("tabelaCorpo");
+    const totalEl         = document.getElementById("totalMotoristas");
+    const validosEl       = document.getElementById("validos");
+    const aVencerEl       = document.getElementById("aVencer");
+    const vencidosEl      = document.getElementById("vencidos");
+    const filtroNomeInput = document.getElementById("filtroNome");
+    const filtroStatusSel = document.getElementById("filtroStatus");
 
-            let total = 0, validos = 0, aVencer = 0, vencidos = 0, suspensos = 0, pendentes = 0;
-            tabela.innerHTML = "";
+    const filtroNome    = filtroNomeInput ? filtroNomeInput.value.trim().toLowerCase() : "";
+    const filtroStatus  = filtroStatusSel ? filtroStatusSel.value : "Todos";
+    const filtroDataDe  = document.getElementById('filtroDataDe')?.value  || '';
+    const filtroDataAte = document.getElementById('filtroDataAte')?.value || '';
 
-            const dadosOrdenados = _ordenarDados(data);
+    // ── 1. Filtra ──
+    let validos = 0, aVencer = 0, vencidos = 0, suspensos = 0, pendentes = 0;
+    const dadosOrdenados = _ordenarDados(data);
 
-            dadosOrdenados.forEach(motorista => {
-                const dias = parseInt(motorista.dias_restante);
-                const { label: statusLabel, cls: statusClass } = _calcularStatus(motorista);
+    const filtrados = dadosOrdenados.filter(motorista => {
+        const { label: statusLabel } = _calcularStatus(motorista);
 
-                // Filtrar por nome, credencial, CPF, modelo ou placa
-                if (filtroNome) {
-                    const cpfLimpo = (motorista.cpf || '').replace(/\D/g, '');
-                    const buscaLimpa = filtroNome.replace(/\D/g, '');
-                    const campos = [
-                        (motorista.nome     || '').toLowerCase(),
-                        (motorista.credencial|| '').toLowerCase(),
-                        (motorista.cpf      || '').toLowerCase(),
-                        cpfLimpo,
-                        (motorista.modelo   || '').toLowerCase(),
-                        (motorista.placa    || '').toLowerCase(),
-                    ];
-                    const bate = campos.some(c => c.includes(filtroNome)) ||
-                                 (buscaLimpa.length >= 3 && cpfLimpo.includes(buscaLimpa));
-                    if (!bate) return;
-                }
+        if (filtroNome) {
+            const cpfLimpo   = (motorista.cpf || '').replace(/\D/g, '');
+            const buscaLimpa = filtroNome.replace(/\D/g, '');
+            const campos = [
+                (motorista.nome      || '').toLowerCase(),
+                (motorista.credencial|| '').toLowerCase(),
+                (motorista.cpf       || '').toLowerCase(),
+                cpfLimpo,
+                (motorista.modelo    || '').toLowerCase(),
+                (motorista.placa     || '').toLowerCase(),
+            ];
+            const bate = campos.some(c => c.includes(filtroNome)) ||
+                         (buscaLimpa.length >= 3 && cpfLimpo.includes(buscaLimpa));
+            if (!bate) return false;
+        }
 
-                // Filtrar pelo status
-                if (filtroStatus !== "Todos" && statusLabel !== filtroStatus) {
-                    return;
-                }
+        if (filtroStatus !== "Todos" && statusLabel !== filtroStatus) return false;
 
-                // Filtrar por intervalo de validade
-                if (filtroDataDe || filtroDataAte) {
-                    // Motoristas sem validade (pendentes) são ignorados no filtro de data
-                    if (!motorista.validade || motorista.validade === 'NULL' || motorista.validade === '') {
-                        return;
-                    }
-                    // Converte dd/mm/yyyy → yyyy-mm-dd para comparação
-                    let validadeISO = motorista.validade;
-                    if (motorista.validade.includes('/')) {
-                        const [d, m, y] = motorista.validade.split('/');
-                        validadeISO = `${y}-${m}-${d}`;
-                    }
-                    if (filtroDataDe && validadeISO < filtroDataDe) return;
-                    if (filtroDataAte && validadeISO > filtroDataAte) return;
-                }
+        if (filtroDataDe || filtroDataAte) {
+            if (!motorista.validade || motorista.validade === 'NULL' || motorista.validade === '') return false;
+            let validadeISO = motorista.validade;
+            if (motorista.validade.includes('/')) {
+                const [d, m, y] = motorista.validade.split('/');
+                validadeISO = `${y}-${m}-${d}`;
+            }
+            if (filtroDataDe && validadeISO < filtroDataDe) return false;
+            if (filtroDataAte && validadeISO > filtroDataAte) return false;
+        }
 
-                total++;
-                if (statusLabel === "Válido") validos++;
-                else if (statusLabel === "A Vencer") aVencer++;
-                else if (statusLabel === "Vencido") vencidos++;
-                else if (statusLabel === "Suspenso") suspensos++;
-                else if (statusLabel === "Pendente") pendentes++;
+        // Conta totais para cards
+        if      (statusLabel === "Válido")   validos++;
+        else if (statusLabel === "A Vencer") aVencer++;
+        else if (statusLabel === "Vencido")  vencidos++;
+        else if (statusLabel === "Suspenso") suspensos++;
+        else if (statusLabel === "Pendente") pendentes++;
+        return true;
+    });
 
-                const h = t => filtroNome ? _highlight(t, filtroNome) : t;
-                const row = `<tr>
+    const total = filtrados.length;
+
+    // ── 2. Pagina ──
+    const porPagina   = _porPagina === 'todos' ? total : parseInt(_porPagina);
+    const totalPaginas = porPagina > 0 ? Math.max(1, Math.ceil(total / porPagina)) : 1;
+    if (_paginaAtual > totalPaginas) _paginaAtual = totalPaginas;
+    const inicio  = porPagina > 0 ? (_paginaAtual - 1) * porPagina : 0;
+    const paginados = porPagina > 0 ? filtrados.slice(inicio, inicio + porPagina) : filtrados;
+
+    // ── 3. Renderiza linhas ──
+    tabela.innerHTML = "";
+
+    if (total === 0) {
+        tabela.innerHTML = `<tr><td colspan="12" style="text-align:center;padding:2rem;color:#aaa;font-style:italic;">
+            Nenhum motorista encontrado para os filtros aplicados.</td></tr>`;
+    } else {
+        paginados.forEach(motorista => {
+            const dias = parseInt(motorista.dias_restante);
+            const { label: statusLabel, cls: statusClass } = _calcularStatus(motorista);
+            const h = t => filtroNome ? _highlight(t, filtroNome) : t;
+
+            const row = `<tr>
     <td><input type="checkbox" class="select-motorista" value="${motorista.id}"></td>
     <td>${h(motorista.credencial)}</td>
     <td class="nome-clicavel" onclick="abrirModalPerfil(${motorista.id})" title="Ver perfil">${h(capitalizarNome(motorista.nome))}</td>
@@ -263,96 +280,176 @@ function renderTabela(data) {
         <span class="tooltip-wrap" data-tooltip="Excluir"><img src="assets/icons/trash-2.svg" alt="Excluir" class="icon-action delete-icon"></span>
     </td>
 </tr>`;
+            tabela.insertAdjacentHTML("beforeend", row);
 
-                tabela.insertAdjacentHTML("beforeend", row);
+            const linha     = tabela.lastElementChild;
+            const btnEditar = linha.querySelector(".edit-icon");
+            const btnExcluir= linha.querySelector(".delete-icon");
 
-                const ultimaLinha = tabela.lastElementChild;
-                const btnEditar = ultimaLinha.querySelector(".edit-icon");
-                const btnExcluir = ultimaLinha.querySelector(".delete-icon");
+            btnEditar.addEventListener("click", () => {
+                const modal = document.getElementById("modalEditarMotorista");
+                modal.classList.add("show");
+                window._cpfDuplicadoEditar = false;
+                const avisoCpfEditar = document.getElementById('aviso-cpf-editar');
+                if (avisoCpfEditar) avisoCpfEditar.style.display = 'none';
+                const editarCpfInput = document.getElementById('editarCpf');
+                if (editarCpfInput) editarCpfInput.style.borderColor = '';
 
-                btnEditar.addEventListener("click", () => {
-                    const modal = document.getElementById("modalEditarMotorista");
-                    modal.classList.add("show");
-
-                    // Limpa estado de validação CPF ao abrir
-                    window._cpfDuplicadoEditar = false;
-                    const avisoCpfEditar = document.getElementById('aviso-cpf-editar');
-                    if (avisoCpfEditar) avisoCpfEditar.style.display = 'none';
-                    const editarCpfInput = document.getElementById('editarCpf');
-                    if (editarCpfInput) editarCpfInput.style.borderColor = '';
-
-                    document.getElementById("editarId").value = motorista.id;
-                    document.getElementById("editarNome").value = motorista.nome || '';
-                    document.getElementById("editarCnh").value = motorista.cnh || '';
-                    document.getElementById("editarCpf").value = motorista.cpf || '';
-                    if (motorista.validade && motorista.validade.includes("/")) {
-                        const [dia, mes, ano] = motorista.validade.split("/");
-                        document.getElementById("editarValidade").value = `${ano}-${mes}-${dia}`;
-                    } else {
-                        document.getElementById("editarValidade").value = '';
-                    }
-                    document.getElementById("editarModelo").value = motorista.modelo || '';
-                    document.getElementById("editarAno").value = motorista.ano || '';
-                    document.getElementById("editarPlaca").value = motorista.placa || '';
-                    document.getElementById("editarCredencial").value = motorista.credencial || '';
-                    const statusSelect = document.getElementById("editarStatus");
-                    if (statusSelect) {
-                        const s = motorista.status;
-                        statusSelect.value = (s === "suspenso" || s === "pendente") ? s : "automatico";
-                    }
-                });
-
-                btnExcluir.addEventListener("click", () => {
-                    function confirmarExclusao() {
-                        fetch('src/processar/excluir_motorista.php?id=' + encodeURIComponent(motorista.id), { cache: 'no-store' })
-                            .then(response => response.text())
-                            .then(data => {
-                                if (data.toLowerCase().includes('sucesso')) {
-                                    mostrarMensagem("success", "Motorista excluído com sucesso!");
-                                    atualizarTabela();
-                                } else {
-                                    mostrarMensagem("error", "Erro ao excluir: " + data);
-                                }
-                            })
-                            .catch(error => {
-                                console.error("Erro ao excluir:", error);
-                                mostrarMensagem("error", "Erro ao excluir motorista.");
-                            });
-                    }
-                    mostrarMensagem("warning", `Tem certeza que deseja excluir ${motorista.nome}? Clique em Confirmar para confirmar ou Cancelar para cancelar.`, confirmarExclusao);
-                });
+                document.getElementById("editarId").value = motorista.id;
+                document.getElementById("editarNome").value = motorista.nome || '';
+                document.getElementById("editarCnh").value = motorista.cnh || '';
+                document.getElementById("editarCpf").value = motorista.cpf || '';
+                if (motorista.validade && motorista.validade.includes("/")) {
+                    const [dia, mes, ano] = motorista.validade.split("/");
+                    document.getElementById("editarValidade").value = `${ano}-${mes}-${dia}`;
+                } else {
+                    document.getElementById("editarValidade").value = '';
+                }
+                document.getElementById("editarModelo").value = motorista.modelo || '';
+                document.getElementById("editarAno").value = motorista.ano || '';
+                document.getElementById("editarPlaca").value = motorista.placa || '';
+                document.getElementById("editarCredencial").value = motorista.credencial || '';
+                const statusSelect = document.getElementById("editarStatus");
+                if (statusSelect) {
+                    const s = motorista.status;
+                    statusSelect.value = (s === "suspenso" || s === "pendente") ? s : "automatico";
+                }
             });
 
-            // Mensagem tabela vazia
-            if (total === 0) {
-                tabela.innerHTML = `<tr><td colspan="12" style="text-align:center; padding:2rem; color:#aaa; font-style:italic;">
-                    Nenhum motorista encontrado para os filtros aplicados.
-                </td></tr>`;
-            }
+            btnExcluir.addEventListener("click", () => {
+                function confirmarExclusao() {
+                    fetch('src/processar/excluir_motorista.php?id=' + encodeURIComponent(motorista.id), { cache: 'no-store' })
+                        .then(r => r.text())
+                        .then(d => {
+                            if (d.toLowerCase().includes('sucesso')) {
+                                mostrarMensagem("success", "Motorista excluído com sucesso!");
+                                atualizarTabela();
+                            } else {
+                                mostrarMensagem("error", "Erro ao excluir: " + d);
+                            }
+                        })
+                        .catch(() => mostrarMensagem("error", "Erro ao excluir motorista."));
+                }
+                mostrarMensagem("warning", `Tem certeza que deseja excluir ${motorista.nome}? Clique em Confirmar para confirmar ou Cancelar para cancelar.`, confirmarExclusao);
+            });
+        });
+    }
 
-            // Contador de resultados
-            let contadorEl = document.getElementById('contadorResultados');
-            if (!contadorEl) {
-                contadorEl = document.createElement('p');
-                contadorEl.id = 'contadorResultados';
-                contadorEl.style.cssText = 'margin:0.3rem 0 0.5rem; font-size:0.82rem; color:#bbb; text-align:right;';
-                document.querySelector('.table-wrapper').insertAdjacentElement('beforebegin', contadorEl);
-            }
-            const totalGeral = _motoristasCache.length;
-            contadorEl.textContent = total === totalGeral
-                ? `${total} motorista${total !== 1 ? 's' : ''} cadastrado${total !== 1 ? 's' : ''}`
-                : `Exibindo ${total} de ${totalGeral} motoristas`;
+    // ── 4. Contador ──
+    let contadorEl = document.getElementById('contadorResultados');
+    if (!contadorEl) {
+        contadorEl = document.createElement('p');
+        contadorEl.id = 'contadorResultados';
+        contadorEl.style.cssText = 'margin:0.3rem 0 0.3rem; font-size:0.82rem; color:#bbb; text-align:right;';
+        document.querySelector('.table-wrapper').insertAdjacentElement('beforebegin', contadorEl);
+    }
+    const totalGeral = _motoristasCache.length;
+    if (total === 0) {
+        contadorEl.textContent = `Nenhum resultado`;
+    } else if (_porPagina === 'todos' || total <= porPagina) {
+        contadorEl.textContent = total === totalGeral
+            ? `${total} motorista${total !== 1 ? 's' : ''} cadastrado${total !== 1 ? 's' : ''}`
+            : `Exibindo ${total} de ${totalGeral} motoristas`;
+    } else {
+        const de  = inicio + 1;
+        const ate = Math.min(inicio + porPagina, total);
+        contadorEl.textContent = `Exibindo ${de}–${ate} de ${total} motorista${total !== 1 ? 's' : ''}${total < totalGeral ? ` (${totalGeral} no total)` : ''}`;
+    }
 
-            totalEl.textContent = total;
-            validosEl.textContent = validos;
-            aVencerEl.textContent = aVencer;
-            vencidosEl.textContent = vencidos;
-            const suspensosEl = document.getElementById("suspensos");
-            const pendentesEl = document.getElementById("pendentes");
-            if (suspensosEl) suspensosEl.textContent = suspensos;
-            if (pendentesEl) pendentesEl.textContent = pendentes;
+    // ── 5. Controles de paginação ──
+    _renderPaginacao(total, totalPaginas, porPagina);
 
-            _atualizarSetinhas();
+    // ── 6. Atualiza cards ──
+    totalEl.textContent   = total;
+    validosEl.textContent = validos;
+    aVencerEl.textContent = aVencer;
+    vencidosEl.textContent= vencidos;
+    const suspensosEl = document.getElementById("suspensos");
+    const pendentesEl = document.getElementById("pendentes");
+    if (suspensosEl) suspensosEl.textContent = suspensos;
+    if (pendentesEl) pendentesEl.textContent = pendentes;
+
+    _atualizarSetinhas();
+}
+
+function _renderPaginacao(total, totalPaginas, porPagina) {
+    let wrap = document.getElementById('paginacaoWrap');
+    if (!wrap) {
+        wrap = document.createElement('div');
+        wrap.id = 'paginacaoWrap';
+        document.querySelector('.table-wrapper').insertAdjacentElement('afterend', wrap);
+    }
+
+    // Se tudo cabe numa página e não há filtro ativo, esconde
+    if (totalPaginas <= 1 && _porPagina !== 'todos') {
+        wrap.innerHTML = `<div class="paginacao-bar">
+            <div class="paginacao-por-pagina">
+                <label>Exibir:</label>
+                <select id="selectPorPagina" onchange="_mudarPorPagina(this.value)">
+                    <option value="10"  ${_porPagina==10?'selected':''}>10</option>
+                    <option value="25"  ${_porPagina==25?'selected':''}>25</option>
+                    <option value="50"  ${_porPagina==50?'selected':''}>50</option>
+                    <option value="100" ${_porPagina==100?'selected':''}>100</option>
+                    <option value="todos" ${_porPagina==='todos'?'selected':''}>Todos</option>
+                </select>
+                <span>por página</span>
+            </div>
+        </div>`;
+        return;
+    }
+
+    // Gera números de página (máx 7 visíveis)
+    let paginas = [];
+    if (totalPaginas <= 7) {
+        paginas = Array.from({length: totalPaginas}, (_, i) => i + 1);
+    } else {
+        paginas = [1];
+        if (_paginaAtual > 3) paginas.push('...');
+        for (let i = Math.max(2, _paginaAtual - 1); i <= Math.min(totalPaginas - 1, _paginaAtual + 1); i++) paginas.push(i);
+        if (_paginaAtual < totalPaginas - 2) paginas.push('...');
+        paginas.push(totalPaginas);
+    }
+
+    const btns = paginas.map(p => {
+        if (p === '...') return `<span class="pag-ellipsis">…</span>`;
+        const ativo = p === _paginaAtual ? 'ativo' : '';
+        return `<button class="pag-btn ${ativo}" onclick="_irParaPagina(${p})">${p}</button>`;
+    }).join('');
+
+    wrap.innerHTML = `<div class="paginacao-bar">
+        <div class="paginacao-por-pagina">
+            <label>Exibir:</label>
+            <select id="selectPorPagina" onchange="_mudarPorPagina(this.value)">
+                <option value="10"  ${_porPagina==10?'selected':''}>10</option>
+                <option value="25"  ${_porPagina==25?'selected':''}>25</option>
+                <option value="50"  ${_porPagina==50?'selected':''}>50</option>
+                <option value="100" ${_porPagina==100?'selected':''}>100</option>
+                <option value="todos" ${_porPagina==='todos'?'selected':''}>Todos</option>
+            </select>
+            <span>por página</span>
+        </div>
+        <div class="paginacao-nav">
+            <button class="pag-btn" onclick="_irParaPagina(${_paginaAtual - 1})" ${_paginaAtual === 1 ? 'disabled' : ''}>&#8249;</button>
+            ${btns}
+            <button class="pag-btn" onclick="_irParaPagina(${_paginaAtual + 1})" ${_paginaAtual === totalPaginas ? 'disabled' : ''}>&#8250;</button>
+        </div>
+    </div>`;
+}
+
+function _irParaPagina(n) {
+    const porPagina    = _porPagina === 'todos' ? _motoristasCache.length : parseInt(_porPagina);
+    const totalFiltrados = _ultimoTotalFiltrado || _motoristasCache.length;
+    const totalPaginas = Math.max(1, Math.ceil(totalFiltrados / porPagina));
+    if (n < 1 || n > totalPaginas) return;
+    _paginaAtual = n;
+    renderTabela(_motoristasCache, true);
+    document.querySelector('.table-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function _mudarPorPagina(val) {
+    _porPagina   = val === 'todos' ? 'todos' : parseInt(val);
+    _paginaAtual = 1;
+    renderTabela(_motoristasCache, true);
 }
 
 function _filtrarPorAlerta(status) {
@@ -402,7 +499,7 @@ function atualizarTabela() {
         .then(data => {
             _motoristasCache = data;
             atualizarAlertas(data);
-            renderTabela(_motoristasCache);
+            renderTabela(_motoristasCache, true);
         })
         .catch(error => console.error("Erro ao carregar motoristas:", error));
 }
@@ -421,7 +518,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 _sortDir = 1;
             }
             _atualizarSetinhas();
-            renderTabela(_motoristasCache);
+            renderTabela(_motoristasCache, true);
         });
     });
 
@@ -457,7 +554,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (filtroNomeInput) {
         filtroNomeInput.addEventListener("input", () => {
             if (btnLimparBusca) btnLimparBusca.style.display = filtroNomeInput.value ? 'block' : 'none';
-            renderTabela(_motoristasCache);
+            renderTabela(_motoristasCache, true);
         });
         filtroNomeInput.addEventListener("keydown", (e) => {
             if (e.key === "Escape") {
@@ -469,7 +566,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (ate) ate.value = '';
                 if (btnLimparBusca) btnLimparBusca.style.display = 'none';
                 document.querySelectorAll('.card').forEach(c => c.classList.remove('card-ativo'));
-                renderTabela(_motoristasCache);
+                renderTabela(_motoristasCache, true);
                 filtroNomeInput.blur();
             }
         });
@@ -479,7 +576,7 @@ document.addEventListener("DOMContentLoaded", function () {
         btnLimparBusca.addEventListener("click", () => {
             filtroNomeInput.value = "";
             btnLimparBusca.style.display = 'none';
-            renderTabela(_motoristasCache);
+            renderTabela(_motoristasCache, true);
             filtroNomeInput.focus();
         });
     }
@@ -487,7 +584,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const filtroStatusSelect = document.getElementById("filtroStatus");
     if (filtroStatusSelect) {
         filtroStatusSelect.addEventListener("change", () => {
-            renderTabela(_motoristasCache);
+            renderTabela(_motoristasCache, true);
         });
     }
 
@@ -498,7 +595,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('btnLimparDatas')?.addEventListener('click', () => {
         document.getElementById('filtroDataDe').value = '';
         document.getElementById('filtroDataAte').value = '';
-        renderTabela(_motoristasCache);
+        renderTabela(_motoristasCache, true);
     });
 
     // Submissão do formulário de edição
