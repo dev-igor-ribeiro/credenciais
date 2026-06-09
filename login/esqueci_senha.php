@@ -22,6 +22,10 @@
                 <div class="alert-reset error-reset">
                     ❌ E-mail não encontrado no sistema.
                 </div>
+            <?php elseif ($_GET['status'] === 'falha'): ?>
+                <div class="alert-reset error-reset">
+                    ❌ Falha ao enviar o e-mail. Tente novamente ou contate o suporte.
+                </div>
             <?php endif; ?>
         <?php endif; ?>
 
