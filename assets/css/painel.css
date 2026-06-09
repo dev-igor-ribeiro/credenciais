@@ -520,6 +520,14 @@ td.acoes .action-icons .icon-action {
     background-color: #1d3557;
 }
 
+#btnLog {
+    background-color: #4a4a6a;
+}
+
+#btnLog:hover {
+    background-color: #2e2e4e;
+}
+
 /* Modal restaurar backup */
 .backup-item {
     display: flex;

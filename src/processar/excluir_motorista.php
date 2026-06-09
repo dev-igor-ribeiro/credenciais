@@ -1,5 +1,6 @@
 <?php
-require_once '../../db/conexao_motoristas.php'; // usando o banco correto
+require_once '../../db/conexao_motoristas.php';
+require_once '../helpers/log.php';
 
 try {
     // Aceita o parâmetro 'id' via GET
@@ -11,6 +12,7 @@ try {
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
+            registrarLog($pdo, 'Excluiu', "Motorista ID: $id");
             echo "sucesso";
         } else {
             echo "erro: motorista não encontrado";
@@ -27,6 +29,7 @@ try {
         $sql = "DELETE FROM motoristas WHERE id IN ($placeholders)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute($ids);
+        registrarLog($pdo, 'Excluiu', "Exclusão em massa: " . count($ids) . " motorista(s) | IDs: " . implode(', ', $ids));
         echo "sucesso";
     } else {
         http_response_code(400);

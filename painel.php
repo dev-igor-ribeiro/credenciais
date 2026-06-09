@@ -110,6 +110,7 @@ if (!isset($_SESSION['usuario'])) {
                 <button id="btnNovoMotorista" onclick="document.getElementById('modalNovoMotorista').classList.add('show')">Novo Motorista</button>
             <button id="btnBackup" onclick="fazerBackup()">Backup</button>
             <button id="btnRestaurar" onclick="abrirModalRestaurar()">Restaurar</button>
+            <button id="btnLog" onclick="abrirModalLog()">Log</button>
             </div>
         </section>
         <section class="tabela-motoristas">
@@ -141,6 +142,7 @@ if (!isset($_SESSION['usuario'])) {
         </section>
     </main>
     <?php include('src/modals/modal_restaurar_backup.php'); ?>
+    <?php include('src/modals/modal_log_acoes.php'); ?>
     <?php include('src/modals/modal_perfil_motorista.php'); ?>
     <?php include('src/modals/modal_novo_motorista.php'); ?>
     <?php include('src/modals/modal_editar_motorista.php'); ?>

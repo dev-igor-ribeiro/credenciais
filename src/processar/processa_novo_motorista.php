@@ -1,5 +1,6 @@
 <?php
 require_once '../../db/conexao_motoristas.php';
+require_once '../helpers/log.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
@@ -58,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
 
     if ($stmt->execute($params)) {
+        registrarLog($pdo, 'Cadastrou', "Motorista: $nome | Credencial: $credencial | CPF: $cpf");
         echo "sucesso";
     } else {
         $errorInfo = $stmt->errorInfo();

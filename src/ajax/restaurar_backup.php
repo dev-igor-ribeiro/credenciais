@@ -38,6 +38,9 @@ try {
     // Executa o SQL completo (múltiplos statements)
     $pdo->exec($sql);
 
+    require_once '../helpers/log.php';
+    registrarLog($pdo, 'Restaurou', "Banco restaurado a partir de: $arquivo");
+
     echo json_encode([
         'sucesso'  => true,
         'mensagem' => "Banco restaurado com sucesso a partir de: $arquivo"

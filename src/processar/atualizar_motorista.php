@@ -1,5 +1,6 @@
 <?php
 require_once '../../db/conexao_motoristas.php';
+require_once '../helpers/log.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
@@ -65,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
+            registrarLog($pdo, 'Editou', "Motorista: $nome | Credencial: $credencial | Status: $status | ID: $id");
             echo "sucesso";
         } else {
             echo "erro: falha ao atualizar";
