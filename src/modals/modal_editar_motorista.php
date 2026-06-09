@@ -111,6 +111,17 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.borderColor = '';
             return;
         }
+
+        // Valida matematicamente
+        if (typeof _validarCPF === 'function' && !_validarCPF(cpf)) {
+            avisoCpfEditar.textContent = '⚠️ CPF inválido.';
+            avisoCpfEditar.style.display = 'block';
+            avisoCpfEditar.style.color = '#ff6b6b';
+            editarCpfInput.style.borderColor = 'red';
+            window._cpfDuplicadoEditar = true;
+            return;
+        }
+
         fetch('src/ajax/verificar_cpf.php?cpf=' + encodeURIComponent(cpf) + '&id=' + encodeURIComponent(id))
             .then(r => r.json())
             .then(data => {

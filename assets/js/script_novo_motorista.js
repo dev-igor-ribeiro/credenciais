@@ -1,3 +1,20 @@
+function _validarCPF(cpf) {
+    cpf = cpf.replace(/\D/g, '');
+    if (cpf.length !== 11) return false;
+    if (/^(\d)\1{10}$/.test(cpf)) return false; // todos iguais: 00000000000
+
+    let soma = 0;
+    for (let i = 0; i < 9; i++) soma += parseInt(cpf[i]) * (10 - i);
+    let r = (soma * 10) % 11;
+    if (r === 10 || r === 11) r = 0;
+    if (r !== parseInt(cpf[9])) return false;
+
+    soma = 0;
+    for (let i = 0; i < 10; i++) soma += parseInt(cpf[i]) * (11 - i);
+    r = (soma * 10) % 11;
+    if (r === 10 || r === 11) r = 0;
+    return r === parseInt(cpf[10]);
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     const openModalBtn = document.getElementById("btnNovoMotorista");
@@ -116,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
         avisoCredencial.textContent = '';
     });
 
-    // Validação de CPF duplicado
+    // Validação de CPF duplicado + CPF real
     const cpfInput = document.getElementById('novoCpf');
     const avisoCpf = document.getElementById('aviso-cpf-novo');
     window._cpfDuplicado = false;
@@ -124,6 +141,15 @@ document.addEventListener("DOMContentLoaded", function () {
     cpfInput.addEventListener('blur', function () {
         const valor = this.value.replace(/\D/g, '');
         if (valor.length < 11) return;
+
+        // Valida matematicamente o CPF
+        if (!_validarCPF(valor)) {
+            window._cpfDuplicado = true; // bloqueia o submit
+            cpfInput.style.borderColor = '#e74c3c';
+            avisoCpf.style.color = '#e74c3c';
+            avisoCpf.textContent = '⚠️ CPF inválido.';
+            return;
+        }
 
         fetch('src/ajax/verificar_cpf.php?cpf=' + encodeURIComponent(valor))
             .then(r => r.json())
@@ -138,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     window._cpfDuplicado = false;
                     cpfInput.style.borderColor = '#2ecc40';
                     avisoCpf.style.color = '#2ecc40';
-                    avisoCpf.textContent = '✔ CPF disponível';
+                    avisoCpf.textContent = '✔ CPF válido e disponível';
                 }
             });
     });

@@ -20,6 +20,7 @@
                 <tr><td>Placa</td><td id="pPlaca"></td></tr>
                 <tr><td>Validade</td><td id="pValidade"></td></tr>
                 <tr><td>Status</td><td id="pStatus"></td></tr>
+                <tr><td>Cadastrado em</td><td id="pCriadoEm"></td></tr>
             </table>
         </div>
 
@@ -66,6 +67,9 @@ function abrirModalPerfil(id) {
             document.getElementById('pPlaca').textContent = m.placa || '-';
             document.getElementById('pValidade').textContent = m.validade ? formatarDataPerfil(m.validade) : '-';
             document.getElementById('pStatus').textContent = m.status || '-';
+            document.getElementById('pCriadoEm').textContent = m.criado_em
+                ? new Date(m.criado_em).toLocaleString('pt-BR', {day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
+                : '-';
 
             // Documentos
             const listaDocs = document.getElementById('listaDocumentos');

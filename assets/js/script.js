@@ -355,6 +355,16 @@ function renderTabela(data) {
             _atualizarSetinhas();
 }
 
+function _filtrarPorAlerta(status) {
+    const select = document.getElementById('filtroStatus');
+    if (select) {
+        select.value = status;
+        select.dispatchEvent(new Event('change'));
+    }
+    // Scroll suave até a tabela
+    document.querySelector('.tabela-motoristas')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function atualizarAlertas(data) {
     const el = document.getElementById('alertaVencimentos');
     if (!el) return;
@@ -373,11 +383,11 @@ function atualizarAlertas(data) {
 
     const alertas = [];
     if (vencidos > 0)
-        alertas.push(`<span class="alerta-item alerta-vermelho">🔴 <strong>${vencidos}</strong> ${vencidos > 1 ? 'credenciais vencidas' : 'credencial vencida'}</span>`);
+        alertas.push(`<span class="alerta-item alerta-vermelho" onclick="_filtrarPorAlerta('Vencido')" title="Clique para filtrar">🔴 <strong>${vencidos}</strong> ${vencidos > 1 ? 'credenciais vencidas' : 'credencial vencida'}</span>`);
     if (aVencer15 > 0)
-        alertas.push(`<span class="alerta-item alerta-laranja">🟠 <strong>${aVencer15}</strong> vence${aVencer15 > 1 ? 'm' : ''} em até 15 dias</span>`);
+        alertas.push(`<span class="alerta-item alerta-laranja" onclick="_filtrarPorAlerta('A Vencer')" title="Clique para filtrar">🟠 <strong>${aVencer15}</strong> vence${aVencer15 > 1 ? 'm' : ''} em até 15 dias</span>`);
     else if (aVencer30 > 0)
-        alertas.push(`<span class="alerta-item alerta-amarelo">🟡 <strong>${aVencer30}</strong> vence${aVencer30 > 1 ? 'm' : ''} em até 30 dias</span>`);
+        alertas.push(`<span class="alerta-item alerta-amarelo" onclick="_filtrarPorAlerta('A Vencer')" title="Clique para filtrar">🟡 <strong>${aVencer30}</strong> vence${aVencer30 > 1 ? 'm' : ''} em até 30 dias</span>`);
 
     if (alertas.length > 0) {
         el.innerHTML = `<div class="alerta-banner">${alertas.join('')}</div>`;

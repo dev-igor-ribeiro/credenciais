@@ -184,7 +184,12 @@ body {
     padding: 0.3rem 0.9rem;
     border-radius: 20px;
     font-size: 0.88rem;
-    cursor: default;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.alerta-item:hover {
+    filter: brightness(1.3);
 }
 
 .alerta-vermelho {
