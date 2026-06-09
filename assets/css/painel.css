@@ -512,6 +512,69 @@ td.acoes .action-icons .icon-action {
     height: 30px;
 }
 
+#btnRestaurar {
+    background-color: #457b9d;
+}
+
+#btnRestaurar:hover {
+    background-color: #1d3557;
+}
+
+/* Modal restaurar backup */
+.backup-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    gap: 1rem;
+}
+
+.backup-item-recente {
+    border-color: rgba(126, 232, 162, 0.4);
+    background: rgba(126, 232, 162, 0.06);
+}
+
+.backup-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow: hidden;
+}
+
+.backup-nome {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #f0f0f0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.backup-meta {
+    font-size: 0.75rem;
+    color: #aaa;
+}
+
+.btn-restaurar-item {
+    flex-shrink: 0;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.82rem;
+    border-radius: 6px;
+    border: none;
+    background: #457b9d;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-restaurar-item:hover {
+    background: #1d3557;
+}
+
 /* Highlight de busca */
 mark.busca-highlight {
     background-color: #f4c542;

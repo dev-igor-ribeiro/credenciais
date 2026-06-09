@@ -109,6 +109,7 @@ if (!isset($_SESSION['usuario'])) {
                 <input type="file" id="inputImportar" accept=".xlsx,.xls" style="display:none;">
                 <button id="btnNovoMotorista" onclick="document.getElementById('modalNovoMotorista').classList.add('show')">Novo Motorista</button>
             <button id="btnBackup" onclick="fazerBackup()">Backup</button>
+            <button id="btnRestaurar" onclick="abrirModalRestaurar()">Restaurar</button>
             </div>
         </section>
         <section class="tabela-motoristas">
@@ -139,6 +140,7 @@ if (!isset($_SESSION['usuario'])) {
             </div>
         </section>
     </main>
+    <?php include('src/modals/modal_restaurar_backup.php'); ?>
     <?php include('src/modals/modal_perfil_motorista.php'); ?>
     <?php include('src/modals/modal_novo_motorista.php'); ?>
     <?php include('src/modals/modal_editar_motorista.php'); ?>
