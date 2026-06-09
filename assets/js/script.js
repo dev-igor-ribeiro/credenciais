@@ -373,7 +373,7 @@ function atualizarAlertas(data) {
 
     const alertas = [];
     if (vencidos > 0)
-        alertas.push(`<span class="alerta-item alerta-vermelho">🔴 <strong>${vencidos}</strong> credencial${vencidos > 1 ? 'is' : ''} vencida${vencidos > 1 ? 's' : ''}</span>`);
+        alertas.push(`<span class="alerta-item alerta-vermelho">🔴 <strong>${vencidos}</strong> ${vencidos > 1 ? 'credenciais vencidas' : 'credencial vencida'}</span>`);
     if (aVencer15 > 0)
         alertas.push(`<span class="alerta-item alerta-laranja">🟠 <strong>${aVencer15}</strong> vence${aVencer15 > 1 ? 'm' : ''} em até 15 dias</span>`);
     else if (aVencer30 > 0)
