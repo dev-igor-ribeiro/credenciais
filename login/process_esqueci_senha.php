@@ -1,6 +1,12 @@
 <?php
 session_start();
 require_once '../db/conexao.php';
+require_once '../vendor/phpmailer/phpmailer/src/Exception.php';
+require_once '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require_once '../vendor/phpmailer/phpmailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 $email = trim($_POST['email'] ?? '');
 if (!$email) {
@@ -14,8 +20,8 @@ $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
+// Por segurança: mostra "enviado" mesmo se email não existe (evita enumeração)
 if ($result->num_rows === 0) {
-    // Por segurança, mostra "enviado" mesmo se email não existe (evita enumeração)
     header('Location: esqueci_senha.php?status=enviado');
     exit;
 }
@@ -23,14 +29,13 @@ if ($result->num_rows === 0) {
 $row     = $result->fetch_assoc();
 $usuario = $row['usuario'];
 
-// Gera token seguro
-$token  = bin2hex(random_bytes(32));
-$expira = date('Y-m-d H:i:s', strtotime('+1 hour'));
-
-// Salva token no banco (invalida tokens antigos do mesmo usuário)
+// Gera token seguro (invalida tokens antigos)
 $del = $conn->prepare("UPDATE reset_tokens SET usado = 1 WHERE usuario = ? AND usado = 0");
 $del->bind_param("s", $usuario);
 $del->execute();
+
+$token  = bin2hex(random_bytes(32));
+$expira = date('Y-m-d H:i:s', strtotime('+1 hour'));
 
 $stmt2 = $conn->prepare("INSERT INTO reset_tokens (usuario, token, expira_em) VALUES (?, ?, ?)");
 $stmt2->bind_param("sss", $usuario, $token, $expira);
@@ -40,9 +45,6 @@ $stmt2->execute();
 $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 $host      = $_SERVER['HTTP_HOST'];
 $link      = "$protocolo://$host/login/credenciais/login/redefinir_senha.php?token=$token";
-
-// Assunto MIME-encoded (sem emoji no assunto — causa rejeição)
-$assunto = '=?UTF-8?B?' . base64_encode('Redefinição de Senha - BoraCar') . '?=';
 
 // Corpo HTML
 $ano   = date('Y');
@@ -62,8 +64,8 @@ $corpo = "<!DOCTYPE html>
           <td style='padding:32px 40px;'>
             <h2 style='color:#1a1a1a;margin:0 0 12px;font-size:20px;'>Ol&aacute;, $usuario!</h2>
             <p style='color:#555;font-size:15px;line-height:1.7;margin:0 0 24px;'>
-              Recebemos uma solicitação para redefinir a senha da sua conta BoraCar.<br>
-              Clique no botão abaixo para criar uma nova senha.
+              Recebemos uma solicita&ccedil;&atilde;o para redefinir a senha da sua conta BoraCar.<br>
+              Clique no bot&atilde;o abaixo para criar uma nova senha.
               <strong>Este link expira em 1 hora.</strong>
             </p>
             <div style='text-align:center;margin:0 0 28px;'>
@@ -74,7 +76,7 @@ $corpo = "<!DOCTYPE html>
               </a>
             </div>
             <p style='color:#999;font-size:13px;margin:0;'>
-              Se você não solicitou essa alteração, ignore este e-mail. Sua senha permanece a mesma.
+              Se voc&ecirc; n&atilde;o solicitou essa altera&ccedil;&atilde;o, ignore este e-mail. Sua senha permanece a mesma.
             </p>
           </td>
         </tr>
@@ -89,19 +91,29 @@ $corpo = "<!DOCTYPE html>
 </body>
 </html>";
 
-$headers  = "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-$headers .= "From: =?UTF-8?B?" . base64_encode("BoraCar") . "?= <contato@boracar.com.br>\r\n";
-$headers .= "Reply-To: contato@boracar.com.br\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+// Envio via PHPMailer + SMTP HostGator
+$mail = new PHPMailer(true);
+try {
+    $mail->isSMTP();
+    $mail->Host       = 'server05.mailgrid.com.br';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'contato@boracar.com.br';
+    $mail->Password   = 'Nz1rbALtAtRg';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
+    $mail->CharSet    = 'UTF-8';
 
-$enviado = mail($email, $assunto, $corpo, $headers);
+    $mail->setFrom('contato@boracar.com.br', 'BoraCar');
+    $mail->addAddress($email, $usuario);
+    $mail->isHTML(true);
+    $mail->Subject = 'Redefinição de Senha - BoraCar';
+    $mail->Body    = $corpo;
+    $mail->AltBody = "Olá $usuario, acesse o link para redefinir sua senha: $link";
 
-if ($enviado) {
+    $mail->send();
     header('Location: esqueci_senha.php?status=enviado');
-} else {
-    // mail() falhou — log para debug
-    error_log("[BoraCar] Falha ao enviar email de reset para: $email");
-    header('Location: esqueci_senha.php?status=falha');
+} catch (Exception $e) {
+    error_log("[BoraCar] Erro PHPMailer: " . $mail->ErrorInfo);
+    header('Location: esqueci_senha.php?status=falha&debug=' . urlencode($mail->ErrorInfo));
 }
 exit;
