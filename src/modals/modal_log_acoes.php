@@ -2,7 +2,7 @@
     <div class="modal-content modal-log-content">
         <span class="close" onclick="document.getElementById('modalLogAcoes').classList.remove('show')">&times;</span>
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
-            <h2 style="margin:0;">📋 Log de Ações</h2>
+            <h2 style="margin:0; color:#f0f0f0;">📋 Log de Ações</h2>
             <select id="logLimite" onchange="carregarLog()" style="padding:0.3rem 0.6rem; border-radius:6px; border:1px solid #444; background:#2a2a3e; color:#f0f0f0; font-size:0.85rem;">
                 <option value="50">Últimas 50</option>
                 <option value="100">Últimas 100</option>
@@ -29,6 +29,10 @@ function carregarLog() {
     fetch('src/ajax/listar_log.php?limite=' + limite)
         .then(r => r.json())
         .then(registros => {
+            if (registros.erro) {
+                container.innerHTML = `<p style="color:#ff6b6b;text-align:center;">Erro: ${registros.erro}</p>`;
+                return;
+            }
             if (!registros.length) {
                 container.innerHTML = '<p style="color:#aaa;text-align:center;">Nenhuma ação registrada ainda.</p>';
                 return;
