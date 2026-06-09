@@ -68,7 +68,7 @@
                 <button type="submit">Entrar</button>
             </div>
         </form>
-        <a href="login/esqueci_senha.php" class="forgot-password">Esqueci minha senha</a>
+        <a href="esqueci_senha.php" class="forgot-password">Esqueci minha senha</a>
     </div>
 </body>
 
