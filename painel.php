@@ -154,14 +154,13 @@ if (!isset($_SESSION['usuario'])) {
                 <input type="file" id="inputImportar" accept=".xlsx,.xls" style="display:none;">
                 <button id="btnNovoMotorista" onclick="document.getElementById('modalNovoMotorista').classList.add('show')">+ Novo Motorista</button>
 
-                <button id="btnDashboard" onclick="window.location.href='dashboard.php'">📊 Dashboard</button>
-
                 <!-- Dropdown Ferramentas -->
                 <div class="ferramentas-wrap" id="ferramWrap">
                     <button class="btn-ferramentas" id="btnFerramentas" onclick="toggleFerramentas(event)">
                         ⚙️ Ferramentas ▾
                     </button>
                     <div class="ferramentas-menu" id="ferramMenu">
+                        <button onclick="window.location.href='dashboard.php'">📊 Dashboard</button>
                         <button onclick="fazerBackup(); fecharFerramentas()">💾 Backup</button>
                         <button onclick="abrirModalRestaurar(); fecharFerramentas()">🔄 Restaurar</button>
                         <button onclick="abrirModalLog(); fecharFerramentas()">📋 Log de Ações</button>
