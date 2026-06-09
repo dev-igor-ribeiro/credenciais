@@ -57,7 +57,7 @@ $corpo = "<!DOCTYPE html>
       <table width='560' cellpadding='0' cellspacing='0' style='background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.12);'>
         <tr>
           <td style='background:#1a1a1a;padding:24px;text-align:center;'>
-            <img src='https://boracar.com.br/assets/img/logobrancasidebar.png' alt='BoraCar' style='height:38px;'>
+            <img src='https://boracar.com.br/login/credenciais/assets/img/logobrancasidebar.png' alt='BoraCar' style='height:38px;'>
           </td>
         </tr>
         <tr>
