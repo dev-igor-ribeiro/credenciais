@@ -58,6 +58,21 @@ if (!isset($_SESSION['usuario'])) {
         }
     });
 
+    function exportarFiltrado() {
+        const nome    = document.getElementById('filtroNome')?.value.trim() || '';
+        const status  = document.getElementById('filtroStatus')?.value || '';
+        const dataDe  = document.getElementById('filtroDataDe')?.value || '';
+        const dataAte = document.getElementById('filtroDataAte')?.value || '';
+
+        const params = new URLSearchParams();
+        if (nome)    params.set('nome',    nome);
+        if (status && status !== 'Todos') params.set('status', status);
+        if (dataDe)  params.set('data_de',  dataDe);
+        if (dataAte) params.set('data_ate', dataAte);
+
+        window.location.href = 'src/exportar/exportar_motoristas.php?' + params.toString();
+    }
+
     function confirmarSaida() {
         mostrarMensagem('warning', 'Deseja realmente sair do sistema?', function() {
             window.location.href = 'login/logout.php';
@@ -134,7 +149,7 @@ if (!isset($_SESSION['usuario'])) {
             </div>
             <div class="filtros-acoes">
                 <button id="btnExcluirSelecionados">Excluir Selecionados</button>
-                <button id="btnExportar" onclick="window.location.href='src/exportar/exportar_motoristas.php'">Exportar</button>
+                <button id="btnExportar" onclick="exportarFiltrado()">Exportar</button>
                 <button id="btnImportar">Importar</button>
                 <input type="file" id="inputImportar" accept=".xlsx,.xls" style="display:none;">
                 <button id="btnNovoMotorista" onclick="document.getElementById('modalNovoMotorista').classList.add('show')">+ Novo Motorista</button>
