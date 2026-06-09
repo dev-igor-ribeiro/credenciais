@@ -709,7 +709,8 @@ tbody tr:hover {
 
 .table-wrapper table th.col-validade,
 .table-wrapper table td.col-validade {
-    width: 100px;
+    width: 130px;
+    white-space: nowrap;
 }
 
 .table-wrapper table th.col-modelo,
