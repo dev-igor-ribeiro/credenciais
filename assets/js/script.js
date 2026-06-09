@@ -191,9 +191,21 @@ function renderTabela(data) {
                 const dias = parseInt(motorista.dias_restante);
                 const { label: statusLabel, cls: statusClass } = _calcularStatus(motorista);
 
-                // Filtrar pelo nome
-                if (filtroNome && !motorista.nome.toLowerCase().includes(filtroNome)) {
-                    return;
+                // Filtrar por nome, credencial, CPF, modelo ou placa
+                if (filtroNome) {
+                    const cpfLimpo = (motorista.cpf || '').replace(/\D/g, '');
+                    const buscaLimpa = filtroNome.replace(/\D/g, '');
+                    const campos = [
+                        (motorista.nome     || '').toLowerCase(),
+                        (motorista.credencial|| '').toLowerCase(),
+                        (motorista.cpf      || '').toLowerCase(),
+                        cpfLimpo,
+                        (motorista.modelo   || '').toLowerCase(),
+                        (motorista.placa    || '').toLowerCase(),
+                    ];
+                    const bate = campos.some(c => c.includes(filtroNome)) ||
+                                 (buscaLimpa.length >= 3 && cpfLimpo.includes(buscaLimpa));
+                    if (!bate) return;
                 }
 
                 // Filtrar pelo status

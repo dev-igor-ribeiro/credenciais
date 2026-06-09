@@ -92,7 +92,7 @@ if (!isset($_SESSION['usuario'])) {
         </section>
         <section class="filtros">
             <div class="filtros-busca">
-                <input type="text" id="filtroNome" placeholder="Buscar por nome...">
+                <input type="text" id="filtroNome" placeholder="Buscar por nome, credencial, CPF, modelo ou placa...">
                 <select id="filtroStatus">
                     <option value="Todos">Todos</option>
                     <option value="Válido">Válido</option>
