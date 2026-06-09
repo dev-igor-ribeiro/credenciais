@@ -221,8 +221,8 @@ function renderTabela(data) {
     <td class="status"><span class="status-badge ${statusClass}">${statusLabel}</span></td>
     <td class="dias">${dias}</td>
     <td class="action-icons">
-        <img src="assets/icons/edit.svg" alt="Editar" class="icon-action edit-icon">
-        <img src="assets/icons/trash-2.svg" alt="Excluir" class="icon-action delete-icon">
+        <span class="tooltip-wrap" data-tooltip="Editar"><img src="assets/icons/edit.svg" alt="Editar" class="icon-action edit-icon"></span>
+        <span class="tooltip-wrap" data-tooltip="Excluir"><img src="assets/icons/trash-2.svg" alt="Excluir" class="icon-action delete-icon"></span>
     </td>
 </tr>`;
 

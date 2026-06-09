@@ -540,3 +540,64 @@ td.acoes .action-icons .icon-action {
 .table-wrapper thead th.sortable:hover {
     background: rgba(255, 255, 255, 0.18);
 }
+
+/* Tooltips nos ícones de ação */
+.tooltip-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tooltip-wrap::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.85);
+    background: #1e1e2e;
+    color: #f0f0f0;
+    font-size: 0.75rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    white-space: nowrap;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    z-index: 100;
+}
+
+/* Setinha do tooltip */
+.tooltip-wrap::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 1px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #1e1e2e;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    z-index: 100;
+}
+
+.tooltip-wrap:hover::after,
+.tooltip-wrap:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+/* Cor diferente para excluir */
+.tooltip-wrap:has(.delete-icon)::after {
+    background: #5c1a1a;
+    border-color: rgba(230, 57, 70, 0.4);
+    color: #ffb3b3;
+}
+
+.tooltip-wrap:has(.delete-icon)::before {
+    border-top-color: #5c1a1a;
+}
