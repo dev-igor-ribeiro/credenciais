@@ -1,9 +1,6 @@
 <div id="modalEditarMotorista" class="modal">
     <div class="modal-content">
-        <span class="close" aria-label="Fechar"
-            onclick="document.getElementById('modalEditarMotorista').classList.remove('show')">
-            &times;
-        </span>
+        <span onclick="document.getElementById('modalEditarMotorista').classList.remove('show')" style="position:absolute; top:12px; right:18px; font-size:1.5rem; font-weight:bold; color:#aaa; cursor:pointer; line-height:1;" onmouseover="this.style.color='#e63946'" onmouseout="this.style.color='#aaa'">&times;</span>
         <h2>Editar Motorista</h2>
         <form id="formEditarMotorista">
             <input type="hidden" id="editarId" name="id">

@@ -1,6 +1,6 @@
 <div id="modalNovoMotorista">
     <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal" style="position:absolute; top:12px; right:18px; font-size:1.5rem; font-weight:bold; color:#aaa; cursor:pointer; line-height:1;" onmouseover="this.style.color='#e63946'" onmouseout="this.style.color='#aaa'">&times;</span>
         <h2>Novo Motorista</h2>
         <form id="formNovoMotorista" method="post" onsubmit="return false;">
             <div class="form-group">

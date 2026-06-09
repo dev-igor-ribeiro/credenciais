@@ -1,6 +1,6 @@
 <div id="modalPerfil" class="modal">
     <div class="modal-content modal-perfil-content">
-        <span class="close" onclick="fecharModalPerfil()">&times;</span>
+        <span onclick="fecharModalPerfil()" style="position:absolute; top:12px; right:18px; font-size:1.5rem; font-weight:bold; color:#aaa; cursor:pointer; line-height:1;" onmouseover="this.style.color='#e63946'" onmouseout="this.style.color='#aaa'">&times;</span>
         <h2 id="perfilNome">Perfil do Motorista</h2>
 
         <div class="perfil-tabs">

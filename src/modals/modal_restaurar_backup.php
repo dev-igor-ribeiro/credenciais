@@ -1,6 +1,6 @@
 <div id="modalRestaurarBackup" class="modal">
     <div class="modal-content" style="max-width:560px;">
-        <span class="close" onclick="document.getElementById('modalRestaurarBackup').classList.remove('show')">&times;</span>
+        <span onclick="document.getElementById('modalRestaurarBackup').classList.remove('show')" style="position:absolute; top:12px; right:18px; font-size:1.5rem; font-weight:bold; color:#aaa; cursor:pointer; line-height:1;" onmouseover="this.style.color='#e63946'" onmouseout="this.style.color='#aaa'">&times;</span>
         <h2>🗄️ Restaurar Backup</h2>
         <p style="color:#ffb3b3; font-size:0.88rem; margin-bottom:1rem;">
             ⚠️ <strong>Atenção:</strong> restaurar um backup substitui <u>todos os dados atuais</u> do banco. Esta ação não pode ser desfeita.
