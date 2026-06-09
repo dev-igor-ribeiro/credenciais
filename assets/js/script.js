@@ -188,6 +188,8 @@ function renderTabela(data) {
 
             let filtroNome = filtroNomeInput ? filtroNomeInput.value.trim().toLowerCase() : "";
             let filtroStatus = filtroStatusSelect ? filtroStatusSelect.value : "Todos";
+            const filtroDataDe  = document.getElementById('filtroDataDe')?.value  || '';
+            const filtroDataAte = document.getElementById('filtroDataAte')?.value || '';
 
             let total = 0, validos = 0, aVencer = 0, vencidos = 0, suspensos = 0, pendentes = 0;
             tabela.innerHTML = "";
@@ -218,6 +220,22 @@ function renderTabela(data) {
                 // Filtrar pelo status
                 if (filtroStatus !== "Todos" && statusLabel !== filtroStatus) {
                     return;
+                }
+
+                // Filtrar por intervalo de validade
+                if (filtroDataDe || filtroDataAte) {
+                    // Motoristas sem validade (pendentes) são ignorados no filtro de data
+                    if (!motorista.validade || motorista.validade === 'NULL' || motorista.validade === '') {
+                        return;
+                    }
+                    // Converte dd/mm/yyyy → yyyy-mm-dd para comparação
+                    let validadeISO = motorista.validade;
+                    if (motorista.validade.includes('/')) {
+                        const [d, m, y] = motorista.validade.split('/');
+                        validadeISO = `${y}-${m}-${d}`;
+                    }
+                    if (filtroDataDe && validadeISO < filtroDataDe) return;
+                    if (filtroDataAte && validadeISO > filtroDataAte) return;
                 }
 
                 total++;
@@ -400,6 +418,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (e.key === "Escape") {
                 filtroNomeInput.value = "";
                 document.getElementById("filtroStatus").value = "Todos";
+                const de = document.getElementById('filtroDataDe');
+                const ate = document.getElementById('filtroDataAte');
+                if (de) de.value = '';
+                if (ate) ate.value = '';
                 document.querySelectorAll('.card').forEach(c => c.classList.remove('card-ativo'));
                 renderTabela(_motoristasCache);
                 filtroNomeInput.blur();
@@ -413,6 +435,16 @@ document.addEventListener("DOMContentLoaded", function () {
             renderTabela(_motoristasCache);
         });
     }
+
+    // Filtro por data de validade
+    document.getElementById('filtroDataDe')?.addEventListener('change', () => renderTabela(_motoristasCache));
+    document.getElementById('filtroDataAte')?.addEventListener('change', () => renderTabela(_motoristasCache));
+
+    document.getElementById('btnLimparDatas')?.addEventListener('click', () => {
+        document.getElementById('filtroDataDe').value = '';
+        document.getElementById('filtroDataAte').value = '';
+        renderTabela(_motoristasCache);
+    });
 
     // Submissão do formulário de edição
     const formEditar = document.getElementById("formEditarMotorista");

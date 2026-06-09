@@ -102,6 +102,13 @@ if (!isset($_SESSION['usuario'])) {
                     <option value="Pendente">Pendente</option>
                 </select>
             </div>
+            <div class="filtros-data">
+                <label>Validade de:</label>
+                <input type="date" id="filtroDataDe">
+                <label>até:</label>
+                <input type="date" id="filtroDataAte">
+                <button id="btnLimparDatas" title="Limpar datas">✕ Limpar datas</button>
+            </div>
             <div class="filtros-acoes">
                 <button id="btnExcluirSelecionados">Excluir Selecionados</button>
                 <button id="btnExportar" onclick="window.location.href='src/exportar/exportar_motoristas.php'">Exportar</button>
