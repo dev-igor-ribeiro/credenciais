@@ -1,6 +1,6 @@
 <div id="modalLogAcoes" class="modal">
     <div class="modal-content modal-log-content">
-        <span class="close" onclick="document.getElementById('modalLogAcoes').classList.remove('show')">&times;</span>
+        <span onclick="document.getElementById('modalLogAcoes').classList.remove('show')" style="position:absolute; top:12px; right:18px; font-size:1.5rem; font-weight:bold; color:#aaa; cursor:pointer; line-height:1;" onmouseover="this.style.color='#e63946'" onmouseout="this.style.color='#aaa'">&times;</span>
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
             <h2 style="margin:0; color:#f0f0f0;">📋 Log de Ações</h2>
             <select id="logLimite" onchange="carregarLog()" style="padding:0.3rem 0.6rem; border-radius:6px; border:1px solid #444; background:#2a2a3e; color:#f0f0f0; font-size:0.85rem;">
