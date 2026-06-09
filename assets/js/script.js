@@ -297,6 +297,26 @@ function renderTabela(data) {
                 });
             });
 
+            // Mensagem tabela vazia
+            if (total === 0) {
+                tabela.innerHTML = `<tr><td colspan="12" style="text-align:center; padding:2rem; color:#aaa; font-style:italic;">
+                    Nenhum motorista encontrado para os filtros aplicados.
+                </td></tr>`;
+            }
+
+            // Contador de resultados
+            let contadorEl = document.getElementById('contadorResultados');
+            if (!contadorEl) {
+                contadorEl = document.createElement('p');
+                contadorEl.id = 'contadorResultados';
+                contadorEl.style.cssText = 'margin:0.3rem 0 0.5rem; font-size:0.82rem; color:#bbb; text-align:right;';
+                document.querySelector('.table-wrapper').insertAdjacentElement('beforebegin', contadorEl);
+            }
+            const totalGeral = _motoristasCache.length;
+            contadorEl.textContent = total === totalGeral
+                ? `${total} motorista${total !== 1 ? 's' : ''} cadastrado${total !== 1 ? 's' : ''}`
+                : `Exibindo ${total} de ${totalGeral} motoristas`;
+
             totalEl.textContent = total;
             validosEl.textContent = validos;
             aVencerEl.textContent = aVencer;
