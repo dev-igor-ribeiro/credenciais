@@ -122,16 +122,10 @@ body {
 
 .status-suspenso {
     background-color: #5a3e8a;
-    padding: 4px 8px;
-    color: #fff;
-    border-radius: 4px;
 }
 
 .status-pendente {
     background-color: #7a5c00;
-    padding: 4px 8px;
-    color: #fff;
-    border-radius: 4px;
 }
 
 .filtros {
@@ -610,14 +604,17 @@ td.acoes .action-icons {
 }
 
 .status-badge {
-    display: inline-block;
-    min-width: 80px;
+    display: block;
+    width: 90px;
+    margin: 0 auto;
     text-align: center;
-    padding: 4px 8px;
+    padding: 4px 0;
     border-radius: 6px;
     color: #fff;
     font-weight: bold;
     white-space: nowrap;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
 }
 
 .ano-vermelho {

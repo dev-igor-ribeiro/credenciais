@@ -21,3 +21,4 @@ node_modules/
 # SISTEMA OPERACIONAL
 .DS_Store
 Thumbs.db
+/.claude
