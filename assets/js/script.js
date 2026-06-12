@@ -784,6 +784,30 @@ document.addEventListener("DOMContentLoaded", function () {
         selectAll.addEventListener("change", function () {
             const checkboxes = document.querySelectorAll(".select-motorista");
             checkboxes.forEach(cb => cb.checked = this.checked);
+            atualizarContadorSelecionados();
         });
     }
+
+    document.addEventListener("change", function (e) {
+        if (e.target.classList.contains("select-motorista")) {
+            atualizarContadorSelecionados();
+        }
+    });
 });
+
+function atualizarContadorSelecionados() {
+    const total = document.querySelectorAll(".select-motorista:checked").length;
+    let el = document.getElementById("contadorSelecionados");
+    if (!el) {
+        el = document.createElement("span");
+        el.id = "contadorSelecionados";
+        const contador = document.getElementById("contadorResultados");
+        if (contador) contador.insertAdjacentElement("beforebegin", el);
+    }
+    if (total > 0) {
+        el.textContent = `${total} selecionado${total > 1 ? 's' : ''}`;
+        el.style.display = "inline-block";
+    } else {
+        el.style.display = "none";
+    }
+}

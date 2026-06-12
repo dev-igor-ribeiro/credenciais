@@ -318,10 +318,13 @@ body {
 
 #btnNovoMotorista {
     background-color: #2d6a4f;
+    border: 1.5px solid #52b788;
+    font-weight: 600;
 }
 
 #btnNovoMotorista:hover {
     background-color: #1b4332;
+    border-color: #74c69d;
 }
 
 #btnExportar {
@@ -399,28 +402,23 @@ thead {
 }
 
 tbody tr:nth-child(odd) {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+tbody tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .status-valido {
     background-color: #195b01;
-    padding: 4px 8px;
-    color: #fff;
-    border-radius: 4px;
 }
 
 .status-vencido {
     background-color: #a10000;
-    padding: 4px 8px;
-    color: #fff;
-    border-radius: 4px;
 }
 
 .status-a-vencer {
     background-color: #996c00;
-    padding: 4px 8px;
-    color: #fff;
-    border-radius: 4px;
 }
 
 .acao-btn {
@@ -613,13 +611,24 @@ td.acoes .action-icons {
     width: 90px;
     margin: 0 auto;
     text-align: center;
-    padding: 4px 0;
-    border-radius: 6px;
+    padding: 3px 0;
+    border-radius: 20px;
     color: #fff;
     font-weight: bold;
     white-space: nowrap;
-    font-size: 0.75rem;
-    letter-spacing: 0.03em;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+}
+
+#contadorSelecionados {
+    display: none;
+    background: #457b9d;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-right: 8px;
 }
 
 .ano-vermelho {
