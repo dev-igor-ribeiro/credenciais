@@ -59,24 +59,9 @@
                 </select>
             </div>
 
-            <div style="display: flex; gap: 10px; margin-top: 1rem;">
-                <button type="submit" class="btn-salvar" style="flex: 2; font-size: 1rem; padding: 0.8rem;">Salvar Alterações</button>
-
-                <button type="button" class="btn-pdf" style="flex: 1; font-size: 0.85rem; padding: 0.8rem; background-color: #555;" onclick="
-                    document.getElementById('pdfNumero').value = document.getElementById('editarCredencial').value;
-                    document.getElementById('pdfNome').value = document.getElementById('editarNome').value;
-                    document.getElementById('pdfCpf').value = document.getElementById('editarCpf').value;
-                    document.getElementById('pdfCnh').value = document.getElementById('editarCnh').value;
-                    document.getElementById('formGerarPdfEditar').submit();
-                ">Gerar PDF</button>
+            <div style="margin-top: 1rem;">
+                <button type="submit" class="btn-salvar" style="width: 100%; font-size: 1rem; padding: 0.8rem;">Salvar Alterações</button>
             </div>
-        </form>
-
-        <form id="formGerarPdfEditar" action="src/pdf/gerar_pdf.php" method="POST" target="_blank" style="display:none;">
-            <input type="hidden" id="pdfNumero" name="numero">
-            <input type="hidden" id="pdfNome" name="nome">
-            <input type="hidden" id="pdfCpf" name="cpf">
-            <input type="hidden" id="pdfCnh" name="cnh">
         </form>
     </div>
 </div>
