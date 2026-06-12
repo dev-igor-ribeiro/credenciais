@@ -8,36 +8,41 @@ body {
 }
 
 .top-header {
-    background: transparent;
-    text-align: center;
-    padding: 1rem 2rem 0.5rem;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.6rem 4rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .top-header h1 {
-    font-size: 2rem;
+    font-size: 1.3rem;
     margin: 0;
+    line-height: 1.2;
 }
 
 .top-header p {
-    margin: 0.2rem 0 0.8rem;
+    margin: 0;
     color: #ccc;
+    font-size: 0.8rem;
 }
 
 
 .logout-btn {
-    position: absolute;
-    top: 18px;
-    left: 18px;
+    position: static;
+    order: -1;
+    flex-shrink: 0;
     background-color: #e63946;
     color: #fff;
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.4);
@@ -457,23 +462,22 @@ tbody tr:nth-child(odd) {
 
     /* Header */
     .top-header {
-        padding: 0.8rem 1rem 0.5rem;
+        padding: 0.5rem 1rem 0.5rem 4rem;
+        justify-content: flex-start;
+        gap: 0.5rem;
     }
 
     .top-header h1 {
-        font-size: 1.2rem;
-        padding: 0 3rem;
+        font-size: 1rem;
     }
 
     .top-header p {
-        font-size: 0.78rem;
+        font-size: 0.72rem;
     }
 
     .logout-btn {
-        width: 38px;
-        height: 38px;
-        top: 12px;
-        left: 10px;
+        width: 34px;
+        height: 34px;
     }
 
     /* Cards: 2 por linha */
@@ -516,12 +520,13 @@ tbody tr:nth-child(odd) {
     }
 
     .filtros-data {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        overflow-x: auto;
     }
 
     .filtros-data input[type="date"] {
-        flex: 1;
-        min-width: 130px;
+        min-width: 120px;
+        flex-shrink: 1;
     }
 
     /* Botões de ação */
