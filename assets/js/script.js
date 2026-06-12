@@ -278,6 +278,7 @@ function renderTabela(data, resetPagina) {
     <td class="action-icons">
         <span class="tooltip-wrap" data-tooltip="Editar"><img src="assets/icons/edit.svg" alt="Editar" class="icon-action edit-icon"></span>
         <span class="tooltip-wrap" data-tooltip="Excluir"><img src="assets/icons/trash-2.svg" alt="Excluir" class="icon-action delete-icon"></span>
+        <span class="tooltip-wrap" data-tooltip="Gerar PDF"><img src="assets/icons/file-pdf.svg" alt="PDF" class="icon-action pdf-icon"></span>
     </td>
 </tr>`;
             tabela.insertAdjacentHTML("beforeend", row);
@@ -331,6 +332,31 @@ function renderTabela(data, resetPagina) {
                         .catch(() => mostrarMensagem("error", "Erro ao excluir motorista."));
                 }
                 mostrarMensagem("warning", `Tem certeza que deseja excluir ${motorista.nome}? Clique em Confirmar para confirmar ou Cancelar para cancelar.`, confirmarExclusao);
+            });
+
+            const btnPdf = linha.querySelector(".pdf-icon");
+            btnPdf.addEventListener("click", () => {
+                const form = document.createElement("form");
+                form.method = "POST";
+                form.action = "src/pdf/gerar_pdf.php";
+                form.target = "_blank";
+                form.style.display = "none";
+                const campos = {
+                    numero: motorista.credencial || '',
+                    nome:   motorista.nome       || '',
+                    cpf:    motorista.cpf        || '',
+                    cnh:    motorista.cnh        || '',
+                };
+                Object.entries(campos).forEach(([k, v]) => {
+                    const input = document.createElement("input");
+                    input.type  = "hidden";
+                    input.name  = k;
+                    input.value = v;
+                    form.appendChild(input);
+                });
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
             });
         });
     }
