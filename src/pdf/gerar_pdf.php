@@ -64,7 +64,7 @@ $html = '
     <div class="conteudo">
       A empresa Bora Car Transporte e Serviços LTDA, com sede na Rua Afonso Arinos 153, Centro, na cidade de Alfenas, estado de Minas Gerais, inscrita no CNPJ: 34.783.315/0001-74, inscrição municipal nº 217006, alvará de funcionamento nº575/2023, credenciada junto à superintendência de trânsito da prefeitura Municipal de Alfenas sob o nº' . $numero . '/2025 credencia o senhor(a) <b><u>' . $nome . '</u></b>, CNH <b><u>' . $cnh . '</u></b>, CPF <b><u>' . $cpf . '</u></b>, como motorista parceiro junto ao aplicativo de mobilidade urbana BORACAR, atestando que o motorista se encontra na ativa e tanto o motorista quanto o veículo utilizado para a prestação de serviço estão cumprindo os requisitos de cadastramento previsto na Lei Federal 13.640/2018 art. 8º da Lei Municipal 5.193 de 23 de março de 2023.
     </div>
-    <div class="data">Data de emissão: ' . date("d/m/Y") . '</div>
+
     <div class="assinatura">
       <img src="data:image/png;base64,' . $assinaturaData . '" />
       <div style="height: 1px; background-color: #000; width: 60%; margin: 10px auto 10px auto;"></div>
